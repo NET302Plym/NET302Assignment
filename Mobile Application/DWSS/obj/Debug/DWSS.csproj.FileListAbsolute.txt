@@ -1,0 +1,107 @@
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\App.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\MainPage.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\Pages\LoginScreen.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\DWSS.xr.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\DWSS.exe
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\DWSS.pdb
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\resources.pri
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\AppxManifest.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\DWSS.build.appxrecipe
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\Newtonsoft.Json.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\Newtonsoft.Json.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\App.g.i.cs
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\App.g.cs
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\MainPage.g.i.cs
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\MainPage.g.cs
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\Pages\LoginScreen.g.i.cs
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\Pages\LoginScreen.g.cs
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\XamlTypeInfo.g.cs
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\App.xaml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\MainPage.xaml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\App.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\MainPage.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\XamlSaveStateFile.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\Pages\LoginScreen.xaml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\Pages\LoginScreen.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\DWSS.exe
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\DWSS.pdb
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\DWSS.csproj.GenerateResource.Cache
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\priconfig.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\priconfig.xml.intermediate
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\layout.resfiles
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\layout.resfiles.intermediate
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\resources.resfiles
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\resources.resfiles.intermediate
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\pri.resfiles
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\pri.resfiles.intermediate
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\qualifiers.txt
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\qualifiers.txt.intermediate
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\ProjectArchitectures.txt
+E:\NET302 Start\DWSS\DWSS\bin\Debug\App.xbf
+E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\LoginScreen.xbf
+E:\NET302 Start\DWSS\DWSS\bin\Debug\DWSS.xr.xml
+E:\NET302 Start\DWSS\DWSS\bin\Debug\DWSS.exe
+E:\NET302 Start\DWSS\DWSS\bin\Debug\DWSS.pdb
+E:\NET302 Start\DWSS\DWSS\bin\Debug\resources.pri
+E:\NET302 Start\DWSS\DWSS\bin\Debug\AppxManifest.xml
+E:\NET302 Start\DWSS\DWSS\bin\Debug\DWSS.build.appxrecipe
+E:\NET302 Start\DWSS\DWSS\bin\Debug\Newtonsoft.Json.dll
+E:\NET302 Start\DWSS\DWSS\bin\Debug\Newtonsoft.Json.xml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
+E:\NET302 Start\DWSS\DWSS\obj\Debug\App.g.i.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\App.g.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\LoginScreen.g.i.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\LoginScreen.g.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\XamlTypeInfo.g.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\App.xaml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\LoginScreen.xaml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\App.xbf
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\LoginScreen.xbf
+E:\NET302 Start\DWSS\DWSS\obj\Debug\XamlSaveStateFile.xml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\DWSS.exe
+E:\NET302 Start\DWSS\DWSS\obj\Debug\DWSS.pdb
+E:\NET302 Start\DWSS\DWSS\obj\Debug\DWSS.csproj.GenerateResource.Cache
+E:\NET302 Start\DWSS\DWSS\obj\Debug\priconfig.xml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\priconfig.xml.intermediate
+E:\NET302 Start\DWSS\DWSS\obj\Debug\layout.resfiles
+E:\NET302 Start\DWSS\DWSS\obj\Debug\layout.resfiles.intermediate
+E:\NET302 Start\DWSS\DWSS\obj\Debug\resources.resfiles
+E:\NET302 Start\DWSS\DWSS\obj\Debug\resources.resfiles.intermediate
+E:\NET302 Start\DWSS\DWSS\obj\Debug\pri.resfiles
+E:\NET302 Start\DWSS\DWSS\obj\Debug\pri.resfiles.intermediate
+E:\NET302 Start\DWSS\DWSS\obj\Debug\qualifiers.txt
+E:\NET302 Start\DWSS\DWSS\obj\Debug\qualifiers.txt.intermediate
+E:\NET302 Start\DWSS\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
+E:\NET302 Start\DWSS\DWSS\obj\Debug\ProjectArchitectures.txt
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OptionsPage.g.i.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OptionsPage.g.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OptionsPage.xaml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OptionsPage.xbf
+E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\OptionsPage.xbf
+E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf
+E:\NET302 Start\DWSS\DWSS\bin\Debug\UserControls\OrderUserControl.xbf
+E:\NET302 Start\DWSS\DWSS\bin\Debug\UserControls\ProductUserControl.xbf
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.i.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\OrderUserControl.g.i.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\OrderUserControl.g.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\ProductUserControl.g.i.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\ProductUserControl.g.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xaml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xbf
+E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\OrderUserControl.xaml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\ProductUserControl.xaml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\OrderUserControl.xbf
+E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\ProductUserControl.xbf
+E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\AdjustStockPage.xbf
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustStockPage.g.i.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustStockPage.g.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustStockPage.xaml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustStockPage.xbf
+E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\AdjustProductPage.xbf
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustProductPage.g.i.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustProductPage.g.cs
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustProductPage.xaml
+E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustProductPage.xbf

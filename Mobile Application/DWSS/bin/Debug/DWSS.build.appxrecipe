@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>DAN-LAPTOP</Machine>
+    <WindowsUser>Dan</WindowsUser>
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+    <TargetOsVersion>6.3</TargetOsVersion>
+    <TargetOsDescription>Windows Phone 8.1</TargetOsDescription>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>e7be14f2-a733-4c06-a057-52cb4fae4eb9</PackageIdentityName>
+    <IntermediateOutputPath>E:\NET302 Start\DWSS\DWSS\obj\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\DWSS.exe">
+      <PackagePath>DWSS.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\Assets\Logo.scale-240.png">
+      <PackagePath>Assets\Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\Assets\SmallLogo.scale-240.png">
+      <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\Assets\SplashScreen.scale-240.png">
+      <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\Assets\Square71x71Logo.scale-240.png">
+      <PackagePath>Assets\Square71x71Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\Assets\StoreLogo.scale-240.png">
+      <PackagePath>Assets\StoreLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\Assets\WideLogo.scale-240.png">
+      <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\DWSS.xr.xml">
+      <PackagePath>DWSS.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\AdjustProductPage.xbf">
+      <PackagePath>Pages\AdjustProductPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\AdjustStockPage.xbf">
+      <PackagePath>Pages\AdjustStockPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\LoginScreen.xbf">
+      <PackagePath>Pages\LoginScreen.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\OptionsPage.xbf">
+      <PackagePath>Pages\OptionsPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf">
+      <PackagePath>Pages\OrderFulfilmentPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\UserControls\OrderUserControl.xbf">
+      <PackagePath>UserControls\OrderUserControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\UserControls\ProductUserControl.xbf">
+      <PackagePath>UserControls\ProductUserControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\NET302 Start\DWSS\DWSS\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
