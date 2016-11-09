@@ -46,6 +46,11 @@ public class OrderBean
      * @param fulfilled 
      */
     
+    public OrderBean()
+    {
+        
+    }
+    
     public OrderBean(int ID, int quantity)
     {
         this.ID = ID;

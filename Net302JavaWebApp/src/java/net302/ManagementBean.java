@@ -15,10 +15,11 @@ import javax.enterprise.context.Dependent;
  */
 @Named(value = "managementBean")
 @Dependent
+
 public class ManagementBean
 {
     private  ArrayList<ProductBean> productList;
-    private ArrayList<OrderBean> orderItems;
+    private ArrayList<OrderBean> orderItems = new ArrayList<OrderBean>();
     /**
      * Creates a new instance of ManagementBean
      */
@@ -43,16 +44,19 @@ public class ManagementBean
         // for each orderItem -> to Json -> send to server 
     }
     
-    public void addToTestOrder(int ID, int quantity)
+    public void addToTestOrder(int ID)
     {
+        int quantity = 2;
         OrderBean orderItem = new OrderBean(ID,quantity);
         orderItems.add(orderItem);
+        
     }
     
     public void addToOrder(int quantity, UserBean user, ProductBean product)
     {
         OrderBean orderItem = new OrderBean(quantity,user,product);
         orderItems.add(orderItem);
+        
     }
 
     public ArrayList<OrderBean> getOrderItems()
