@@ -1,83 +1,49 @@
 package NET302JavaLibrary;
 import com.google.gson.Gson;
 
+// TODO: JavaDoc comments throughout.
+
 public class Product {
-    // Local variables
-    int     ID;
-    int     stockCount;
-    String  category;
-    String  subCategory;
-    String  name;
-    String  container;
-    Double  unitPrice;
-    Boolean available;
-    
-    // Constructors
+    //************************************************************************//
+    //  -   VARIABLES AND CONSTRUCTORS                                    -   //
+    //************************************************************************//
+    private final int ID;
+    private int     stockCount;
+    private boolean available;
+    private String  name;
+    private Double  unitPrice;
+    private GenericLookup   category;
+    private GenericLookup   subCategory;
+    private GenericLookup   container;
+
     /**
-     * In theory this should only ever be called from the middleware, as the end clients won't be generating new products
+     * Constructor for creating a new Product object.
      * @param ID
      * @param stockCount
+     * @param name
+     * @param available
+     * @param unitPrice
      * @param category
      * @param subCategory
-     * @param name
-     * @param container
-     * @param unitPrice
-     * @param available 
+     * @param container 
      */
-    public Product(int ID, int stockCount, String category, String subCategory, String name, String container, Double unitPrice, Boolean available) {
+    public Product(int ID, int stockCount, String name, boolean available, Double unitPrice, GenericLookup category, GenericLookup subCategory, GenericLookup container) {
         this.ID = ID;
         this.stockCount = stockCount;
+        this.name = name;
+        this.available = available;
+        this.unitPrice = unitPrice;
         this.category = category;
         this.subCategory = subCategory;
-        this.name = name;
         this.container = container;
-        this.unitPrice = unitPrice;
-        this.available = available;
     }
-    
-    // Set / Gets
+
+    //************************************************************************//
+    //  -   GETTERS + SETTERS                                             -   //
+    //************************************************************************//
+
     public int getID() {
         return ID;
-    }
-    
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public String getSubCategory() {
-        return subCategory;
-    }
-
-    public void setSubCategory(String subCategory) {
-        this.subCategory = subCategory;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getContainer() {
-        return container;
-    }
-
-    public void setContainer(String container) {
-        this.container = container;
-    }
-
-    public Double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(Double unitPrice) {
-        this.unitPrice = unitPrice;
     }
 
     public int getStockCount() {
@@ -88,32 +54,83 @@ public class Product {
         this.stockCount = stockCount;
     }
 
-    public Boolean getAvailable() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isAvailable() {
         return available;
     }
 
-    public void setAvailable(Boolean available) {
+    public void setAvailable(boolean available) {
         this.available = available;
     }
-    
-    // ToString Override
-    @Override
-    public String toString() {
-        return "Product{" + "ID=" + ID + ", stockCount=" + stockCount + ", category=" + category + ", subCategory=" + subCategory + ", name=" + name + ", container=" + container + ", unitPrice=" + unitPrice + ", available=" + available + '}';
+
+    public Double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public GenericLookup getCategory() {
+        return category;
+    }
+
+    public void setCategory(GenericLookup category) {
+        this.category = category;
+    }
+
+    public GenericLookup getSubCategory() {
+        return subCategory;
+    }
+
+    public void setSubCategory(GenericLookup subCategory) {
+        this.subCategory = subCategory;
+    }
+
+    public GenericLookup getContainer() {
+        return container;
+    }
+
+    public void setContainer(GenericLookup container) {
+        this.container = container;
     }
     
-    // JSON Conversion
+    //************************************************************************//
+    //  -   toString                                                      -   //
+    //************************************************************************//
+
+    @Override
+    public String toString() {
+        return "Product{" + "ID=" + ID + ", stockCount=" + stockCount + ", name=" + name 
+                + ", available=" + available + ", unitPrice=" + unitPrice 
+                // Objects below use their toString method:
+                + ", category=" + category.toString() 
+                + ", subCategory=" + subCategory.toString() 
+                + ", container=" + container.toString() + '}';
+    }
+    
+    //************************************************************************//
+    //  -   GSON/JSON HELPER METHODS                                      -   //
+    //************************************************************************//
+    
     public Product(String jsonString){
         Gson gson = new Gson();
         Product product = gson.fromJson(jsonString, Product.class);
-        this.ID = product.ID;
-        this.stockCount = product.stockCount;
-        this.category = product.category;
-        this.subCategory = product.subCategory;
-        this.name = product.name;
-        this.container = product.container;
-        this.unitPrice = product.unitPrice;
-        this.available = product.available;
+        this.ID             = product.getID();
+        this.stockCount     = product.getStockCount();
+        this.name           = product.getName();
+        this.available      = product.isAvailable();
+        this.unitPrice      = product.getUnitPrice();
+        this.category       = product.getCategory();
+        this.subCategory    = product.getSubCategory();
+        this.container      = product.getSubCategory();
     }
     
     public String GetJSONString(){

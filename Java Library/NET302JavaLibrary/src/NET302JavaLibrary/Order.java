@@ -2,69 +2,65 @@ package NET302JavaLibrary;
 import java.sql.Time;
 import com.google.gson.Gson;
 
+// TODO: JavaDoc comments throughout.
+
 public class Order {
-    // Local Variables
-    int     ID;
-    int     quantity;
-    String  dateDelivered;
-    User  customer;
-    String  location;
-    User  staffFulfilled;
-    Product product;
-    Time    timeDelivered;
-    Boolean fulfilled;
-    
-    // Constructors
-    /**
-     * This should be used for the construction from the Database on the Middleware side (as is requires all information)
-     * @param ID
-     * @param quantity
-     * @param dateDelivered
-     * @param customer
-     * @param location
-     * @param staffFulfilled
-     * @param product
-     * @param timeDelivered
-     * @param fulfilled 
-     */
-    public Order(int ID, int quantity, String dateDelivered, User customer, String location, User staffFulfilled, Product product, Time timeDelivered, Boolean fulfilled) {
+    //************************************************************************//
+    //  -   VARIABLES AND CONSTRUCTORS                                    -   //
+    //************************************************************************//
+    private final int ID;
+    private int     quantity;
+    private boolean fulfilled;
+    private String  dateOrdered;
+    private String  dateDelivered;
+    private Time    timeDelivered;
+    private User    staffOrdered;
+    private User    staffFulfilled;
+    private Product product;
+    private GenericLookup location;
+    private GenericLookup status;
+
+    public Order(int ID, int quantity, boolean fulfilled, String dateOrdered, User staffOrdered, Product product, GenericLookup location, GenericLookup status) {
         this.ID = ID;
         this.quantity = quantity;
-        this.dateDelivered = dateDelivered;
-        this.customer = customer;
-        this.location = location;
-        this.staffFulfilled = staffFulfilled;
-        this.product = product;
-        this.timeDelivered = timeDelivered;
         this.fulfilled = fulfilled;
-    }
-    /**
-     * Creates a new order (client side)
-     * @param quantity Quantity requested
-     * @param user The user logged in
-     * @param product The product requested
-     */
-    public Order(int quantity, User user, Product product){
-        this.quantity = quantity;
-        this.customer = user;
+        this.dateOrdered = dateOrdered;
+        this.staffOrdered = staffOrdered;
         this.product = product;
+        this.location = location;
+        this.status = status;
     }
     
-    // Set / Gets
+    //************************************************************************//
+    //  -   GETTERS + SETTERS                                             -   //
+    //************************************************************************//
+
     public int getID() {
         return ID;
     }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
+    
     public int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean isFulfilled() {
+        return fulfilled;
+    }
+
+    public void setFulfilled(boolean fulfilled) {
+        this.fulfilled = fulfilled;
+    }
+
+    public String getDateOrdered() {
+        return dateOrdered;
+    }
+
+    public void setDateOrdered(String dateOrdered) {
+        this.dateOrdered = dateOrdered;
     }
 
     public String getDateDelivered() {
@@ -75,20 +71,20 @@ public class Order {
         this.dateDelivered = dateDelivered;
     }
 
-    public User getCustomer() {
-        return customer;
+    public Time getTimeDelivered() {
+        return timeDelivered;
     }
 
-    public void setCustomer(User customer) {
-        this.customer = customer;
+    public void setTimeDelivered(Time timeDelivered) {
+        this.timeDelivered = timeDelivered;
     }
 
-    public String getLocation() {
-        return location;
+    public User getStaffOrdered() {
+        return staffOrdered;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setStaffOrdered(User staffOrdered) {
+        this.staffOrdered = staffOrdered;
     }
 
     public User getStaffFulfilled() {
@@ -107,42 +103,57 @@ public class Order {
         this.product = product;
     }
 
-    public Time getTimeDelivered() {
-        return timeDelivered;
+    public GenericLookup getLocation() {
+        return location;
     }
 
-    public void setTimeDelivered(Time timeDelivered) {
-        this.timeDelivered = timeDelivered;
+    public void setLocation(GenericLookup location) {
+        this.location = location;
     }
 
-    public Boolean getFulfilled() {
-        return fulfilled;
+    public GenericLookup getStatus() {
+        return status;
     }
 
-    public void setFulfilled(Boolean fulfilled) {
-        this.fulfilled = fulfilled;
+    public void setStatus(GenericLookup status) {
+        this.status = status;
     }
-        
-    // ToString Override
+    
+    //************************************************************************//
+    //  -   toString                                                      -   //
+    //************************************************************************//
 
     @Override
     public String toString() {
-        return "Order{" + "ID=" + ID + ", quantity=" + quantity + ", dateDelivered=" + dateDelivered + ", customer=" + customer + ", location=" + location + ", staffFulfilled=" + staffFulfilled + ", product=" + product + ", timeDelivered=" + timeDelivered + ", fulfilled=" + fulfilled + '}';
+        return "Order{" + "ID=" + ID + ", quantity=" + quantity + ", fulfilled=" + fulfilled 
+                + ", dateOrdered=" + dateOrdered + ", dateDelivered=" 
+                + dateDelivered + ", timeDelivered=" + timeDelivered 
+                // Objects below use their toString method:
+                + ", staffOrdered=" + staffOrdered.toString()
+                + ", staffFulfilled=" + staffFulfilled.toString()
+                + ", product=" + product.toString()
+                + ", location=" + location.toString() 
+                + ", status-" + status.toString() + '}';
     }
-        
-    // JSON Conversion
+    
+    //************************************************************************//
+    //  -   GSON/JSON HELPER METHODS                                      -   //
+    //************************************************************************//
+    
     public Order(String jsonString){
         Gson gson = new Gson();
         Order order = gson.fromJson(jsonString, Order.class);
-        this.ID = order.ID;
-        this.quantity = order.quantity;
-        this.dateDelivered = order.dateDelivered;
-        this.customer = order.customer;
-        this.location = order.location;
-        this.staffFulfilled = order.staffFulfilled;
-        this.product = order.product;
-        this.timeDelivered = order.timeDelivered;
-        this.fulfilled = order.fulfilled;
+        this.ID             = order.getID();
+        this.quantity       = order.getQuantity();
+        this.fulfilled      = order.isFulfilled();
+        this.dateDelivered  = order.getDateDelivered();
+        this.dateOrdered    = order.getDateOrdered();
+        this.timeDelivered  = order.getTimeDelivered();
+        this.staffOrdered   = order.getStaffOrdered();
+        this.staffFulfilled = order.getStaffFulfilled();
+        this.product        = order.getProduct();
+        this.location       = order.getLocation();
+        this.status         = order.getStatus();
     }
     
     public String GetJSONString(){
