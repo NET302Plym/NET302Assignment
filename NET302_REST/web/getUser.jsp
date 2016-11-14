@@ -1,13 +1,16 @@
+<%@page import="com.google.gson.reflect.TypeToken"%>
+<%@page import="com.google.gson.Gson"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="NET302JavaLibrary.User"%>
 <%@page import="NET302_Handlers.DB_Handler"%>
-<%  
-    // This page will take an ID parameter to query the database for that ID
-    // of the User table.
+<%@page import="java.lang.reflect.Type"%>
+<%  // This page takes an optional ID parameter,
+    // where ID = the ID of the user to return.
+    // If no parameter, all Users are returned.
     
-    // Used to send back the data, presume initial failure due to unknown error.
-    String  result = "ERROR: Please contact system administrator.";
+    // Used to send back the data, presume initial error and inform:
+    String  result = "ERROR: No change of result reached. Consult system administrator.";
     
     // Fetch and store the ID parameter:
     String  paraID  = request.getParameter("ID");
@@ -15,7 +18,7 @@
     // Create database connection:
     DB_Handler handler = new DB_Handler();
     
-    // If the ID parameter exists, then return a single Object
+    // If the ID parameter exists, then return a single User:
     if (paraID != null) {
         paraID = paraID.toUpperCase().trim();
 
@@ -24,7 +27,9 @@
                     int id = Integer.parseInt(paraID);
                     result = handler.getUser(id).GetJSONString();
                 } catch (NumberFormatException | SQLException ex) {
-                    result = "ERROR: " + ex.getMessage();
+                    // SQL Error.
+                    result = "ERROR: Please check DB_Handler for following error:"
+                            + "\n" + ex.getMessage();
                 } finally { handler.CloseConnection(); }
             } else {
                 // Failed to get a connection!
@@ -35,11 +40,19 @@
     // NO PARAMETER SPECIFIED - Return all Products
     else {
         if (handler.GetConnection()) {
-            ArrayList<User> list = handler.getAllUsers();
-            
-            // TODO : GSON arrayList.
-            
-            handler.CloseConnection();
+            try {
+                ArrayList<User> list = handler.getAllUsers();
+                
+                // TODO: should work but a little uncertain!
+                Gson gson = new Gson();
+                Type token = new TypeToken<ArrayList<User>>() {}.getType();
+                result = gson.toJson(list, token); 
+                
+            } catch (SQLException ex) {
+                // SQL Error.
+                result = "ERROR: Please check DB_Handler for following error:"
+                        + "\n" + ex.getMessage();
+            } finally { handler.CloseConnection(); }
         } else {
             // Failed to get a connection!
             result = "ERROR: Could not get connection from database."

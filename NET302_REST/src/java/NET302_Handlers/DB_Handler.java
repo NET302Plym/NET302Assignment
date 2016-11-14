@@ -15,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 // TODO: JavaDoc comments throughout.
+// TODO: Testing throughout.
+// TODO: Ensure things are up to standards (security, etc.)
 
 /**
  * Handles connections from the JSP pages (who accept connections from clients)
@@ -242,7 +244,7 @@ public class DB_Handler {
     
     // TODO: write this query.
     private final String        authUserQ       =
-            "";
+            "SELECT password FROM NET302.Staff WHERE Staff.ID = ?;";
     
     // Empty Constructor - allows instantiating for multiple connections.
     public DB_Handler() { /* empty */ }
@@ -785,10 +787,13 @@ public class DB_Handler {
         addUser.executeQuery();
     }
     
-    public boolean authUser(User u, String password) {
-        // TODO: this.
-        // authUser = preparedStatement
-        // authUserQ = Query.
-        return false;
+    public boolean authUser(int id, String password) throws SQLException {
+        authUser = connection.prepareStatement(authUserQ);
+        authUser.setInt(1, id);
+        resultSet = authUser.executeQuery();
+        resultSet.next();
+        String db_pass = resultSet.getString("PASSWORD");
+        
+        return (password.equals(db_pass));
     }
 }

@@ -22,6 +22,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.reflect.Type;
 
+// TODO: in theory everything pretty much works? needs to be tested really.
+
 /**
  *
  * @author Sam
@@ -97,19 +99,27 @@ public class Connector {
     }
     
     //************************************************************************//
-    //  -   GET / ADD / UPDATE ITEMS METHODS                              -   //
+    //  -   AUTHENTICATE USER + OTHER ASSORTED METHOD                     -   //
     //************************************************************************//
     
-    // TODO: On all of the below, make a connection and convert the result to
-    // what we expect. USE TOKENS (?).
+    public boolean Authenticate(User user, String hash) {
+        return false;
+    }
+    
+    //************************************************************************//
+    //  -   GET / ADD / UPDATE ITEMS METHODS                              -   //
+    //************************************************************************//
     
     public ArrayList<Product> getAllProducts() {
         urlEnd = "getProduct.jsp";
         
+        // Pass query to URL:
         String q = SendQuery(SERVER + urlEnd);
         
-        // TEST: unsure if correct, guidance say this is how but
-        // it doesn't use the toGson method in the generic lookup.
+        // Log the result in case of error message:
+        System.err.println(q);
+        
+        // TEST: Convert result using GSON:
         Gson gson = new Gson();
         Type token = new TypeToken<ArrayList<Product>>() {}.getType();
         ArrayList<Product> list = gson.fromJson(q, token);
@@ -120,10 +130,13 @@ public class Connector {
     public ArrayList<Order> getAllOrders() {
         urlEnd = "getOrder.jsp";
         
+        // Pass query to URL:
         String o = SendQuery(SERVER + urlEnd);
         
-        // TEST: unsure if correct, guidance say this is how but
-        // it doesn't use the toGson method in the generic lookup.
+        // Log the result in case of error message:
+        System.err.println(o);
+        
+        // TEST: Convert result using GSON:
         Gson gson = new Gson();
         Type token = new TypeToken<ArrayList<Order>>() {}.getType();
         ArrayList<Order> list = gson.fromJson(o, token);
@@ -134,10 +147,13 @@ public class Connector {
     public ArrayList<User> getAllUsers() {
         urlEnd = "getUser.jsp";
         
+        // Pass query to URL:
         String u = SendQuery(SERVER + urlEnd);
         
-        // TEST: unsure if correct, guidance say this is how but
-        // it doesn't use the toGson method in the generic lookup.
+        // Log the result in case of error message:
+        System.err.println(u);
+        
+        // TEST: Convert result using GSON:
         Gson gson = new Gson();
         Type token = new TypeToken<ArrayList<User>>() {}.getType();
         ArrayList<User> list = gson.fromJson(u, token);
@@ -149,7 +165,11 @@ public class Connector {
     public Product getProduct(int id) {
         urlEnd = "getProduct?ID=" + id;
         
+        // Pass query to URL:
         String q = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(q);
         
         return new Product(q);
     }
@@ -158,7 +178,11 @@ public class Connector {
     public Order getOrder(int id) {
         urlEnd = "getOrder.jsp?ID=" + id;
         
+        // Pass query to URL:
         String o = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(o);
         
         return new Order(o);
     }
@@ -167,7 +191,11 @@ public class Connector {
     public User getUser(int id) {
         urlEnd = "getUser.jsp?ID=" + id;
         
+        // Pass query to URL:
         String u = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(u);
         
         return new User(u);
     }
@@ -176,45 +204,62 @@ public class Connector {
     public boolean addProduct(Product p) {
         urlEnd = "addProduct?PRODUCT=" + p.GetJSONString() + "&NEW=TRUE";
         
+        // Pass query to URL:
         String result = SendQuery(SERVER + urlEnd);
         
-        return result.equals("SUCCESS");
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
     }
     
     // TEST: This should work, but not sure about the resulting boolean.
     public boolean addOrder(Order o) {
         urlEnd = "addOrder?ORDER=" + o.GetJSONString() + "&NEW=TRUE";
         
+        // Pass query to URL:
         String result = SendQuery(SERVER + urlEnd);
         
-        return result.equals("SUCCESS");
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
     }
     
     // TEST: This should work, but not sure about the resulting boolean.
     public boolean addUser(User u) {
         urlEnd = "addUser?USER=" + u.GetJSONString() + "&NEW=TRUE";
         
+        // Pass query to URL:
         String result = SendQuery(SERVER + urlEnd);
         
-        return result.equals("SUCCESS");
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
     }
     
     // TEST: This should work, but not sure about the resulting boolean.
     public boolean updateProduct(Product p) {
         urlEnd = "addProduct?PRODUCT=" + p.GetJSONString() + "&NEW=FALSE";
         
+        // Pass query to URL:
         String result = SendQuery(SERVER + urlEnd);
         
-        return result.equals("SUCCESS");
+        return result.startsWith("SUCCESS");
     }
     
     // TEST: This should work, but not sure about the resulting boolean.
     public boolean updateOrder(Order o) {
         urlEnd = "addOrder?ORDER=" + o.GetJSONString() + "&NEW=FALSE";
         
+        // Pass query to URL:
         String result = SendQuery(SERVER + urlEnd);
         
-        return result.equals("SUCCESS");
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
     }
     
     // TEST: This should work, but not sure about the resulting boolean.
@@ -223,7 +268,10 @@ public class Connector {
         
         String result = SendQuery(SERVER + urlEnd);
         
-        return result.equals("SUCCESS");
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
     }
     
     //************************************************************************//
@@ -239,31 +287,96 @@ public class Connector {
                     || identifier.equals("status")) {
             urlEnd = "getLookups?IDENTIFIER=" + identifier;
             
-            // TODO: connect to server, fetch GSON and convert it to an object.
+            // Pass query to URL:
+            String l = SendQuery(SERVER + urlEnd);
             
-            // TODO: handle input error, return properly.
-            
-        } else { return null; }
-        return null;
+            // Log the result in case of error message:
+            System.err.println(l);
+
+            // If NOT starting with ERROR then continue...
+            if (!l.startsWith("ERROR")) {
+                // TEST: Convert result using GSON:
+                Gson gson = new Gson();
+                Type token = new TypeToken<ArrayList<User>>() {}.getType();
+                ArrayList<GenericLookup> list = gson.fromJson(l, token);
+                
+                return list;
+                
+            } else  {
+                // Log the result in case of error message:
+                System.err.println(l);
+                return null;
+            }
+        } else { 
+            // Eroor
+            System.err.println("ERROR: Identifier given to the method getAllLookups"
+                    + "is incorrect! Please review the JavaDoc.");
+            return null; 
+        }
     }
     
     public boolean addLocation(String location) {
-        // TODO: add middleware function then this is possible.
-        return false;
+        // Create lookup with ID of 1, it won't be used but just encapsulates the data.
+        GenericLookup l = new GenericLookup(1, location);
+        urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=FALSE";
+        
+        String result = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
     }
     
     public boolean addCategory(String category) {
-        // TODO: add middleware function then this is possible.
-        return false;
+        // Create lookup with ID of 1, it won't be used but just encapsulates the data.
+        GenericLookup l = new GenericLookup(1, category);
+        urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=FALSE";
+        
+        String result = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
     }
     
-    public boolean addSubCat(String category) {
-        // TODO: add middleware function then this is possible.
-        return false;
+    public boolean addSubCat(String subcat) {
+        // Create lookup with ID of 1, it won't be used but just encapsulates the data.
+        GenericLookup l = new GenericLookup(1, subcat);
+        urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=FALSE";
+        
+        String result = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
     }
     
     public boolean addOrderStatus(String status) {
-        // TODO: add middleware function then this is possible.
-        return false;
+        // Create lookup with ID of 1, it won't be used but just encapsulates the data.
+        GenericLookup l = new GenericLookup(1, status);
+        urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=FALSE";
+        
+        String result = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
+    }
+    
+    public boolean addContainer(String container) {
+        // Create lookup with ID of 1, it won't be used but just encapsulates the data.
+        GenericLookup l = new GenericLookup(1, container);
+        urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=FALSE";
+        
+        String result = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
     }
 }

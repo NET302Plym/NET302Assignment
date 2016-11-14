@@ -1,15 +1,12 @@
 <%@page import="NET302JavaLibrary.Product"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="NET302_Handlers.DB_Handler"%>
-<%
-    // This page will take an existing Product object as a parameter,
-    // it will then send that off to the database.
-    // A second parameter of TRUE or FALSE must also exist, where:
-    //  TRUE    = Add New
-    //  FALSE   = Update
-
-    // Used to send back the data, presume initial failure due to unknown error.
-    String  result = "ERROR: Please contact system administrator.";
+<%  // This page will take PRODUCT and a NEW as parameters,
+    // where PRODUCT = the GSON object to add/update,
+    // where NEW = is TRUE or FALSE and establishes whether to add or update.
+    
+    // Used to send back the data, presume initial error and inform:
+    String  result = "ERROR: No change of result reached. Consult system administrator.";
     
     // Get the parameters:
     String  orderP  = request.getParameter("PRODUCT");
@@ -21,8 +18,7 @@
     // Check for both parameters existing:
     if (orderP.length() > 1 & newP.length() > 1) {
         // Presume success unless errored:
-        // TO-DO: A bit vague, may need to adjust the result.
-        result = "SUCCESS";
+        result = "SUCCESS: Query passed to handler method without error.";
         
         // Create Order from String which should be of JSON format:
         Product tempProduct = new Product(orderP);
@@ -33,19 +29,17 @@
                     try {
                         handler.newProduct(tempProduct);
                     } catch (SQLException ex) {
-                        System.out.println("SQL Error: " + ex.getMessage() + "\n");
-                        result = "ERROR: Could not prepare or action statement."
-                                + " Please ensure the data submitted is of"
-                                + " correct format and check the error log.";
+                        // SQL Error.
+                        result = "ERROR: Please check DB_Handler for following error:"
+                            + "\n" + ex.getMessage();
                     } finally { handler.CloseConnection(); }
                 } else {
                     try {
                         handler.newProduct(tempProduct);
                     } catch (SQLException ex) {
-                        System.out.println("SQL Error: " + ex.getMessage() + "\n");
-                        result = "ERROR: Could not prepare or action statement."
-                                + " Please ensure the data submitted is of"
-                                + " correct format and check the error log.";
+                        // SQL Error.
+                        result = "ERROR: Please check DB_Handler for following error:"
+                            + "\n" + ex.getMessage();
                     } finally { handler.CloseConnection(); }
                 }
             } else {
@@ -53,6 +47,9 @@
                 result = "ERROR: Could not get connection from database.";
             }
         }
+    } else {
+        result = "ERROR: Parameters not correct. Please give:"
+                + "\nPRODUCT={GSON}, NEW=TRUE/FALSE.";
     }
     // Print out the result & flush:
     handler.CloseConnection();

@@ -6,16 +6,16 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="NET302JavaLibrary.User"%>
 <%@page import="NET302_Handlers.DB_Handler"%>
-<%  
-    // This page will take an ID parameter to query the database for that ID
-    // of the User table.
+<%  // This page will take IDENTIFIER and ID as parameters,
+    // where IDENTIFIER = the lookup table name,
+    // where ID = the ID of the lookup in that table. [UNSUPPORTED]
     
-    // Used to send back the data, presume initial failure due to unknown error.
-    String  result = "ERROR: Please contact system administrator.";
+    // Used to send back the data, presume initial error and inform:
+    String  result = "ERROR: No change of result reached. Consult system administrator.";
     
     // Fetch and store the identifier / ID parameters:
     String  paraIden    = request.getParameter("IDENTIFIER");
-    String  paraID      = request.getParameter("ID");
+    //String  paraID      = request.getParameter("ID");
     
     // Create database connection:
     DB_Handler handler = new DB_Handler();
@@ -35,8 +35,7 @@
                 
                     list = handler.getAllLookups(paraIden);
                 
-                    // TODO: unsure if correct, guidance say this is how but
-                    // it doesn't use the toGson method in the generic lookup.
+                    // TODO: should work but a little uncertain!
                     Gson gson = new Gson();
                     Type token = new TypeToken<ArrayList<GenericLookup>>() {}.getType();
                     result = gson.toJson(list, token); 
@@ -46,9 +45,14 @@
                             + "\n'category' 'subcategory' 'container' 'location' 'status'";
                 }
             } else {
-                // TODO: ID is given, need to convert it and try and fetch only that ID.
+                // TODO: ID is given. Fetch that particular one.
+                // Currently not supported in handler and unlikely to be.
+                // There is no forseeable need for this method.
             }
         }
+    } else {
+        result = "ERROR: Parameters not correct. Please give:"
+                + "\nIDENTIFIER=...";
     }
     // Print out the result & flush:
     handler.CloseConnection();
