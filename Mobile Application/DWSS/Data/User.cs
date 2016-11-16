@@ -1,35 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace DWSS.Data
 {
     public class User
     {
-        public int ID;
-        public string username;
-        public string password;
-        public string custContact;
-        public bool authenticated;
-
+        public int ID { set; get; }
+        public string username { set; get; }
+        public string password { set; get; }
+        public string contact { set; get; }
+        public string name { set; get; }
+        public bool authenticated { set; get; }
+        public GenericLookup staffType { set; get; }
+        [JsonConstructor]
         public User() { }
 
-        public User(string username, string password)
-        {
-            this.username = username;
-            this.password = password;
-        }
+        //public User(string username, string password)
+        //{
+        //    this.username = username;
+        //    this.password = password;
+        //}
 
-        public User(string jsonString)
-        {
-            User user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(jsonString);
-            this.ID = user.ID;
-            this.username = user.username;
-            this.password = user.password;
-            this.custContact = user.custContact;
-            this.authenticated = user.authenticated;
-        }
+        //public User(string jsonString)
+        //{
+        //    User user = Newtonsoft.Json.JsonConvert.DeserializeObject<User>(jsonString);
+        //    this.ID = user.ID;
+        //    this.username = user.username;
+        //    this.password = user.password;
+        //    this.custContact = user.custContact;
+        //    this.authenticated = user.authenticated;
+        //}
     }
 }

@@ -12,18 +12,14 @@
     Background="White">
 
     <Grid>
-        <TextBlock Name="UsernameTextBlock" Text="USERNAME" HorizontalAlignment="Right" VerticalAlignment="Top"></TextBlock>
-        <Button x:ConnectionId='1' HorizontalAlignment="Center" VerticalAlignment="Top"                         Content="Home" Padding="0,-10,0,-10" Margin="0,-15,0,-20" Foreground="Black"></Button>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock Text="D-WSS" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
-        </Grid>
-        <TextBlock Text="Stock Adjustment" HorizontalAlignment="Center" Margin="0,30,0,0" FontSize="22" FontWeight="Bold"></TextBlock>
-        <StackPanel Margin="0,60,0,0">
+        <TextBlock Text="Quantity Adjustment" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="22" FontWeight="Bold"></TextBlock>
+        <StackPanel Margin="0,30,0,0">
             <TextBlock Text="Current Stock Information"></TextBlock>
-            <Grid Name="ProductGrid"></Grid>
+            <Grid Name="ProductGrid" Margin="12"></Grid>
+            <TextBlock Text="Choose a New Quantity:" />
             <TextBox BorderBrush="Gray" Margin="10" Name="NewQuantityTextBox"></TextBox>
         </StackPanel>
-        <Button x:ConnectionId='2'                                  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Padding="5,0,5,0" BorderBrush="Gray" Content="Submit Changes" Foreground="Black"></Button>
+        <Button x:ConnectionId='1'                                  HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10" Padding="5,0,5,0" BorderBrush="Gray" Content="Submit Changes" Foreground="Black"></Button>
     </Grid>
 </Page>
 

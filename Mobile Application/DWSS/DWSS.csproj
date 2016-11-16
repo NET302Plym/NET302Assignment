@@ -82,10 +82,14 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\GenericLookup.cs" />
     <Compile Include="Data\Order.cs" />
     <Compile Include="Data\Product.cs" />
     <Compile Include="Data\User.cs" />
     <Compile Include="Development\DummyData.cs" />
+    <Compile Include="MasterPage.xaml.cs">
+      <DependentUpon>MasterPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Middleware\MiddlewareConnections.cs" />
     <Compile Include="Pages\AdjustProductPage.xaml.cs">
       <DependentUpon>AdjustProductPage.xaml</DependentUpon>
@@ -95,9 +99,6 @@
     </Compile>
     <Compile Include="Pages\LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\MoveStockLocationPage.xaml.cs">
-      <DependentUpon>MoveStockLocationPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\OptionsPage.xaml.cs">
       <DependentUpon>OptionsPage.xaml</DependentUpon>
@@ -132,6 +133,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="MasterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AdjustProductPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -141,10 +146,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\LoginScreen.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Pages\MoveStockLocationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

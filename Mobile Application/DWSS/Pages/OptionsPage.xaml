@@ -11,14 +11,37 @@
     FontSize="18"
     Background="White">
     <Grid Margin="10,0,10,0">
-        <TextBlock Name="UsernameTextBlock" Text="USERNAME" HorizontalAlignment="Right" VerticalAlignment="Top"></TextBlock>
-        <TextBlock Text="D-WSS" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
-        <StackPanel Margin="0,30,0,0">
-            <TextBlock Text="What Do You Want To Do?" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold"></TextBlock>
-            <Button HorizontalAlignment="Center" Content="Fulfill Orders" Foreground="Black" BorderBrush="Gray" Padding="5,0,5,0" Margin="10" Click="FulfillOrdersButtonClick"></Button>
-            <Button HorizontalAlignment="Center" Content="Adjust Stock" Foreground="Black" BorderBrush="Gray" Padding="5,0,5,0" Margin="10" Click="AdjustStockButtonClick"></Button>
-            <Button HorizontalAlignment="Center" Content="Move Stock Locations" Foreground="Black" BorderBrush="Gray" Padding="5,0,5,0" Margin="10" Click="MoveStockLocationButtonClick"></Button>
-            <Button HorizontalAlignment="Center" Content="Logout" Foreground="Black" BorderBrush="Gray" Padding="5,0,5,0" Margin="10" Click="LogoutButtonClick"></Button>
-        </StackPanel>
+        <Grid Margin="0,0,0,0">
+            <TextBlock Text="What Do You Want To Do?" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold"></TextBlock>
+            <StackPanel VerticalAlignment="Center">
+                <Button HorizontalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Padding="5,0,5,0" Margin="10" Click="FulfillOrdersButtonClick">
+                    <Grid Width="220">
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="1" Background="Blue" Height="25" />
+                        <TextBlock HorizontalAlignment="Center" Text="Fulfill Orders" Margin="10" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="1" Background="Blue" Height="25" />
+                    </Grid>
+                </Button>
+                <Button HorizontalAlignment="Center" BorderBrush="Transparent" Foreground="Black" Padding="5,0,5,0" Margin="10" Click="AdjustStockButtonClick">
+                    <Grid Width="220">
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="1" Background="Blue" Height="25" />
+                        <TextBlock HorizontalAlignment="Center" Text="Adjust Stock Quantities" Margin="10" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="1" Background="Blue" Height="25" />
+                    </Grid>
+                </Button>                
+                <Button HorizontalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Padding="5,0,5,0" Margin="10" Click="LogoutButtonClick">
+                    <Grid Width="220">
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="1" Background="Blue" Height="25" />
+                        <TextBlock HorizontalAlignment="Center" Text="Logout Current User" Margin="10" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="1" Background="Blue" Height="25" />
+                    </Grid>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="DWSS.MasterPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DWSS"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="Calibri"
+    FontSize="18"
+    Foreground="Black" 
+    Background="White">
+
+    <Grid Margin="12,0,12,12">
+        <TextBlock Name="UsernameTextBlock" Text="USERNAME" HorizontalAlignment="Right" VerticalAlignment="Top"></TextBlock>
+        <Button HorizontalAlignment="Center" VerticalAlignment="Top" Click="HomeButtonClick" Content="Home" Padding="0,-10,0,-10" Margin="0,-15,0,-20" Foreground="Black"></Button>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock Text="D-WSS" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
+        </Grid>
+        <Grid Margin="0,30,0,0" Background="Black">
+            <Grid Background="White" Margin="1">
+                <Frame  Background="White" Foreground="Black"  FontSize="18" FontFamily="Calibri" Margin="0,0,0,0" Name="pageViewer" />        
+            </Grid>
+        </Grid>
+        <Grid Name="NotificationGrid" Margin="-12,0,-12,-12" Visibility="Collapsed">
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Gray" Opacity="0.8" />
+            <Grid VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="12" Background="Black" Opacity="1">
+                <StackPanel Margin="1" Background="White">
+                    <TextBlock Text="Notification!" FontWeight="Bold" Margin="5" FontSize="20" HorizontalAlignment="Center" />
+                    <Grid HorizontalAlignment="Center" Width="50" Height="2" Background="Gray" Margin="5" />
+                    <TextBlock Name="NotificationText" HorizontalAlignment="Center" />
+                    <Button HorizontalAlignment="Center" Margin="5" Padding="5,0,5,0" Content="Okay" Click="NotificationOkayClick" Foreground="Black" BorderBrush="Gray" />
+                </StackPanel>
+            </Grid>
+        </Grid>        
+    </Grid>
+</Page>

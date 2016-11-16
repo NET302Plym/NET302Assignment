@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using DWSS.Data;
 using DWSS.UserControls;
@@ -36,14 +26,9 @@ namespace DWSS.Pages
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.UsernameTextBlock.Text = StaticData.currentUser.username; // Push the username out to the screen
+            
         }
-
-        private void HomeButtonClick(object sender, RoutedEventArgs e)
-        {
-            (Window.Current.Content as Frame).Navigate(typeof(Pages.OptionsPage));
-        }
-
+        
         private string searchTermsCache = "";
         private void SearchTermTextBoxChange(object sender, KeyRoutedEventArgs e)
         {
@@ -74,8 +59,8 @@ namespace DWSS.Pages
         {
             Product product = (sender as ProductUserControl).product;
             if (product == null) return;
-            
-            (Window.Current.Content as Frame).Navigate(typeof(Pages.AdjustProductPage));
+
+            StaticData.masterPage.Navigate(typeof(Pages.AdjustProductPage));
             StaticData.adjustProductPage.SetData(product);
         }
     }

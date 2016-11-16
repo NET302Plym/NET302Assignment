@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DWSS.Data;
 using DWSS.Development;
 
@@ -49,7 +46,7 @@ namespace DWSS.Middleware
                 {
                     ID = 1, 
                     authenticated = true,
-                    custContact = "5",
+                    contact = "5",
                     password = "",
                     username = "Dan"
                 };
@@ -85,6 +82,6 @@ namespace DWSS.Middleware
                 // TODO;
                 return true;
             }
-        }  
+        }
     }
 }

@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using DWSS.Data;
 using DWSS.UserControls;
@@ -37,7 +26,6 @@ namespace DWSS.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             StaticData.OrderFulfilmentPage = this; // Subscribe to the static data page
-            this.UsernameTextBlock.Text = StaticData.currentUser.username; // Push the username out to the screen
             PageContentStackPanel.Children.Clear();
             foreach (var order in Middleware.MiddlewareConnections.GetOutstandingOrders())
                 PageContentStackPanel.Children.Add(new OrderUserControl(order));
@@ -48,11 +36,13 @@ namespace DWSS.Pages
             Middleware.MiddlewareConnections.FulfillOrder(orderToFulfill, StaticData.currentUser);
             // Reload the UI
             OnNavigatedTo(null);
+            // Show a notification
+            StaticData.masterPage.ShowNotification("Order " + orderToFulfill.ID + " has been fulfilled");
         }
 
         private void HomeButtonClick(object sender, RoutedEventArgs e)
         {
-            (Window.Current.Content as Frame).Navigate(typeof(Pages.OptionsPage));
+            StaticData.masterPage.Navigate(typeof(Pages.OptionsPage));
         }
     }
 }

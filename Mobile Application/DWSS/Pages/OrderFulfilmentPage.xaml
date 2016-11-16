@@ -11,13 +11,8 @@
     Foreground="Black"
     Background="White">
     <Grid>
-        <TextBlock Name="UsernameTextBlock" Text="USERNAME" HorizontalAlignment="Right" VerticalAlignment="Top"></TextBlock>
-        <Button HorizontalAlignment="Center" VerticalAlignment="Top" Click="HomeButtonClick" Content="Home" Padding="0,-10,0,-10" Margin="0,-15,0,-20" Foreground="Black"></Button>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
-            <TextBlock Text="D-WSS" HorizontalAlignment="Left" VerticalAlignment="Top"></TextBlock>
-        </Grid>
-        <TextBlock Text="Order Fulfillment" HorizontalAlignment="Center" Margin="0,30,0,0" FontSize="22" FontWeight="Bold"></TextBlock>
-        <ScrollViewer Margin="0,60,0,0">
+        <TextBlock Text="Order Fulfillment" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="22" FontWeight="Bold"></TextBlock>
+        <ScrollViewer Margin="0,30,0,0">
             <StackPanel Name="PageContentStackPanel">
             
             </StackPanel>

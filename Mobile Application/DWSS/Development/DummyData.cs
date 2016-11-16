@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DWSS.Data;
 
 namespace DWSS.Development
@@ -11,40 +8,79 @@ namespace DWSS.Development
     {
         public static List<Order> GetOrders()
         {
-            return new List<Order>()
+            var orderList = new List<Order>();
+            foreach(var product in GetProdutcs())
             {
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[0], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[1], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[2], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[3], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[4], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[5], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[6], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[7], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[8], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[9], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[10], DateTime.MinValue, false, 1),
-                new Order(1, "15/10/1992", "Dan", "6", "Lower Shelf", "", GetProdutcs()[11], DateTime.MinValue, false, 1),
-            };
+                orderList.Add(new Order
+                {
+                    ID = 1,
+                    quantity = 5,
+                    fulfilled = false,
+                    dateOrdered = "15/10/1992",
+                    dateDelivered = "",
+                    timeDelivered = new DateTime(),
+                    staffOrdered = new User
+                    {
+                        ID = 1,
+                        username = "bobshot",
+                        password = "",
+                        contact = "",
+                        name = "Bob Shot",
+                        authenticated = true,
+                        staffType = new GenericLookup
+                        {
+                            ID = 1,
+                            value = "Boss"
+                        }
+                    },
+                    staffFulfilled = null,
+                    product = product,
+                    location = new GenericLookup
+                    {
+                        ID = 1,
+                        value = "Default Location"
+                    },
+                    status = new GenericLookup
+                    {
+                        ID = 1,
+                        value = "Unfulfilled?"
+                    }
+                }
+                );
+            }
+            return orderList;
         }
 
         public static List<Product> GetProdutcs()
         {
-            return new List<Product>()
+            var productList = new List<Product>();
+            foreach(string s in new string[] { "Blue Pen", "Red Pen", "Black Pen", "Yellow Pen", "Purple Pen", "Multicoloured Pen", "Turquise Pen", "500GB", "1000GB", "2000GB", "4000GB", "8000GB" })
             {
-                new Product(1, 500, "Stationary", "St", "Blue Pen", "1", 5, true),
-                new Product(2, 500, "Stationary", "St", "Red Pen", "1", 5, true),
-                new Product(3, 500, "Stationary", "St", "Black Pen", "1", 5, true),
-                new Product(4, 500, "Stationary", "St", "Yellow Pen", "1", 5, true),
-                new Product(5, 500, "Stationary", "St", "Purple Pen", "1", 5, true),
-                new Product(6, 500, "Stationary", "St", "Multicoloured Pen", "1", 5, true),
-                new Product(7, 500, "Stationary", "St", "Turquise Pen", "1", 5, true),
-                new Product(1, 500, "Components", "HDD", "500GB", "1", 5, true),
-                new Product(1, 500, "Components", "HDD", "1000GB", "1", 5, true),
-                new Product(1, 500, "Components", "HDD", "2000GB", "1", 5, true),
-                new Product(1, 500, "Components", "HDD", "4000GB", "1", 5, true),
-                new Product(1, 500, "Components", "HDD", "8000GB", "1", 5, true)
-            };
+                productList.Add(new Product
+                {
+                    ID = 1,
+                    stockCount = 5,
+                    available = true,
+                    name = s,
+                    unitPrice = 5.0,
+                    category = new GenericLookup
+                    {
+                        ID = 1,
+                        value = "Stationary"
+                    },
+                    subCategory = new GenericLookup
+                    {
+                        ID = 1,
+                        value = "Pens"
+                    },
+                    container = new GenericLookup
+                    {
+                        ID = 1,
+                        value = "Small"
+                    }
+                });
+            }
+            return productList;
         } 
     }
 }

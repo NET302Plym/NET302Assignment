@@ -11,22 +11,24 @@
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Name:" Margin="0,0,10,0"></TextBlock>
-            <TextBlock Name="NameTextBlock" FontWeight="Bold"></TextBlock>    
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Category:" Margin="0,0,10,0"></TextBlock>
-            <TextBlock Name="CategoryTextBlock"></TextBlock>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Sub Category:" Margin="0,0,10,0"></TextBlock>
-            <TextBlock Name="SubCategoryTextBlock"></TextBlock>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Container:" Margin="0,0,10,0"></TextBlock>
-            <TextBlock Name="ContainerTextBlock"></TextBlock>
-        </StackPanel>
-    </StackPanel>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Name:" Margin="0,0,10,0"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="0" Name="NameTextBlock" FontWeight="Bold"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Category:" Margin="0,0,10,0"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="1" Name="CategoryTextBlock"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Sub Category:" Margin="0,0,10,0"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="2" Name="SubCategoryTextBlock"></TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="3" Text="Container:" Margin="0,0,10,0"></TextBlock>
+        <TextBlock Grid.Column="1" Grid.Row="3" Name="ContainerTextBlock"></TextBlock>
+    </Grid>
 </UserControl>

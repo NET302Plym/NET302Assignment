@@ -124,31 +124,33 @@ namespace DWSS.DWSS_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[11];
+            _typeNameTable = new string[12];
             _typeNameTable[0] = "DWSS.Pages.AdjustProductPage";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
             _typeNameTable[3] = "DWSS.Pages.AdjustStockPage";
             _typeNameTable[4] = "DWSS.Pages.LoginScreen";
-            _typeNameTable[5] = "DWSS.Pages.OptionsPage";
-            _typeNameTable[6] = "DWSS.Pages.OrderFulfilmentPage";
-            _typeNameTable[7] = "DWSS.UserControls.ProductUserControl";
-            _typeNameTable[8] = "DWSS.Data.Product";
-            _typeNameTable[9] = "Object";
-            _typeNameTable[10] = "DWSS.UserControls.OrderUserControl";
+            _typeNameTable[5] = "DWSS.Pages.MoveStockLocationPage";
+            _typeNameTable[6] = "DWSS.Pages.OptionsPage";
+            _typeNameTable[7] = "DWSS.Pages.OrderFulfilmentPage";
+            _typeNameTable[8] = "DWSS.UserControls.ProductUserControl";
+            _typeNameTable[9] = "DWSS.Data.Product";
+            _typeNameTable[10] = "Object";
+            _typeNameTable[11] = "DWSS.UserControls.OrderUserControl";
 
-            _typeTable = new global::System.Type[11];
+            _typeTable = new global::System.Type[12];
             _typeTable[0] = typeof(global::DWSS.Pages.AdjustProductPage);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
             _typeTable[3] = typeof(global::DWSS.Pages.AdjustStockPage);
             _typeTable[4] = typeof(global::DWSS.Pages.LoginScreen);
-            _typeTable[5] = typeof(global::DWSS.Pages.OptionsPage);
-            _typeTable[6] = typeof(global::DWSS.Pages.OrderFulfilmentPage);
-            _typeTable[7] = typeof(global::DWSS.UserControls.ProductUserControl);
-            _typeTable[8] = typeof(global::DWSS.Data.Product);
-            _typeTable[9] = typeof(global::System.Object);
-            _typeTable[10] = typeof(global::DWSS.UserControls.OrderUserControl);
+            _typeTable[5] = typeof(global::DWSS.Pages.MoveStockLocationPage);
+            _typeTable[6] = typeof(global::DWSS.Pages.OptionsPage);
+            _typeTable[7] = typeof(global::DWSS.Pages.OrderFulfilmentPage);
+            _typeTable[8] = typeof(global::DWSS.UserControls.ProductUserControl);
+            _typeTable[9] = typeof(global::DWSS.Data.Product);
+            _typeTable[10] = typeof(global::System.Object);
+            _typeTable[11] = typeof(global::DWSS.UserControls.OrderUserControl);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -186,11 +188,12 @@ namespace DWSS.DWSS_XamlTypeInfo
         private object Activate_0_AdjustProductPage() { return new global::DWSS.Pages.AdjustProductPage(); }
         private object Activate_3_AdjustStockPage() { return new global::DWSS.Pages.AdjustStockPage(); }
         private object Activate_4_LoginScreen() { return new global::DWSS.Pages.LoginScreen(); }
-        private object Activate_5_OptionsPage() { return new global::DWSS.Pages.OptionsPage(); }
-        private object Activate_6_OrderFulfilmentPage() { return new global::DWSS.Pages.OrderFulfilmentPage(); }
-        private object Activate_7_ProductUserControl() { return new global::DWSS.UserControls.ProductUserControl(); }
-        private object Activate_8_Product() { return new global::DWSS.Data.Product(); }
-        private object Activate_10_OrderUserControl() { return new global::DWSS.UserControls.OrderUserControl(); }
+        private object Activate_5_MoveStockLocationPage() { return new global::DWSS.Pages.MoveStockLocationPage(); }
+        private object Activate_6_OptionsPage() { return new global::DWSS.Pages.OptionsPage(); }
+        private object Activate_7_OrderFulfilmentPage() { return new global::DWSS.Pages.OrderFulfilmentPage(); }
+        private object Activate_8_ProductUserControl() { return new global::DWSS.UserControls.ProductUserControl(); }
+        private object Activate_9_Product() { return new global::DWSS.Data.Product(); }
+        private object Activate_11_OrderUserControl() { return new global::DWSS.UserControls.OrderUserControl(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -231,42 +234,49 @@ namespace DWSS.DWSS_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 5:   //  DWSS.Pages.OptionsPage
+            case 5:   //  DWSS.Pages.MoveStockLocationPage
                 userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_5_OptionsPage;
+                userType.Activator = Activate_5_MoveStockLocationPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 6:   //  DWSS.Pages.OrderFulfilmentPage
+            case 6:   //  DWSS.Pages.OptionsPage
                 userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_6_OrderFulfilmentPage;
+                userType.Activator = Activate_6_OptionsPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 7:   //  DWSS.UserControls.ProductUserControl
+            case 7:   //  DWSS.Pages.OrderFulfilmentPage
+                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_7_OrderFulfilmentPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  DWSS.UserControls.ProductUserControl
                 userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_7_ProductUserControl;
+                userType.Activator = Activate_8_ProductUserControl;
                 userType.AddMemberName("product");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 8:   //  DWSS.Data.Product
+            case 9:   //  DWSS.Data.Product
                 userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 9:   //  Object
+            case 10:   //  Object
                 xamlType = new global::DWSS.DWSS_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 10:   //  DWSS.UserControls.OrderUserControl
+            case 11:   //  DWSS.UserControls.OrderUserControl
                 userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_10_OrderUserControl;
+                userType.Activator = Activate_11_OrderUserControl;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;

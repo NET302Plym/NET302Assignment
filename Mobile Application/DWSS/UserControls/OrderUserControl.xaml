@@ -8,25 +8,29 @@
     mc:Ignorable="d"
     FontFamily="Calibri"
     Foreground="Black"
-    FontSize="16"
-    d:DesignHeight="300"
-    d:DesignWidth="400">
+    FontSize="16">
     <Grid Margin="5">
         <StackPanel>
             <Grid HorizontalAlignment="Stretch" Margin="5,0,5,10" Height="2" Background="Gray"></Grid>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Customer Name:" Margin="0,0,10,0"></TextBlock>
-                <TextBlock Name="CustomerNameTextBlock" FontWeight="Bold"></TextBlock>    
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Quantity Ordered:" Margin="0,0,10,0"></TextBlock>
-                <TextBlock Name="QuantityTextBlock"></TextBlock>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Product Location:" Margin="0,0,10,0"></TextBlock>
-                <TextBlock Name="LocationTextBlock"></TextBlock>
-            </StackPanel>
-            <TextBlock Text="Product Details" HorizontalAlignment="Center" FontWeight="Bold" Margin="10"></TextBlock>
+            <TextBlock FontSize="18" Text="Order Details" HorizontalAlignment="Left" FontWeight="Bold" Margin="0,10,0,10"></TextBlock>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Customer Name:" Margin="0,0,10,0"></TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1" Name="CustomerNameTextBlock" FontWeight="Bold"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Quantity Ordered:" Margin="0,0,10,0"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Name="QuantityTextBlock"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Product Location:" Margin="0,0,10,0"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" Name="LocationTextBlock"></TextBlock>
+            </Grid>
+            <TextBlock FontSize="18" Text="Product Details" HorizontalAlignment="Left" FontWeight="Bold" Margin="0,10,0,10"></TextBlock>
             <local:ProductUserControl x:Name="ProductUserControl"></local:ProductUserControl>
             <Button Margin="10" Padding="5,0,5,0" Foreground="Black" Content="Fulfill" HorizontalAlignment="Center" BorderBrush="Gray" Click="FulfillButtonClick" Name="FulfillmentButton"></Button>
             <Grid HorizontalAlignment="Stretch" Margin="5,10,5,0" Height="2" Background="Gray"></Grid>
