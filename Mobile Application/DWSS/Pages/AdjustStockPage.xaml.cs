@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using DWSS.Data;
 using DWSS.UserControls;
+using System;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -30,7 +31,7 @@ namespace DWSS.Pages
         }
         
         private string searchTermsCache = "";
-        private void SearchTermTextBoxChange(object sender, KeyRoutedEventArgs e)
+        private async void SearchTermTextBoxChange(object sender, KeyRoutedEventArgs e)
         {
             string searchTerms = (sender as TextBox).Text;
             if (searchTerms == searchTermsCache) return;
@@ -43,13 +44,16 @@ namespace DWSS.Pages
             {
                 this.PageContentStackPanel.Children.Clear();
                 // Perform a search
-                foreach (var product in Middleware.MiddlewareConnections.SearchForProduct(searchTerms))
+                foreach (var product in await Middleware.MiddlewareConnections.SearchForProduct(searchTerms))
                 {
-                    var visualProduct = new ProductUserControl();
-                    visualProduct.SetData(product);
-                    visualProduct.Tapped += VisualProductOnTapped;
-                    visualProduct.Margin = new Thickness(10, 10, 10, 50);
-                    this.PageContentStackPanel.Children.Add(visualProduct);
+                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, ()=>
+                    {
+                        var visualProduct = new ProductUserControl();
+                        visualProduct.SetData(product);
+                        visualProduct.Tapped += VisualProductOnTapped;
+                        visualProduct.Margin = new Thickness(10, 10, 10, 50);
+                        PageContentStackPanel.Children.Add(visualProduct);
+                    });
                 }
             }
             searchTermsCache = searchTerms;

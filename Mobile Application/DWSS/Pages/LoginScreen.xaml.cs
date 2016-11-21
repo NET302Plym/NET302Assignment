@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using DWSS.Middleware;
+using System;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -26,10 +27,13 @@ namespace DWSS.Pages
         {
         }
 
-        private void BypassLoginClick(object sender, RoutedEventArgs e)
+        private async void BypassLoginClick(object sender, RoutedEventArgs e)
         {
-            StaticData.currentUser = MiddlewareConnections.GetUser("Scanned User Badge");
-            (Window.Current.Content as Frame).Navigate(typeof (MasterPage));
+            StaticData.currentUser = await MiddlewareConnections.GetUser("Scanned User Badge");
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                (Window.Current.Content as Frame).Navigate(typeof(MasterPage));
+            });
         }
     }
 }

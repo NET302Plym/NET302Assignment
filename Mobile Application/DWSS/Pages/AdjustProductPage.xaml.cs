@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using DWSS.Data;
 using DWSS.UserControls;
+using System;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -39,21 +40,27 @@ namespace DWSS.Pages
             NewQuantityTextBox.Text = product.stockCount.ToString();
         }
 
-        private void SubmitChangesButtonClick(object sender, RoutedEventArgs e)
+        private async void SubmitChangesButtonClick(object sender, RoutedEventArgs e)
         {
             // Submit the changes
             int x;
             if (int.TryParse(NewQuantityTextBox.Text, out x))
             {
-                Middleware.MiddlewareConnections.UploadChanges(product, x);
+                await Middleware.MiddlewareConnections.UploadChanges(product, x);
                 // Show a message
-                StaticData.masterPage.ShowNotification("Quantity has been changed to " + x.ToString());
-                StaticData.masterPage.GoBack();
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    StaticData.masterPage.ShowNotification("Quantity has been changed to " + x.ToString());
+                    StaticData.masterPage.GoBack();
+                });
             }
             else
             {
-                // Inform the user of the incorrect quantity 
-                StaticData.masterPage.ShowNotification("Incorrect quantity has been entered!");
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    // Inform the user of the incorrect quantity 
+                    StaticData.masterPage.ShowNotification("Incorrect quantity has been entered!");
+                });
             }
         }
     }

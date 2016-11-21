@@ -91,6 +91,7 @@
       <DependentUpon>MasterPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Middleware\MiddlewareConnections.cs" />
+    <Compile Include="Middleware\MiddlewareHTTPClient.cs" />
     <Compile Include="Pages\AdjustProductPage.xaml.cs">
       <DependentUpon>AdjustProductPage.xaml</DependentUpon>
     </Compile>

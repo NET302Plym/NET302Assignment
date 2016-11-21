@@ -2,13 +2,16 @@
 using System.Linq;
 using DWSS.Data;
 using DWSS.Development;
+using System.Threading.Tasks;
+using System;
 
 namespace DWSS.Middleware
 {
     class MiddlewareConnections
     {
         private static bool isDebug = true;
-        public static List<Order> GetOutstandingOrders()
+
+        public async static Task<List<Order>> GetOutstandingOrders()
         {
             if (isDebug)
             {
@@ -17,28 +20,40 @@ namespace DWSS.Middleware
             }
             else
             {
-                // Connect to the middleware and handle those
-                return null;
+                // Connect to the middleware
+                List<Order> orderList;
+                try
+                {
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("getOrder.jsp");
+                    orderList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Order>>(serverResponse);
+                } catch (Exception)
+                {
+                    throw new Exception("Error Communicating With The Server");
+                }
+                return orderList;
             }
         }
 
-        public static bool FulfillOrder(Order orderToFulfil, User currentUser)
+        public async static Task<bool> FulfillOrder(Order orderToFulfil, User currentUser)
         {
-            // Merge the two together
-
             if (isDebug)
             {
                 return true;
             }
             else
             {
-                // Connect to the middleware and upload the new information 
-                return false;
-                // TODO this
+                try
+                {
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("addOrder?ORDER=" + Newtonsoft.Json.JsonConvert.SerializeObject(orderToFulfil) + "&NEW=FALSE");
+                    return serverResponse.StartsWith("SUCCESS");
+                } catch (Exception)
+                {
+                    return false;
+                }
             }
         }
 
-        public static User GetUser(string username)
+        public async static Task<User> GetUser(string username)
         {
             if (isDebug)
             {
@@ -53,11 +68,11 @@ namespace DWSS.Middleware
             }
             else
             {
-                return null;
+                return null; // TODO Be implemented within the middleware
             }
         }
 
-        public static List<Product> SearchForProduct(string searchTerms)
+        public async static Task<List<Product>> SearchForProduct(string searchTerms)
         {
             searchTerms = searchTerms.ToLower();
             if (isDebug)
@@ -71,15 +86,24 @@ namespace DWSS.Middleware
             }
         }
 
-        public static bool UploadChanges(Product product, int newQuantity)
+        public async static Task<bool> UploadChanges(Product product, int newQuantity)
         {
+            product.stockCount = newQuantity;
             if (isDebug)
             {
                 return true;
             }
             else
             {
-                // TODO;
+                try
+                {
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("addProduct?PRODUCT=" + Newtonsoft.Json.JsonConvert.SerializeObject(product) + "&NEW=FALSE");
+                    return serverResponse.StartsWith("SUCCESS");
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
                 return true;
             }
         }
