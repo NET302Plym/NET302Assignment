@@ -103,7 +103,16 @@ public class Connector {
     //************************************************************************//
     
     public boolean Authenticate(User user, String hash) {
-        return false;
+        urlEnd = "authUser.jsp?ID=" + user.getID() + "?HASH=" + hash;
+        
+        // Pass query to URL:
+        String q = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(q);
+        
+        // Check for the result being SUCCESS or not, and return boolean:
+        return q.startsWith("SUCCESS");
     }
     
     //************************************************************************//
