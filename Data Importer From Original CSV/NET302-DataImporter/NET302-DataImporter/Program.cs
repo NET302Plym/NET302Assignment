@@ -32,6 +32,22 @@ namespace NET302_DataImporter
             shipDate = 20;
         static void Main(string[] args)
         {
+            //// tmp Users csv management 
+            //string loc = @"C:\Users\Dan\Desktop\Users.csv";
+            //List<string[]> uFileContents = new List<string[]>();
+            //using (StreamReader sr = new StreamReader(loc))
+            //    uFileContents.AddRange(sr.ReadToEnd().Split('\n').Select(s => s.Split(',')));
+            //for(int i = 1; i < uFileContents.Count; i++)
+            //{
+            //    //uFileContents[i][3] = uFileContents[i][1].Split(' ').Aggregate((workingString, newVar) => workingString + "." + newVar).ToLower();
+            //    uFileContents[i][5] = "1";
+            //}
+            //using (StreamWriter sw = new StreamWriter(loc, false))
+            //    foreach (var s in uFileContents)
+            //        sw.WriteLine(s.Aggregate((workingString, newVar) => workingString + "," + newVar));
+
+            //return;
+
             string filePath = @"C:\Users\Dan\Desktop\Sample - Superstore Sales (Excel).csv";
             List<string[]> fileContents = new List<string[]>();
             using (StreamReader sr = new StreamReader(filePath))
