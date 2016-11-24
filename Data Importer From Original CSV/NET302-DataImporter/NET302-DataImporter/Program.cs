@@ -32,7 +32,7 @@ namespace NET302_DataImporter
             shipDate = 20;
         static void Main(string[] args)
         {
-            string filePath = @"D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Sample - Superstore Sales (Excel).csv";
+            string filePath = @"C:\Users\Dan\Desktop\Sample - Superstore Sales (Excel).csv";
             List<string[]> fileContents = new List<string[]>();
             using (StreamReader sr = new StreamReader(filePath))
                 fileContents.AddRange(sr.ReadToEnd().Split('\n').Select(s => s.Split(',')));
@@ -104,12 +104,27 @@ namespace NET302_DataImporter
                     } catch(Exception ex) { }
                 }
             }
-            foreach (var prod in productList)
-            {
-                foreach(string s in prod)
-                    Console.Write(s + ",");
-                Console.WriteLine();
-            }
+            //foreach (var prod in productList)
+            //{
+            //    foreach(string s in prod)
+            //        Console.Write(s + ",");
+            //    Console.WriteLine();
+            //}
+
+            // Dump the files into CSV files
+            using (StreamWriter sw = new StreamWriter("Product Categories.csv", false))
+                foreach (string[] s in productCategoryList)
+                    sw.WriteLine(s.Aggregate((workingSentance, next) => workingSentance + "," + next));
+            using (StreamWriter sw = new StreamWriter("Product Sub Categories.csv", false))
+                foreach (string[] s in productSubCategoryList)
+                    sw.WriteLine(s.Aggregate((workingSentance, next) => workingSentance + "," + next));
+            using (StreamWriter sw = new StreamWriter("Product Containers.csv", false))
+                foreach (string[] s in productContainerList)
+                    sw.WriteLine(s.Aggregate((workingSentance, next) => workingSentance + "," + next));
+            using (StreamWriter sw = new StreamWriter("Products.csv", false))
+                foreach (string[] s in productList)
+                    sw.WriteLine(s.Aggregate((workingSentance, next) => workingSentance + "," + next));
+            Console.WriteLine("Finished Conversion");
             Console.ReadLine();
         }
         static Random random = new Random();
