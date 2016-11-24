@@ -246,7 +246,11 @@ public class DB_Handler {
     private final String        authUserQ       =
             "SELECT password FROM NET302.Staff WHERE Staff.ID = ?;";
     
-    // Empty Constructor - allows instantiating for multiple connections.
+    /**
+     * Empty Constructor.
+     * Used so that the middleware pages can reference the class and use
+     * the methods below.
+     */
     public DB_Handler() { /* empty */ }
     
     //************************************************************************//
@@ -317,6 +321,14 @@ public class DB_Handler {
     //  -   PROCESSING STATEMENTS + RESULTSETS                            -   //
     //************************************************************************//
     
+    /**
+     * This method constructs a User from the current position of a ResultSet.
+     * @param set ResultSet - being the set which we are working with.
+     * @return User - being the User extracted from the current position of the
+     * ResultSet.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery.
+     */
     private User constructUser(ResultSet set) throws SQLException {
         // User details, ordered by constructor usage:
         int     id          = set.getInt("ID");
@@ -336,6 +348,14 @@ public class DB_Handler {
         return user;
     }
     
+    /**
+     * This method constructs a Product from the current position of a ResultSet.
+     * @param set ResultSet - being the set which we are working with.
+     * @return Product - being the Product extracted from the current position 
+     * of the ResultSet.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery.
+     */
     private Product constructProduct(ResultSet set) throws SQLException {      
         // Product details, ordered by constructor usage:
         int     id          = set.getInt("ID");
@@ -362,6 +382,14 @@ public class DB_Handler {
         return product;
     }
     
+    /**
+     * This method constructs an Order from the current position of the ResultSet.
+     * @param set ResultSet - being the set we are working with.
+     * @return Order - being the Order extracted from the current position of 
+     * the ResultSet.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery.
+     */
     private Order constructOrder(ResultSet set) throws SQLException {
         // Order details, ordered by constructr usage:
         int     id              = set.getInt("ID");
@@ -404,6 +432,14 @@ public class DB_Handler {
         return order; 
     }
     
+    /**
+     * This method constructs a GenericLookup from the current position of the ResultSet.
+     * @param set ResultSet - being the set we are working with.
+     * @return GenericLookup - being the GenericLookup we have extracted from the
+     * current position of the ResultSet.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery.
+     */
     private GenericLookup constructLookup(ResultSet set) throws SQLException {
         int id          = set.getInt("ID");
         String value    = set.getString("VALUE");
@@ -411,11 +447,22 @@ public class DB_Handler {
         return new GenericLookup(id, value);
     }
     
-    // OLD METHOD - MAY NOT BE NEEDED BUT DO NOT DELETE JUST IN CASE
+    /**
+     * DEPRECIATED METHOD.
+     * This method was written before the object library included GenericLookup
+     * and therefore the SQL queries had to fetch the ID for a lookup value,
+     * so this method took the table and value to search in/for.
+     * @param table String - being the identifier of the table.
+     * @param value String - being the value we are looking for.
+     * @return int - being the ID for the given value in the given table.
+     * A 0 return MUST be handled outside of this method to pass back the error!
+     */
     private int FindIDForTable(String table, String value) {
         try {
-            String valueCol;
+            // Column name to query:
+            String valueCol; 
             
+            // Switch through the tables and set our column.
             switch(table){
                 case p_cat:
                     valueCol = "categoryVal";
@@ -440,11 +487,12 @@ public class DB_Handler {
                 default:
                     return 0;
             }
-            int id_val;
             // Set up the query to get the ID we want:
+            int id_val;
             String query = "SELECT ID FROM " + table + " WHERE "
                     + valueCol + " = " + value + ";";
             
+            // Prepare Statement:
             findID = connection.prepareStatement(query);
             
             resultSet = findID.executeQuery();
@@ -452,17 +500,25 @@ public class DB_Handler {
             
             id_val = resultSet.getInt(1);
             
+            // Some error handling:
             if (id_val > 0) {
                 return id_val;
             } else { return 0; }
         } catch (SQLException ex) {
             Logger.getLogger(DB_Handler.class.getName()).log(Level.SEVERE, null, ex);
             
-            // 0 return must be handled outside of this method really:
+            // 0 return must be handled outside of this method!
             return 0;
         }
     }
     
+    /**
+     * This method queries for ALL Products and creates them from the ResultSet.
+     * These are stored in an ArrayList and returned.
+     * @return ArrayList<Product> - being the list of Products.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public ArrayList<Product> getAllProducts() throws SQLException {
         allProducts     = connection.prepareStatement(getAllProductsQ);
         resultSet       = allProducts.executeQuery();
@@ -485,6 +541,12 @@ public class DB_Handler {
         return list;
     }
     
+    /**
+     * 
+     * @return
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public ArrayList<Order> getAllOrders() throws SQLException {        
         allOrders = connection.prepareStatement(getAllOrdersQ);
         resultSet = allOrders.executeQuery();
@@ -507,6 +569,12 @@ public class DB_Handler {
         return list;
     }
     
+    /**
+     * 
+     * @return
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public ArrayList<User> getAllUsers() throws SQLException {
         allUsers        = connection.prepareStatement(getAllUsersQ);
         resultSet       = allUsers.executeQuery();
@@ -529,6 +597,13 @@ public class DB_Handler {
         return list;
     }
     
+    /**
+     * 
+     * @param identifier
+     * @return
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public ArrayList<GenericLookup> getAllLookups(String identifier) throws SQLException {
         String tablename;
         String valuename;
@@ -583,6 +658,15 @@ public class DB_Handler {
         return returnArray;
     }
     
+    /**
+     * 
+     * @param identifier
+     * @param lookup
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     * @throws Exception - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the identifier passed.
+     */
     public void newLookup(String identifier, GenericLookup lookup) throws SQLException, Exception {
         addLookup = connection.prepareStatement(addLookupQ);
         
@@ -628,6 +712,15 @@ public class DB_Handler {
         }
     }
     
+    /**
+     * 
+     * @param identifier
+     * @param lookup
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     * @throws Exception - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the identifier.
+     */
     public void updateLookup(String identifier, GenericLookup lookup) throws SQLException, Exception {
         updateLookup = connection.prepareStatement(addLookupQ);
         
@@ -665,7 +758,7 @@ public class DB_Handler {
                 throw new Exception();
         }
         if (table.length() > 1) {
-            updateLookup.setString(1, table);               // TABLENAMEp
+            updateLookup.setString(1, table);               // TABLENAME
             updateLookup.setString(2, value);               // VALUE COLUMN
             updateLookup.setString(3, lookup.getValue());   // VALUE TO SET
             updateLookup.setInt(4, lookup.getID());         // ID TO CHANGE.
@@ -674,6 +767,13 @@ public class DB_Handler {
         }
     }
     
+    /**
+     * This method queries for a given Product (using ID).
+     * @param id int - being the ID to query.
+     * @return Product - being the constructed result of the query.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public Product getProduct(int id) throws SQLException {
         getProduct = connection.prepareStatement(getProductQ);
         getProduct.setInt(1, id); // Set up the ID part of the query.
@@ -684,6 +784,13 @@ public class DB_Handler {
         return constructProduct(resultSet);
     }
     
+    /**
+     * This method queries for a given Order (using ID).
+     * @param id int - being the ID to query.
+     * @return Order - being the constructed result of the query.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public Order getOrder(int id) throws SQLException {
         getOrder = connection.prepareStatement(getOrderQ);
         getOrder.setInt(1, id); // Set up the ID part of the query.
@@ -694,6 +801,13 @@ public class DB_Handler {
         return constructOrder(resultSet);
     }
     
+    /**
+     * This method queries for a given User (using ID).
+     * @param id int - being the ID to query.
+     * @return User - being the constructed result of the query.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public User getUser(int id) throws SQLException {
         getUser = connection.prepareStatement(getUserQ);
         getUser.setInt(1, id); // Set up the ID part of the query.
@@ -704,6 +818,12 @@ public class DB_Handler {
         return constructUser(resultSet);
     }
     
+    /**
+     * This method performs an update query on the database using a given Product.
+     * @param productUpdate Product - being the details to update.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public void updateProduct(Product productUpdate) throws SQLException {
         updateProduct = connection.prepareStatement(updateProductQ);
 
@@ -722,6 +842,12 @@ public class DB_Handler {
         updateProduct.executeUpdate();
     }
     
+    /**
+     * This method performs an update on the database using a given Order.
+     * @param orderUpdate Order - being the details to update.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public void updateOrder(Order orderUpdate) throws SQLException {
         updateOrder = connection.prepareStatement(updateOrderQ);
         
@@ -737,6 +863,12 @@ public class DB_Handler {
         updateOrder.executeQuery();
     }
     
+    /**
+     * This method performs an update on the database using a given User.
+     * @param userUpdate User - being the details to update.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public void updateUser(User userUpdate) throws SQLException {
         updateUser = connection.prepareStatement(updateUserQ);
         
@@ -748,9 +880,16 @@ public class DB_Handler {
         updateUser.executeUpdate();
     }
     
+    /**
+     *  This method performs an insert on the database using a given Product.
+     * @param productNew Product - being the details to add to the database.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public void newProduct(Product productNew) throws SQLException {
         addProduct = connection.prepareStatement(addProductQ);
 
+        // Populate query - we do not need to use ID:
         addProduct.setInt(1, productNew.getStockCount());
         addProduct.setString(2, productNew.getName());
         addProduct.setBoolean(3, productNew.isAvailable());
@@ -762,9 +901,16 @@ public class DB_Handler {
         addProduct.executeUpdate();
     }
     
+    /**
+     * This method performs an insert on the database using a given Order.
+     * @param orderNew Order - being the details to add to the database.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public void newOrder(Order orderNew) throws SQLException {
         addOrder = connection.prepareStatement(addOrderQ);
         
+        // Populate query - we do not need to use ID:
         addOrder.setInt(1, orderNew.getQuantity());
         addOrder.setString(2, orderNew.getDateOrdered());
         addOrder.setInt(3, orderNew.getStaffOrdered().getID());
@@ -775,9 +921,18 @@ public class DB_Handler {
         addOrder.executeUpdate();
     }
     
+    /**
+     * This method performs an insert on the database using a given User and
+     * the hashed password (not contained in the User object).
+     * @param newUser User - being the details to add to the database.
+     * @param password String - being the hashed password string.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public void newUser(User newUser, String password) throws SQLException {
         addUser = connection.prepareStatement(addUserQ);
         
+        // Populate query:
         addUser.setString(1, newUser.getUsername());
         addUser.setString(2, newUser.getContact());
         addUser.setString(3, newUser.getName());
@@ -787,6 +942,16 @@ public class DB_Handler {
         addUser.executeQuery();
     }
     
+    /**
+     *  This method queries the password for a given ID and password to compare.
+     * If the password given is equal to the one stored then it returns true, 
+     * else false.
+     * @param id int - being the ID of the User.
+     * @param password String - being the hashed password to compare.
+     * @return boolean - being whether or not the details successfully authenticate.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
     public boolean authUser(int id, String password) throws SQLException {
         authUser = connection.prepareStatement(authUserQ);
         authUser.setInt(1, id);
