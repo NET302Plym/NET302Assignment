@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Connector;
 
 import NET302JavaLibrary.GenericLookup;
@@ -159,11 +154,53 @@ public class Connector {
     }
     
     /**
+     * Returns a list of Products where their name is similar to the searchTerm.
+     * @param searchTerm String - being the term to search for.
+     * @return ArrayList<Product> - being the list of returned Products.
+     */
+    public ArrayList<Product> searchProduct(String searchTerm) {
+        urlEnd = "searchProducts.jsp?TERM=" + searchTerm;
+        
+        String q = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(q);
+        
+        // TEST: Convert result using GSON:
+        Gson gson = new Gson();
+        Type token = new TypeToken<ArrayList<Product>>() {}.getType();
+        ArrayList<Product> list = gson.fromJson(q, token);
+        
+        return list;
+    }
+    
+    /**
      * Returns a list of ALL Orders from the database. 
      * @return ArrayList<Order> - being the list of all Orders.
      */
     public ArrayList<Order> getAllOrders() {
         urlEnd = "getOrder.jsp";
+        
+        // Pass query to URL:
+        String o = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(o);
+        
+        // TEST: Convert result using GSON:
+        Gson gson = new Gson();
+        Type token = new TypeToken<ArrayList<Order>>() {}.getType();
+        ArrayList<Order> list = gson.fromJson(o, token);
+        
+        return list;
+    }
+    
+    /**
+     * Returns a list of unfulfilled Orders from the database.
+     * @return ArrayList<Order> - being the list of all Orders.
+     */
+    public ArrayList<Order> getUnfulfilled() {
+        urlEnd = "getFulfilled.jsp";
         
         // Pass query to URL:
         String o = SendQuery(SERVER + urlEnd);
@@ -241,6 +278,23 @@ public class Connector {
      */
     public User getUser(int id) {
         urlEnd = "getUser.jsp?ID=" + id;
+        
+        // Pass query to URL:
+        String u = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(u);
+        
+        return new User(u);
+    }
+    
+    /**
+     * Returns a specified User of the given username from the database.
+     * @param username String - being the username of the User to return.
+     * @return User - being the requested User.
+     */
+    public User getUser(String username) {
+        urlEnd = "getUser.jsp?ID=0?UN=" + username;
         
         // Pass query to URL:
         String u = SendQuery(SERVER + urlEnd);
@@ -348,7 +402,7 @@ public class Connector {
         
         return result.startsWith("SUCCESS");
     }
-    
+
     //************************************************************************//
     //  -   MANAGE LOOKUP ITEMS                                           -   //
     //************************************************************************//
