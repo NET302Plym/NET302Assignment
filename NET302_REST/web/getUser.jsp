@@ -5,8 +5,12 @@
 <%@page import="NET302JavaLibrary.User"%>
 <%@page import="NET302_Handlers.DB_Handler"%>
 <%@page import="java.lang.reflect.Type"%>
-<%  // This page takes an optional ID parameter,
+<%  // This page takes an optional ID parameter;
     // where ID = the ID of the user to return.
+    
+    // If ID = 0 then get the user based off of the UN parameter;
+    // where UN = the username of the user to return.
+    
     // If no parameter, all Users are returned.
     
     // Used to send back the data, presume initial error and inform:
@@ -25,11 +29,24 @@
             if (handler.GetConnection()) {
                 try {
                     int id = Integer.parseInt(paraID);
-                    result = handler.getUser(id).GetJSONString();
-                } catch (NumberFormatException | SQLException ex) {
+                    
+                    // ID == 0 : return using UN parameter!
+                    if (id == 0) {
+                        String paraUN = request.getParameter("UN");
+                        paraUN = paraUN.trim();
+                        result = handler.getUser(paraUN).GetJSONString();
+                    } else {        
+                        // ID != 0 : return using ID:
+                        result = handler.getUser(id).GetJSONString();
+                    }
+                } catch (SQLException ex) {
                     // SQL Error.
                     result = "ERROR: Please check DB_Handler for following error:"
                             + "\n" + ex.getMessage();
+                } catch (NumberFormatException ex) {
+                    // ID Error.
+                    result = "ERROR: Please ensure the ID parameter is a number!"
+                            + "\nThe middleware failed to convert this: " + paraID;
                 } finally { handler.CloseConnection(); }
             } else {
                 // Failed to get a connection!

@@ -66,6 +66,8 @@ public class DB_Handler {
     private PreparedStatement   addLookup       = null;
     private PreparedStatement   updateLookup    = null; 
     private PreparedStatement   authUser        = null;
+    private PreparedStatement   checkUsername   = null;
+    private PreparedStatement   searchProduct   = null;
     
     // SQL QUERY STRINGS:
     // ';' is included in the strings, 
@@ -126,6 +128,21 @@ public class DB_Handler {
             + "FROM NET302.Staff "
             + "JOIN " + s_typ + " ON Staff.staffType = " + s_typ + ".ID "
             + "WHERE ID = ?;";                  // ID last.
+    
+    private final String        getUserQ_2      =
+            "SELECT Staff.ID as ID, "
+            + "username, "
+            + "staffContact as contact, "
+            + "staffName as name, "
+            
+            // Get the Staff_Type details:
+            + "Staff.staffType as type_id, "
+            + "staffType as type_value, "
+            
+            // FROM + WHERE:
+            + "FROM NET302.Staff "
+            + "JOIN " + s_typ + " ON Staff.staffType = " + s_typ + ".ID "
+            + "WHERE username = ?;";            // Username last.
     
     private final String        updateProductQ  =
             "UPDATE NET302.Products SET "
@@ -215,6 +232,28 @@ public class DB_Handler {
             + "JOIN NET302.Products ON Orders.productID = Products.ID "
             + "ORDER BY ID;";
     
+    private final String        getUnfulfilledQ = 
+            "SELECT (Orders.ID) as ID, "
+            + "quantity, "
+            + "TO_CHAR(dateOrdered, 'DD/MM/YYYY') as dateOrdered, "
+            + "(staff.ID) as staffOrdered, "
+            + "(Products.ID) as productID, "
+            + "(Location.ID) as loc_id, "
+            + "(Location.locationVal) as loc_value, "
+            + "(" + o_sta + ".ID) as status_id, "
+            + "(" + o_sta + ".statusName) as status_value, "
+            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered, "
+            //+ "timeDelivered, " // MISSING FROM TABLE.
+            // TODO: Time may need a mask, but wait to see how it returns first.
+            
+            // FROM + JOINS + WHERE:
+            + "FROM NET302.Orders "
+            + "JOIN " + o_sta + " ON Orders.statusID = " + o_sta + ".ID "
+            + "JOIN NET302.Staff ON Orders.staffID = Staff.staffID "
+            + "JOIN NET302.Products ON Orders.productID = Products.ID "
+            + "WHERE status_value = " // TODO: Enter statusvalue!!! 
+            + "ORDER BY ID;";
+    
     private final String        getAllUsersQ    =
             "SELECT Staff.ID as ID, "
             + "username, "
@@ -242,9 +281,32 @@ public class DB_Handler {
     private final String        updateLookupQ   =
             "UPDATE ? SET ? = ? WHERE ID = ?;";
     
-    // TODO: write this query.
     private final String        authUserQ       =
             "SELECT password FROM NET302.Staff WHERE Staff.ID = ?;";
+    
+    private final String        checkUsernameQ  =
+            "SELECT ID, username FROM NET302.Staff WHERE Staff.Username = ?;";
+            
+    private final String        searchProductQ  =
+            "SELECT (Products.ID) as ID, "
+            + "stockCount, "
+            + "prodName as name, "
+            + "available, "
+            + "unitPrice, "
+            + "(category.categoryVal) as category, "
+            + "(category.ID) as category_id, "
+            + "(subcat.subcatVal) as subCategory, "
+            + "(subcat.ID) as subCategory_id, "
+            + "(container.containerVal) as container, "
+            + "(container.ID) as container_id, "
+            
+            // FROM / JOIN / WHERE:
+            + "FROM NET302.Products "
+            + "JOIN " + p_cat + " ON Products.categoryID = " + p_cat + ".ID "
+            + "JOIN " + p_sub + " ON Products.subcatID = " + p_sub + ".ID "
+            + "JOIN " + p_con + " ON Products.containerID = " + p_con + ".ID "
+            + "WHERE prodName LIKE '%?%' "
+            + "ORDER BY ID;";
     
     /**
      * Empty Constructor.
@@ -541,14 +603,68 @@ public class DB_Handler {
         return list;
     }
     
+    public ArrayList<Product> getProducts(String searchTerm) throws SQLException {
+        searchProduct = connection.prepareStatement(searchProductQ);
+        searchProduct.setString(1, searchTerm);
+        resultSet = searchProduct.executeQuery();
+        
+        // Prepare list to store data in:
+        ArrayList<Product> list = new ArrayList<>();
+        
+        // Get the size of the resultSet:
+        resultSet.last();
+        int count = resultSet.getRow();
+        resultSet.beforeFirst();
+        
+        // Construct list using helper method:
+        for(int a=0; a<count; a++) {
+            resultSet.next();
+            list.add(constructProduct(resultSet));
+        }
+        
+        // Return:
+        return list;
+    }
+    
     /**
-     * 
-     * @return
+     * This method queries for ALL Orders and creates them from the ResultSet.
+     * These are stored in an ArrayList and returned.
+     * @return ArrayList<Order> - being the list of Orders.
      * @throws SQLException - Thrown as errors will be passed back to JSP pages.
      * Error here indicates a problem with the SQLQuery or the execution of it.
      */
     public ArrayList<Order> getAllOrders() throws SQLException {        
         allOrders = connection.prepareStatement(getAllOrdersQ);
+        resultSet = allOrders.executeQuery();
+        
+        // Prepare list to store data in:
+        ArrayList<Order> list = new ArrayList<>();
+        
+        // Get the size of the resultSet:
+        resultSet.last();
+        int count = resultSet.getRow();
+        resultSet.beforeFirst();
+        
+        // Construct list using helper method:
+        for(int a=0; a<count; a++) {
+            resultSet.next();
+            list.add(constructOrder(resultSet));
+        }
+        
+        // Return:
+        return list;
+    }
+    
+    /**
+     * This method queries for Orders where the status is unfulfilled,
+     * and it creates the objects from the ResultSet. 
+     * These are stored in an ArrayList and returned.
+     * @return ArrayList<Order> - being the list of unfulfilled Orders.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
+    public ArrayList<Order> getUnfulfilled() throws SQLException {
+        allOrders = connection.prepareStatement(getUnfulfilledQ);
         resultSet = allOrders.executeQuery();
         
         // Prepare list to store data in:
@@ -819,6 +935,23 @@ public class DB_Handler {
     }
     
     /**
+     * This method queries for a given User (using Username).
+     * @param username String - being the Username to query.
+     * @return User - being the constructed result of the query.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.
+     */
+    public User getUser(String username) throws SQLException {
+        getUser = connection.prepareStatement(getUserQ_2);
+        getUser.setString(1, username);
+        
+        resultSet = getUser.executeQuery();
+        resultSet.next();
+        
+        return constructUser(resultSet);
+    }
+    
+    /**
      * This method performs an update query on the database using a given Product.
      * @param productUpdate Product - being the details to update.
      * @throws SQLException - Thrown as errors will be passed back to JSP pages.
@@ -960,5 +1093,13 @@ public class DB_Handler {
         String db_pass = resultSet.getString("PASSWORD");
         
         return (password.equals(db_pass));
+    }
+    
+    public boolean checkUsername(String username) throws SQLException {
+        checkUsername = connection.prepareStatement(checkUsernameQ);
+        checkUsername.setString(1, username);
+        resultSet = checkUsername.executeQuery();
+        
+        return (resultSet.getString("username").length() > 0);
     }
 }
