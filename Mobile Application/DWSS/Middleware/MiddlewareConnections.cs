@@ -44,7 +44,7 @@ namespace DWSS.Middleware
             {
                 try
                 {
-                    string serverResponse = await MiddlewareHTTPClient.SendQuery("addOrder?ORDER=" + Newtonsoft.Json.JsonConvert.SerializeObject(orderToFulfil) + "&NEW=FALSE");
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("addOrder.jsp?ORDER=" + Newtonsoft.Json.JsonConvert.SerializeObject(orderToFulfil) + "&NEW=FALSE");
                     return serverResponse.StartsWith("SUCCESS");
                 } catch (Exception)
                 {
@@ -55,7 +55,7 @@ namespace DWSS.Middleware
 
         public async static Task<User> GetUser(string username)
         {
-            if (isDebug)
+            if (true) // TODO: Remove
             {
                 return new User()
                 {
@@ -97,7 +97,7 @@ namespace DWSS.Middleware
             {
                 try
                 {
-                    string serverResponse = await MiddlewareHTTPClient.SendQuery("addProduct?PRODUCT=" + Newtonsoft.Json.JsonConvert.SerializeObject(product) + "&NEW=FALSE");
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("addProduct.jsp?PRODUCT=" + Newtonsoft.Json.JsonConvert.SerializeObject(product) + "&NEW=FALSE");
                     return serverResponse.StartsWith("SUCCESS");
                 }
                 catch (Exception)

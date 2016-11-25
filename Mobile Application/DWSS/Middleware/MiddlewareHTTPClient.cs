@@ -9,7 +9,7 @@ namespace DWSS.Middleware
 {
     public class MiddlewareHTTPClient
     {
-        private const string serverAddress = "LOCATIONOFSEVER"; // TODO: Specify server. 
+        private const string serverAddress = "http://localhost:8080/NET302_REST/"; // TODO: Specify server. 
         private static HttpClient httpClient;
         
         public static async Task<string> SendQuery(string queryURL, bool expectResponse = true)
