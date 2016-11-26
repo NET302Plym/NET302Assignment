@@ -29,11 +29,18 @@ public class DB_Handler {
     //************************************************************************//
     
     // DATABASE CONNECTION DETAILS:
+    private final String    db_url      = "mysqlinstance.ccamcguf5lrd.us-west-2.rds.amazonaws.com:3306/";
+    private final String    db_name     = "NET302";
+    private final String    user_id     = "root";
+    private final String    password    = "net302rootuser";
+    private final String    driver      = "com.mysql.jdbc.Driver";
+    
+    // Alternative Details for early testing:
+    /*
     private final String    db_url      = "net302.cli7vsmzzdht.us-west-2.rds.amazonaws.com:3306/";
     private final String    db_name     = "MyDatabase";
     private final String    user_id     = "root";
-    private final String    password    = "password1";
-    private final String    driver      = "com.mysql.jdbc.Driver";
+    */
     
     // SHORT VARIABLES FOR LONG TABLE NAMES:
     private final String    p_sub       = "NET302.Product_Subcategory";
@@ -79,12 +86,12 @@ public class DB_Handler {
             + "prodName as name, "
             + "available, "
             + "unitPrice, "
-            + "(category.categoryVal) as category, "
-            + "(category.ID) as category_id, "
-            + "(subcat.subcatVal) as subCategory, "
-            + "(subcat.ID) as subCategory_id, "
-            + "(container.containerVal) as container, "
-            + "(container.ID) as container_id, "
+            + "(" + p_cat + ".categoryVal) as category, "
+            + "(" + p_cat + ".ID) as category_id, "
+            + "(" + p_sub + ".subcatVal) as subCategory, "
+            + "(" + p_sub + ".ID) as subCategory_id, "
+            + "(" + p_con + ".containerVal) as container, "
+            + "(" + p_con + ".ID) as container_id "
             
             // FROM / JOIN / WHERE:
             + "FROM NET302.Products "
@@ -99,11 +106,11 @@ public class DB_Handler {
             + "TO_CHAR(dateOrdered, 'DD/MM/YYYY') as dateOrdered, "
             + "(staff.ID) as staffOrdered, "
             + "(Products.ID) as productID, "
-            + "(Location.ID) as loc_id, "
-            + "(Location.locationVal) as loc_value, "
+            + "(" + p_loc + ".ID) as loc_id, "
+            + "(" + p_loc + ".locationVal) as loc_value, "
             + "(" + o_sta + ".ID) as status_id, "
             + "(" + o_sta + ".statusName) as status_value, "
-            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered, "
+            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered "
             //+ "timeDelivered, " // MISSING FROM TABLE.
             // TODO: Time may need a mask, but wait to see how it returns first.
             
@@ -122,7 +129,7 @@ public class DB_Handler {
             
             // Get the Staff_Type details:
             + "Staff.staffType as type_id, "
-            + "staffType as type_value, "
+            + "staffType as type_value "
             
             // FROM + WHERE:
             + "FROM NET302.Staff "
@@ -137,7 +144,7 @@ public class DB_Handler {
             
             // Get the Staff_Type details:
             + "Staff.staffType as type_id, "
-            + "staffType as type_value, "
+            + "staffType as type_value "
             
             // FROM + WHERE:
             + "FROM NET302.Staff "
@@ -197,12 +204,12 @@ public class DB_Handler {
             + "prodName as name, "
             + "available, "
             + "unitPrice, "
-            + "(category.categoryVal) as category, "
-            + "(category.ID) as category_id, "
-            + "(subcat.subcatVal) as subCategory, "
-            + "(subcat.ID) as subCategory_id, "
-            + "(container.containerVal) as container, "
-            + "(container.ID) as container_id, "
+            + "(" + p_cat + ".categoryVal) as category, "
+            + "(" + p_cat + ".ID) as category_id, "
+            + "(" + p_sub + ".subcatVal) as subCategory, "
+            + "(" + p_sub + ".ID) as subCategory_id, "
+            + "(" + p_con + ".containerVal) as container, "
+            + "(" + p_con + ".ID) as container_id "
             
             // FROM / JOIN / WHERE:
             + "FROM NET302.Products "
@@ -217,11 +224,11 @@ public class DB_Handler {
             + "TO_CHAR(dateOrdered, 'DD/MM/YYYY') as dateOrdered, "
             + "(staff.ID) as staffOrdered, "
             + "(Products.ID) as productID, "
-            + "(Location.ID) as loc_id, "
-            + "(Location.locationVal) as loc_value, "
+            + "(" + p_loc + ".ID) as loc_id, "
+            + "(" + p_loc + ".locationVal) as loc_value, "
             + "(" + o_sta + ".ID) as status_id, "
             + "(" + o_sta + ".statusName) as status_value, "
-            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered, "
+            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered "
             //+ "timeDelivered, " // MISSING FROM TABLE.
             // TODO: Time may need a mask, but wait to see how it returns first.
             
@@ -238,11 +245,11 @@ public class DB_Handler {
             + "TO_CHAR(dateOrdered, 'DD/MM/YYYY') as dateOrdered, "
             + "(staff.ID) as staffOrdered, "
             + "(Products.ID) as productID, "
-            + "(Location.ID) as loc_id, "
-            + "(Location.locationVal) as loc_value, "
+            + "(" + p_loc + ".ID) as loc_id, "
+            + "(" + p_loc + ".locationVal) as loc_value, "
             + "(" + o_sta + ".ID) as status_id, "
             + "(" + o_sta + ".statusName) as status_value, "
-            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered, "
+            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered "
             //+ "timeDelivered, " // MISSING FROM TABLE.
             // TODO: Time may need a mask, but wait to see how it returns first.
             
@@ -262,7 +269,7 @@ public class DB_Handler {
             
             // Get the Staff_Type details:
             + "Staff.staffType as type_id, "
-            + "staffType as type_value, "
+            + "staffType as type_value "
             
             // FROM + WHERE:
             + "FROM NET302.Staff "
@@ -271,7 +278,7 @@ public class DB_Handler {
     
     private final String        getAllLookupsQ  =
             "SELECT ID as ID,"
-            + "? as VALUE"
+            + "? as VALUE "
             + "FROM ?"
             + "ORDER BY ID;";
     
@@ -293,12 +300,12 @@ public class DB_Handler {
             + "prodName as name, "
             + "available, "
             + "unitPrice, "
-            + "(category.categoryVal) as category, "
-            + "(category.ID) as category_id, "
-            + "(subcat.subcatVal) as subCategory, "
-            + "(subcat.ID) as subCategory_id, "
-            + "(container.containerVal) as container, "
-            + "(container.ID) as container_id, "
+            + "(" + p_cat + ".categoryVal) as category, "
+            + "(" + p_cat + ".ID) as category_id, "
+            + "(" + p_sub + ".subcatVal) as subCategory, "
+            + "(" + p_sub + ".ID) as subCategory_id, "
+            + "(" + p_con + ".containerVal) as container, "
+            + "(" + p_con + ".ID) as container_id "
             
             // FROM / JOIN / WHERE:
             + "FROM NET302.Products "
@@ -378,6 +385,13 @@ public class DB_Handler {
         // Note the return, we need to test to see if this was closed correctly:
         return successful;
     }
+    
+    /*
+    // USED FOR DEBUGGING:
+    public String getAllProductsQ() {
+        return getAllProductsQ;
+    }
+    */
     
     //************************************************************************//
     //  -   PROCESSING STATEMENTS + RESULTSETS                            -   //
@@ -1095,6 +1109,14 @@ public class DB_Handler {
         return (password.equals(db_pass));
     }
     
+    /**
+     * This method queries the database for a cetain username existing, so that
+     * the mobile application can use it to log in with security passes.
+     * @param username String - being the username to search for.
+     * @return boolean - being whether or not the username was found.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it. 
+     */
     public boolean checkUsername(String username) throws SQLException {
         checkUsername = connection.prepareStatement(checkUsernameQ);
         checkUsername.setString(1, username);

@@ -26,10 +26,14 @@
                 try {
                     int id = Integer.parseInt(paraID);
                     result = handler.getOrder(id).GetJSONString();
-                } catch (NumberFormatException | SQLException ex) {
+                } catch (SQLException ex) {
                     // SQL Error.
-                        result = "ERROR: Please check DB_Handler for following error:"
+                    result = "ERROR: Please check DB_Handler for following error:"
                             + "\n" + ex.getMessage();
+                } catch (NumberFormatException ex) {
+                    // ID Error.
+                    result = "ERROR: Please ensure the ID parameter is a number!"
+                            + "\nThe middleware failed to convert this: " + paraID;
                 } finally { handler.CloseConnection(); }
             } else {
                 // Failed to get a connection!
