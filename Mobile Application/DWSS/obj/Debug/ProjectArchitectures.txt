@@ -1,1 +1,1 @@
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\DWSS.csproj;neutral
+D:\Documents\NET302Assignment\Mobile Application\DWSS\DWSS.csproj;neutral

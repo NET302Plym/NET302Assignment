@@ -312,7 +312,7 @@ public class DB_Handler {
             + "JOIN " + p_cat + " ON Products.categoryID = " + p_cat + ".ID "
             + "JOIN " + p_sub + " ON Products.subcatID = " + p_sub + ".ID "
             + "JOIN " + p_con + " ON Products.containerID = " + p_con + ".ID "
-            + "WHERE prodName LIKE '%?%' "
+            + "WHERE lower(prodName) LIKE ? "
             + "ORDER BY ID;";
     
     /**
@@ -619,7 +619,7 @@ public class DB_Handler {
     
     public ArrayList<Product> getProducts(String searchTerm) throws SQLException {
         searchProduct = connection.prepareStatement(searchProductQ);
-        searchProduct.setString(1, searchTerm);
+        searchProduct.setString(1, "%" + searchTerm + "%");
         resultSet = searchProduct.executeQuery();
         
         // Prepare list to store data in:

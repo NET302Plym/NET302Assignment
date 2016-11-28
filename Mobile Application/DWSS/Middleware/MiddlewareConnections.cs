@@ -9,7 +9,7 @@ namespace DWSS.Middleware
 {
     class MiddlewareConnections
     {
-        private static bool isDebug = true;
+        private static bool isDebug = false;
 
         public async static Task<List<Order>> GetOutstandingOrders()
         {
