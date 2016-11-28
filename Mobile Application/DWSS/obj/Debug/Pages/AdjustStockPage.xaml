@@ -13,7 +13,8 @@
 
     <Grid>
         <TextBlock Text="Quantity Adjustment" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="22" FontWeight="Bold"></TextBlock>
-        <TextBox x:ConnectionId='1' PlaceholderText="Enter Search Terms..." BorderBrush="Gray" Margin="0,30,0,0"                                ></TextBox>
+        <TextBox PlaceholderText="Enter Search Terms..." Name="SearchTermsTextBox" BorderBrush="Gray" Margin="0,30,120,0"></TextBox>
+        <Button x:ConnectionId='1' Content="Find" Margin="0,22,0,0" HorizontalAlignment="Right" VerticalAlignment="Top" Foreground="Black" BorderBrush="Gray" Padding="5,0,5,0"                         />
         <ScrollViewer Margin="0,105,0,0">
             <StackPanel Name="PageContentStackPanel">
                 

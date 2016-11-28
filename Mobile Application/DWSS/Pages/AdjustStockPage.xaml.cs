@@ -31,9 +31,19 @@ namespace DWSS.Pages
         }
         
         private string searchTermsCache = "";
-        private async void SearchTermTextBoxChange(object sender, KeyRoutedEventArgs e)
+        
+        private void VisualProductOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
-            string searchTerms = (sender as TextBox).Text;
+            Product product = (sender as ProductUserControl).product;
+            if (product == null) return;
+
+            StaticData.masterPage.Navigate(typeof(Pages.AdjustProductPage));
+            StaticData.adjustProductPage.SetData(product);
+        }
+
+        private async void FindButtonClick(object sender, RoutedEventArgs e)
+        {
+            string searchTerms = SearchTermsTextBox.Text;
             if (searchTerms == searchTermsCache) return;
             if (string.IsNullOrEmpty(searchTerms))
             {
@@ -46,7 +56,7 @@ namespace DWSS.Pages
                 // Perform a search
                 foreach (var product in await Middleware.MiddlewareConnections.SearchForProduct(searchTerms))
                 {
-                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, ()=>
+                    await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                     {
                         var visualProduct = new ProductUserControl();
                         visualProduct.SetData(product);
@@ -57,15 +67,6 @@ namespace DWSS.Pages
                 }
             }
             searchTermsCache = searchTerms;
-        }
-        
-        private void VisualProductOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
-        {
-            Product product = (sender as ProductUserControl).product;
-            if (product == null) return;
-
-            StaticData.masterPage.Navigate(typeof(Pages.AdjustProductPage));
-            StaticData.adjustProductPage.SetData(product);
         }
     }
 }

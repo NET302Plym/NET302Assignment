@@ -40,7 +40,7 @@ namespace DWSS.Pages
             NewQuantityTextBox.Text = product.stockCount.ToString();
         }
 
-        private async void SubmitChangesButtonClick(object sender, RoutedEventArgs e)
+        private async void SubmitChangesButtonClick(object sender, RoutedEventArgs e) 
         {
             // Submit the changes
             int x;

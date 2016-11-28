@@ -70,7 +70,6 @@
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="Margin" />
       <RootProperty Name="PlaceholderText" />
-      <RootEvent Name="KeyUp" />
     </RootType>
     <RootType FullName="DWSS.Pages.AdjustProductPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.ScrollViewer">

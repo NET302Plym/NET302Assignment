@@ -11,7 +11,7 @@ namespace DWSS.Middleware
     {
         private static bool isDebug = false;
 
-        public async static Task<List<Order>> GetOutstandingOrders()
+        public async static Task<List<Order>> GetOutstandingOrders() // This could be working, everything is talking OK just no orders in the database to test this on. 
         {
             if (isDebug)
             {
@@ -24,8 +24,8 @@ namespace DWSS.Middleware
                 List<Order> orderList;
                 try
                 {
-                    string serverResponse = await MiddlewareHTTPClient.SendQuery("getOrder.jsp");
-                    orderList = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Order>>(serverResponse);
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("getUnfulfilled.jsp");
+                    orderList = serverResponse == null ? new List<Order>() : Newtonsoft.Json.JsonConvert.DeserializeObject<List<Order>>(serverResponse);
                 } catch (Exception)
                 {
                     throw new Exception("Error Communicating With The Server");
@@ -72,7 +72,7 @@ namespace DWSS.Middleware
             }
         }
 
-        public async static Task<List<Product>> SearchForProduct(string searchTerms)
+        public async static Task<List<Product>> SearchForProduct(string searchTerms) // This is working 
         {
             searchTerms = searchTerms.ToLower();
             if (isDebug)
@@ -81,12 +81,12 @@ namespace DWSS.Middleware
             }
             else
             {
-                // TODO this.
-                return null;
+                string serverResponse = await MiddlewareHTTPClient.SendQuery("searchProducts.jsp?TERM=" + searchTerms);
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(serverResponse);
             }
         }
 
-        public async static Task<bool> UploadChanges(Product product, int newQuantity)
+        public async static Task<bool> UploadChanges(Product product, int newQuantity) // This works but isn't working on the server correctly (it just calls add new again)
         {
             product.stockCount = newQuantity;
             if (isDebug)
