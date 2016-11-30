@@ -3,13 +3,95 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>D-WSS</title>
     </h:head>
     <h:body>
-        Hello from Facelets
-        <h:form>
-        <h:commandButton value="Stock List" action="productList"/>
-        </h:form>
+        <style>
+            .header{
+                margin: 0px;
+                position: absolute;
+                font-size: 20px;
+                top:0px;
+                left:0px;
+                right:0px;
+                height:26px;
+                border-bottom: black solid 2px;
+                padding:12px;
+                box-shadow: 0px 0px 4px #888888;
+            }
+            .mainBodyContent{
+                margin: 0px;
+                padding: 70px;
+                position: absolute;
+                top:52px;
+                bottom:0px;
+                right:0px;
+                left:0px;
+                background-color: #156099;
+            }
+            body {
+                margin: 10px;
+                font-family: Calibri;
+                font-size: 16px;
+            }
+            .authenticationBox{
+                display: inline-block;
+                margin: 0px;
+                background-color: white;
+                border-radius: 1px 1px;
+                border-color: black;
+                box-shadow: black 2px 2px;
+                border: solid 1px black;
+                padding:10px 20px 20px 20px;
+            }
+            .textBox{
+                width: 160px;
+            }
+            .customButton{
+                background-color: transparent;
+                cursor: pointer;
+                box-shadow: none;
+                border: solid 1px black;
+                font-size: 14px;
+                padding: 1px 5px 1px 5px;
+            }
+        </style>
+        <script type="text/javascript">
+            function clearFunction(){
+                document.getElementById('usernameText').value = '';
+                document.getElementById('passwordText').value = '';
+            }
+        </script>
+            <div class="header">
+                <center><b>D-WSS</b> The Distributed Warehouse Support System</center>
+            </div>
+            <div class="mainBodyContent">
+                <div style="text-align:center;  margin-right:auto; margin-left:auto;">
+                    <div class="authenticationBox">
+                        <p style="font-size:18px;"><b>Log Into the System</b></p>
+                        <table>
+                            <tr>
+                                <td>Username</td>
+                                <td><Input type="Text" class="textBox" id="usernameText" /></td>
+                            </tr>
+                            <tr>
+                                <td>Password</td>
+                                <td><Input type="Text" class="textBox" id="passwordText" /></td>
+                            </tr>
+                        </table>
+                        <table style="padding:10px; width:100%;">
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td><input type="Button" class="customButton" value="Clear" onclick="clearFunction()" /></td>
+                                <td><input type="Button" class="customButton" value="Submit" /></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h:form>
+                        <h:commandButton style="visibility: hidden;" value="Stock List" action="productList"/>
+                    </h:form>
+                </div>
+            </div>
     </h:body>
 </html>
-

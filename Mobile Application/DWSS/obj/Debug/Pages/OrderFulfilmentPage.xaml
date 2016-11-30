@@ -1,0 +1,22 @@
+﻿<Page
+    x:Class="DWSS.Pages.OrderFulfilmentPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DWSS.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    FontFamily="Calibri"
+    FontSize="18"
+    Foreground="Black"
+    Background="White">
+    <Grid>
+        <TextBlock Text="Order Fulfillment" HorizontalAlignment="Center" Margin="0,0,0,0" FontSize="22" FontWeight="Bold"></TextBlock>
+        <ScrollViewer Margin="0,30,0,0">
+            <StackPanel Name="PageContentStackPanel">
+            
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>
+

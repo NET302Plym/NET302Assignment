@@ -1,0 +1,48 @@
+﻿<Page
+    x:Class="DWSS.Pages.OptionsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DWSS.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Foreground="Black"
+    FontFamily="Calibri"
+    FontSize="18"
+    Background="White">
+    <Grid Margin="10,0,10,0">
+        <Grid Margin="0,0,0,0">
+            <TextBlock Text="What Do You Want To Do?" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="22" FontWeight="Bold"></TextBlock>
+            <StackPanel VerticalAlignment="Center">
+                <Button x:ConnectionId='1' HorizontalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Padding="5,0,5,0" Margin="10"                                 >
+                    <Grid Width="220">
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="1" Background="Blue" Height="25" />
+                        <TextBlock HorizontalAlignment="Center" Text="Fulfill Orders" Margin="10" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="1" Background="Blue" Height="25" />
+                    </Grid>
+                </Button>
+                <Button x:ConnectionId='2' HorizontalAlignment="Center" BorderBrush="Transparent" Foreground="Black" Padding="5,0,5,0" Margin="10"                               >
+                    <Grid Width="220">
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="1" Background="Blue" Height="25" />
+                        <TextBlock HorizontalAlignment="Center" Text="Adjust Stock Quantities" Margin="10" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="1" Background="Blue" Height="25" />
+                    </Grid>
+                </Button>                
+                <Button x:ConnectionId='3' HorizontalAlignment="Center" Foreground="Black" BorderBrush="Transparent" Padding="5,0,5,0" Margin="10"                          >
+                    <Grid Width="220">
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Width="1" Background="Blue" Height="25" />
+                        <TextBlock HorizontalAlignment="Center" Text="Logout Current User" Margin="10" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Height="1" Background="Blue" Width="160" />
+                        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="1" Background="Blue" Height="25" />
+                    </Grid>
+                </Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
+

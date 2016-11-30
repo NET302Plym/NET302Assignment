@@ -1,0 +1,12 @@
+E:\NET302 Start\NET302-DataImporter\NET302-DataImporter\bin\Debug\NET302-DataImporter.exe.config
+E:\NET302 Start\NET302-DataImporter\NET302-DataImporter\bin\Debug\NET302-DataImporter.exe
+E:\NET302 Start\NET302-DataImporter\NET302-DataImporter\bin\Debug\NET302-DataImporter.pdb
+E:\NET302 Start\NET302-DataImporter\NET302-DataImporter\obj\Debug\NET302-DataImporter.csprojResolveAssemblyReference.cache
+E:\NET302 Start\NET302-DataImporter\NET302-DataImporter\obj\Debug\NET302-DataImporter.exe
+E:\NET302 Start\NET302-DataImporter\NET302-DataImporter\obj\Debug\NET302-DataImporter.pdb
+E:\NET302Repo\Data Importer From Original CSV\NET302-DataImporter\NET302-DataImporter\bin\Debug\NET302-DataImporter.exe.config
+E:\NET302Repo\Data Importer From Original CSV\NET302-DataImporter\NET302-DataImporter\obj\Debug\NET302-DataImporter.exe
+E:\NET302Repo\Data Importer From Original CSV\NET302-DataImporter\NET302-DataImporter\obj\Debug\NET302-DataImporter.pdb
+E:\NET302Repo\Data Importer From Original CSV\NET302-DataImporter\NET302-DataImporter\bin\Debug\NET302-DataImporter.exe
+E:\NET302Repo\Data Importer From Original CSV\NET302-DataImporter\NET302-DataImporter\bin\Debug\NET302-DataImporter.pdb
+E:\NET302Repo\Data Importer From Original CSV\NET302-DataImporter\NET302-DataImporter\obj\Debug\NET302-DataImporter.csprojResolveAssemblyReference.cache
