@@ -46,10 +46,10 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Quantity To Order</f:facet>
-                    <h:inputText id="quantity" value=""/>
+                    <h:inputText binding="#{quant}" />
                 </h:column>
                 <h:column>
-                    <h:form><h:commandButton action="#{managementBean.addToTestOrder(2)}" value="Order Product" /></h:form>
+                    <h:form><h:commandButton action="#{managementBean.addToTestOrder(products.ID, quant.value)}" value="Order Product" /></h:form>
                 </h:column>
                 
             </h:dataTable>      

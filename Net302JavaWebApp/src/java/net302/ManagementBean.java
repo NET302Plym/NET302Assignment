@@ -8,6 +8,8 @@ package net302;
 import java.util.ArrayList;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import java.lang.Object;
+
 
 /**
  *
@@ -44,11 +46,14 @@ public class ManagementBean
         // for each orderItem -> to Json -> send to server 
     }
     
-    public void addToTestOrder(int ID)
+    public void addToTestOrder(int ID, int quantity)
     {
-        int quantity = 2;
+        //get quantity from front end table
+        quantity = 2;
         OrderBean orderItem = new OrderBean(ID,quantity);
         orderItems.add(orderItem);
+        System.out.println("DERP ** Test Order Func");
+        System.out.println(orderItems);
         
     }
     
@@ -56,6 +61,8 @@ public class ManagementBean
     {
         OrderBean orderItem = new OrderBean(quantity,user,product);
         orderItems.add(orderItem);
+        
+        
         
     }
 
