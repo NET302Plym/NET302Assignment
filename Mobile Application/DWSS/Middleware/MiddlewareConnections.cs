@@ -9,7 +9,7 @@ namespace DWSS.Middleware
 {
     class MiddlewareConnections
     {
-        private static bool isDebug = false;
+        private static bool isDebug = true;
 
         public async static Task<List<Order>> GetOutstandingOrders() // This could be working, everything is talking OK just no orders in the database to test this on. 
         {
@@ -105,7 +105,6 @@ namespace DWSS.Middleware
                 {
                     return false;
                 }
-                return true;
             }
         }
     }

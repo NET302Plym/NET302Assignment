@@ -34,7 +34,12 @@ namespace DWSS.Pages
             foreach (var order in await Middleware.MiddlewareConnections.GetOutstandingOrders())
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    PageContentStackPanel.Children.Add(new OrderUserControl(order));
+                    var orderUI = new OrderUserControl(order);
+                    orderUI.click += (s, o) =>
+                    {
+                        // TODO: Search & show a full-screen UI for the image
+                    };
+                    PageContentStackPanel.Children.Add(orderUI);
                 });
         }
 

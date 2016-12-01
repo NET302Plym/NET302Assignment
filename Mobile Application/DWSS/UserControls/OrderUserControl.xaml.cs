@@ -1,6 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using DWSS.Data;
+using System;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -8,6 +9,8 @@ namespace DWSS.UserControls
 {
     public sealed partial class OrderUserControl : UserControl
     {
+        public event EventHandler<EventArgs> click;
+
         public OrderUserControl()
         {
             this.InitializeComponent();
@@ -25,6 +28,7 @@ namespace DWSS.UserControls
             this.QuantityTextBlock.Text = order.quantity + "x";
             this.LocationTextBlock.Text = order.location.value;
             this.ProductUserControl.SetData(order.product);
+            this.ProductUserControl.click += (s, o) =>{ click?.Invoke(s, o); };
             this.FulfillmentButton.Tag = order;
         }
 
