@@ -68,6 +68,7 @@ namespace DWSS.Middleware
             }
             else
             {
+                //urlEnd = "getUser.jsp?ID=0?UN=" + username; 
                 return null; // TODO Be implemented within the middleware
             }
         }
