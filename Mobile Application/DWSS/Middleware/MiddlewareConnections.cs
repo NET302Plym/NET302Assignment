@@ -34,7 +34,7 @@ namespace DWSS.Middleware
             }
         }
 
-        public async static Task<bool> FulfillOrder(Order orderToFulfil, User currentUser)
+        public async static Task<bool> FulfillOrder(Order orderToFulfil, User currentUser) // Untested but the syntax looks ok
         {
             if (isDebug)
             {
@@ -53,9 +53,9 @@ namespace DWSS.Middleware
             }
         }
 
-        public async static Task<User> GetUser(string username)
+        public async static Task<User> GetUser(string username) // Untested but the syntax looks ok
         {
-            if (true) // TODO: Remove
+            if (isDebug) 
             {
                 return new User()
                 {
@@ -68,8 +68,8 @@ namespace DWSS.Middleware
             }
             else
             {
-                //urlEnd = "getUser.jsp?ID=0?UN=" + username; 
-                return null; // TODO Be implemented within the middleware
+                string serverResponse = await MiddlewareHTTPClient.SendQuery("getUser.jsp?ID=0&UN=" + username);
+                return Newtonsoft.Json.JsonConvert.DeserializeObject<User>(serverResponse);
             }
         }
 

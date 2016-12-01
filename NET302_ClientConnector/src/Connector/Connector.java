@@ -294,7 +294,7 @@ public class Connector {
      * @return User - being the requested User.
      */
     public User getUser(String username) {
-        urlEnd = "getUser.jsp?ID=0?UN=" + username;
+        urlEnd = "getUser.jsp?ID=0&UN=" + username;
         
         // Pass query to URL:
         String u = SendQuery(SERVER + urlEnd);
