@@ -6,6 +6,8 @@
 package net302;
 
 
+import Connector.Connector;
+import NET302JavaLibrary.*;
 import java.util.ArrayList;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
@@ -24,12 +26,24 @@ public class ManagementBean
 {
     private  ArrayList<ProductBean> productList;
     private ArrayList<OrderBean> orderItems = new ArrayList<OrderBean>();
+    
+    private ArrayList<Product>          products;
+    private ArrayList<Order>            orders;
+    private ArrayList<User>             users;
+    private ArrayList<GenericLookup>    categories;
+    private ArrayList<GenericLookup>    subCategories;
+    private ArrayList<GenericLookup>    orderStatus;
+    private ArrayList<GenericLookup>    containers;
+    private ArrayList<GenericLookup>    staffTypes;
+    private ArrayList<GenericLookup>    locations;
     /**
      * Creates a new instance of ManagementBean
      */
     public ManagementBean()
     {
-        retrieveStock();
+        Connector c = new Connector();
+        
+        products = c.getAllProducts();
     }
     
     public void retrieveStock()
@@ -51,15 +65,16 @@ public class ManagementBean
     public void addToTestOrder(int ID, int quantity)
     {
           String str = "";
-        //get quantity from front end table
-        quantity = 2;
+        //get quantity from front end tabl
       
-        
+        System.out.println("ID: " + ID + ", Q: " + quantity);
 
-        OrderBean orderItem = new OrderBean(ID,quantity);
+        Order orderItem = new Order(ID,quantity);
         orderItems.add(orderItem);
         System.out.println("DERP ** Test Order Func");
         System.out.println(orderItems);
+        
+        con.addOrder(orderItem);
         
     }
     

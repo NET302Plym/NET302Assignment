@@ -50,7 +50,8 @@
                     <h:inputText binding="#{quant}" />
                 </h:column>
                 <h:column>
-                  <!-- <h:form><h:commandButton action="#{managementBean.addToTestOrder(products.ID, quant.value)}" value="Order Product" /></h:form>-->
+                  <h:commandButton action="#{managementBean.addToTestOrder(products.ID, quant.value)}" value="Order Product" />
+
                 </h:column>
             </h:dataTable>   
         </h:form>
