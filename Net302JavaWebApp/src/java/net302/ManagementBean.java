@@ -5,10 +5,12 @@
  */
 package net302;
 
+
 import java.util.ArrayList;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import java.lang.Object;
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -48,8 +50,12 @@ public class ManagementBean
     
     public void addToTestOrder(int ID, int quantity)
     {
+          String str = "";
         //get quantity from front end table
         quantity = 2;
+      
+        
+
         OrderBean orderItem = new OrderBean(ID,quantity);
         orderItems.add(orderItem);
         System.out.println("DERP ** Test Order Func");

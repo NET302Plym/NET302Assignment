@@ -10,7 +10,8 @@
         Hello from Product List
         <br/>
         <h:form><h:commandButton value="Submit Order" action="displayOrder"/></h:form>
-        <br/>       
+        <br/>      
+        <h:form>
             <h:dataTable value="#{managementBean.productList}" var="products">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
@@ -49,10 +50,10 @@
                     <h:inputText binding="#{quant}" />
                 </h:column>
                 <h:column>
-                    <h:form><h:commandButton action="#{managementBean.addToTestOrder(products.ID, quant.value)}" value="Order Product" /></h:form>
+                  <!-- <h:form><h:commandButton action="#{managementBean.addToTestOrder(products.ID, quant.value)}" value="Order Product" /></h:form>-->
                 </h:column>
-                
-            </h:dataTable>      
+            </h:dataTable>   
+        </h:form>
         <br/>
         <h:form><h:commandButton value="Submit Order" action="displayOrder"/></h:form>
         <br/>
