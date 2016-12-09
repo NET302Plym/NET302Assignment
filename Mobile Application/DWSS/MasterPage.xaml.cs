@@ -36,7 +36,7 @@ namespace DWSS
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.UsernameTextBlock.Text = StaticData.currentUser.username; // Push the username out to the screen
+            this.UsernameTextBlock.Text = StaticData.currentUser.name; // Push the username out to the screen
         }
 
         public void Navigate(System.Type page)

@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Roots xmlns="clr-namespace:Microsoft.Xaml.Tools.XamlCompiler.RootLog;assembly=Microsoft.Windows.UI.Xaml.81.Build.Tasks">
+  <Roots.PropertyPathNames>
+    <RootPropertyPathName Name="ActualWidth" />
+  </Roots.PropertyPathNames>
   <Roots.RootTypes>
     <RootType FullName="Windows.UI.Xaml.Application" />
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
@@ -22,6 +25,7 @@
       <RootProperty Name="Height" />
       <RootProperty Name="ColumnDefinitions" />
       <RootProperty Name="RowDefinitions" />
+      <RootProperty Name="MaxWidth" />
       <RootMethod Name="GetRow" />
       <RootMethod Name="SetRow" />
       <RootMethod Name="GetColumn" />
@@ -47,6 +51,7 @@
       <RootProperty Name="Foreground" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="Name" />
+      <RootProperty Name="Visibility" />
       <RootProperty Name="BorderThickness" />
       <RootEvent Name="Click" />
     </RootType>
@@ -81,12 +86,17 @@
     <RootType FullName="DWSS.Pages.AdjustStockPage" />
     <RootType FullName="DWSS.Pages.LoginScreen" />
     <RootType FullName="DWSS.Pages.OptionsPage" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Image">
+      <RootProperty Name="Name" />
+      <RootProperty Name="Margin" />
+    </RootType>
     <RootType FullName="DWSS.Pages.OrderFulfilmentPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.UserControl">
       <RootProperty Name="FontFamily" />
       <RootProperty Name="Foreground" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="Content" />
+      <RootProperty Name="Name" />
     </RootType>
     <RootType FullName="DWSS.UserControls.ProductUserControl" />
     <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
@@ -96,5 +106,9 @@
       <RootProperty Name="Height" />
     </RootType>
     <RootType FullName="DWSS.UserControls.OrderUserControl" />
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="ElementName" />
+      <RootProperty Name="Path" />
+    </RootType>
   </Roots.RootTypes>
 </Roots>

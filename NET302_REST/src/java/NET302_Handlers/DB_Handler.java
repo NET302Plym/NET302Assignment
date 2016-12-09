@@ -29,7 +29,7 @@ public class DB_Handler {
     //************************************************************************//
     
     // DATABASE CONNECTION DETAILS:
-    private final String    db_url      = "mysqlinstance.ccamcguf5lrd.us-west-2.rds.amazonaws.com:3306/";
+    private final String    db_url      = "net302cw.cye4yuizcdgc.us-west-2.rds.amazonaws.com:3306/";
     private final String    db_name     = "NET302";
     private final String    user_id     = "root";
     private final String    password    = "net302rootuser";
@@ -125,16 +125,16 @@ public class DB_Handler {
             "SELECT Staff.ID as ID, "
             + "username, "
             + "staffContact as contact, "
-            + "staffName as name, "
+            + "Staff.staffName as name,"
             
             // Get the Staff_Type details:
-            + "Staff.staffType as type_id, "
-            + "staffType as type_value "
+            + "Staff.staffType as type_id, " 
+            + "Staff.staffType as type_value "
             
             // FROM + WHERE:
             + "FROM NET302.Staff "
-            + "JOIN " + s_typ + " ON Staff.staffType = " + s_typ + ".ID "
-            + "WHERE ID = ?;";                  // ID last.
+            + "JOIN Staff_Type ON Staff.staffType = Staff_Type.ID "
+            + "WHERE Staff.ID = ?;"; // ID last.       
     
     private final String        getUserQ_2      =
             "SELECT Staff.ID as ID, "
@@ -240,26 +240,46 @@ public class DB_Handler {
             + "ORDER BY ID;";
     
     private final String        getUnfulfilledQ = 
-            "SELECT (Orders.ID) as ID, "
-            + "quantity, "
-            + "TO_CHAR(dateOrdered, 'DD/MM/YYYY') as dateOrdered, "
-            + "(staff.ID) as staffOrdered, "
-            + "(Products.ID) as productID, "
-            + "(" + p_loc + ".ID) as loc_id, "
-            + "(" + p_loc + ".locationVal) as loc_value, "
-            + "(" + o_sta + ".ID) as status_id, "
-            + "(" + o_sta + ".statusName) as status_value, "
-            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered "
-            //+ "timeDelivered, " // MISSING FROM TABLE.
-            // TODO: Time may need a mask, but wait to see how it returns first.
-            
-            // FROM + JOINS + WHERE:
+            "SELECT "
+            + "Orders.ID, "
+            + "Orders.quantity, "
+            + "Orders.dateOrdered, "
+            + "Staff.ID as staffOrdered, "
+            + "Products.ID as productID, "
+            + "Location.ID as loc_id, "
+            + "Location.locationVal as loc_value, "
+            + "Order_Status.ID as status_id, "
+            + "Order_Status.statusName as status_value, "
+            + "Orders.dateDelivered as dateDelivered "
             + "FROM NET302.Orders "
-            + "JOIN " + o_sta + " ON Orders.statusID = " + o_sta + ".ID "
-            + "JOIN NET302.Staff ON Orders.staffID = Staff.staffID "
-            + "JOIN NET302.Products ON Orders.productID = Products.ID "
-            + "WHERE status_value = " // TODO: Enter statusvalue!!! 
-            + "ORDER BY ID;";
+            + "JOIN NET302.Staff ON Staff.ID = Orders.staffID "
+            + "JOIN NET302.Order_Status ON Order_Status.ID = Orders.statusID "
+            + "JOIN NET302.Products ON Products.ID = Orders.productID "
+            + "JOIN NET302.Location ON Location.ID = Orders.locationID "
+            + "WHERE Orders.statusID = 1 "
+            + "ORDER BY Orders.ID ";
+            
+            // old
+//            "SELECT (Orders.ID) as ID, "
+//            + "quantity, "
+//            + "TO_CHAR(dateOrdered, 'DD/MM/YYYY') as dateOrdered, "
+//            + "(staff.ID) as staffOrdered, "
+//            + "(Products.ID) as productID, "
+//            + "(" + p_loc + ".ID) as loc_id, "
+//            + "(" + p_loc + ".locationVal) as loc_value, "
+//            + "(" + o_sta + ".ID) as status_id, "
+//            + "(" + o_sta + ".statusName) as status_value, "
+//            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered "
+//            //+ "timeDelivered, " // MISSING FROM TABLE.
+//            // TODO: Time may need a mask, but wait to see how it returns first.
+//            
+//            // FROM + JOINS + WHERE:
+//            + "FROM NET302.Orders "
+//            + "JOIN " + o_sta + " ON Orders.statusID = " + o_sta + ".ID "
+//            + "JOIN NET302.Staff ON Orders.staffID = Staff.staffID "
+//            + "JOIN NET302.Products ON Orders.productID = Products.ID "
+//            + "WHERE status_value = " // TODO: Enter statusvalue!!! 
+//            + "ORDER BY ID;";
     
     private final String        getAllUsersQ    =
             "SELECT Staff.ID as ID, "
@@ -419,8 +439,8 @@ public class DB_Handler {
         GenericLookup staffType = new GenericLookup(type_id, type_value);
         
         // Note that we are not specifying the password, and we are setting authenticated to false.
-        User user           = new User(id, username, contact, "", name, false, staffType);
-        
+        User user           = new User(id, username, "", contact, name, false, staffType);
+        user.setAuthenticated(true);
         return user;
     }
     
@@ -470,7 +490,7 @@ public class DB_Handler {
         // Order details, ordered by constructr usage:
         int     id              = set.getInt("ID");
         int     quantity        = set.getInt("quantity");
-        boolean fulfilled       = set.getBoolean("");
+        
         String  dateOrdered     = set.getString("dateOrdered");
         
         // Staff Ordered    [use existing method]:
@@ -490,20 +510,22 @@ public class DB_Handler {
         int     status_id       = set.getInt("status_id");
         String  status_value    = set.getString("status_value");
         GenericLookup status    = new GenericLookup(status_id, status_value);
-       
-        // Construct object:
-        Order order = new Order(id, quantity, fulfilled, dateOrdered, staffOrdered, product, location, status);
+       //boolean fulfilled       = set.getBoolean("");
+        
         
         // Get non-constructor data:
         String  dateDelivered   = set.getString("dateDelivered");
-        Time    timeDelivered   = set.getTime("timeDelivered");
+        //Time    timeDelivered   = set.getTime("timeDelivered");
         
-        int     staffF          = set.getInt("staffFulfilled");
-        User    staffFulfilled  = getUser(staffF);
+        //int     staffF          = set.getInt("staffFulfilled");
+        //User    staffFulfilled  = getUser(staffF);
 
+        // Construct object:
+        Order order = new Order(id, quantity, !(status_id == 1), dateOrdered, staffOrdered, product, location, status);
+        
         order.setDateDelivered(dateDelivered);
-        order.setTimeDelivered(timeDelivered);
-        order.setStaffFulfilled(staffFulfilled);
+        //order.setTimeDelivered(timeDelivered);
+        //order.setStaffFulfilled(staffFulfilled);
         
         return order; 
     }
@@ -684,14 +706,8 @@ public class DB_Handler {
         // Prepare list to store data in:
         ArrayList<Order> list = new ArrayList<>();
         
-        // Get the size of the resultSet:
-        resultSet.last();
-        int count = resultSet.getRow();
-        resultSet.beforeFirst();
-        
-        // Construct list using helper method:
-        for(int a=0; a<count; a++) {
-            resultSet.next();
+        while (resultSet.next())
+        {
             list.add(constructOrder(resultSet));
         }
         
@@ -1123,5 +1139,17 @@ public class DB_Handler {
         resultSet = checkUsername.executeQuery();
         
         return (resultSet.getString("username").length() > 0);
+    }
+    
+    private int GetResultSetCount(ResultSet set){
+        int size = 0;
+        try {
+            set.last();
+            size = set.getRow();
+            set.beforeFirst();
+        } catch (Exception ex){
+            
+        }
+        return size;
     }
 }

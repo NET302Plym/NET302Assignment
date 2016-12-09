@@ -4,12 +4,14 @@ using DWSS.Data;
 using DWSS.Development;
 using System.Threading.Tasks;
 using System;
+using Google.Apis.Customsearch.v1;
+using Google.Apis.Customsearch.v1.Data;
 
 namespace DWSS.Middleware
 {
     class MiddlewareConnections
     {
-        private static bool isDebug = true;
+        private static bool isDebug = false;
 
         public async static Task<List<Order>> GetOutstandingOrders() // This could be working, everything is talking OK just no orders in the database to test this on. 
         {
@@ -68,7 +70,7 @@ namespace DWSS.Middleware
             }
             else
             {
-                string serverResponse = await MiddlewareHTTPClient.SendQuery("getUser.jsp?ID=0&UN=" + username);
+                string serverResponse = await MiddlewareHTTPClient.SendQuery("getUser.jsp?ID=" + username);
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<User>(serverResponse);
             }
         }
@@ -106,6 +108,21 @@ namespace DWSS.Middleware
                     return false;
                 }
             }
+        }
+
+        public static string DownloadImage(string searchTerms)
+        {
+            string apiKey = "AIzaSyAD5OsjTu6d-8xwOEkewvgA0JtNecMfoNo";
+            string searchEngineId = "008801159646905401147:nqod7kqw_kc";
+            CustomsearchService customSearchService = new CustomsearchService(new Google.Apis.Services.BaseClientService.Initializer { ApiKey = apiKey });
+            Google.Apis.Customsearch.v1.CseResource.ListRequest listRequest = customSearchService.Cse.List(searchTerms);
+            listRequest.Cx = searchEngineId;
+            listRequest.SearchType = CseResource.ListRequest.SearchTypeEnum.Image;
+            listRequest.Num = 1;
+            listRequest.Start = 1;
+            Search search = listRequest.Execute();
+            if (search.Items.Count == 0) return string.Empty;
+            return search.Items[0].Link;
         }
     }
 }

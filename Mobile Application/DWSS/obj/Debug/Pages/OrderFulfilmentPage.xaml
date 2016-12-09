@@ -17,6 +17,15 @@
             
             </StackPanel>
         </ScrollViewer>
+        <Grid Name="ImageViewer" Visibility="Collapsed" Margin="10">
+            <Grid Background="Black">
+                <Grid Margin="2" Background="White">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Name="ImageText" Margin="5" FontWeight="Bold" TextWrapping="WrapWholeWords" />
+                    <Image Name="Image" Margin="50" />
+                    <Button x:ConnectionId='1' Content="Close" VerticalAlignment="Bottom" HorizontalAlignment="Center" BorderBrush="Black" Foreground="Black"                                />
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>
 

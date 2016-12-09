@@ -29,10 +29,24 @@ namespace DWSS.Pages
 
         private async void BypassLoginClick(object sender, RoutedEventArgs e)
         {
-            StaticData.currentUser = await MiddlewareConnections.GetUser("Scanned User Badge");
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                (Window.Current.Content as Frame).Navigate(typeof(MasterPage));
+                (sender as Button).IsEnabled = false;
+            });
+            StaticData.currentUser = await MiddlewareConnections.GetUser("1");
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                if (StaticData.currentUser != null)
+                    (Window.Current.Content as Frame).Navigate(typeof(MasterPage));
+                else
+                {
+                    // TODO: This!
+                    //StaticData.masterPage.ShowNotification("Sorry, Authentication Failed.");
+                }
+            });
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                (sender as Button).IsEnabled = true;
             });
         }
     }

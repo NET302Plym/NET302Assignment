@@ -28,15 +28,27 @@ namespace DWSS.Middleware
 
         private static string StripResponseString(string input)
         {
-            if (!input.Contains("[") && !input.Contains("]"))
-                return string.Empty;
-            int firstCounter = 0;
-            while (input[firstCounter] != '[')
-                firstCounter++;
-            int secondCounter = input.Length - 1;
-            while (input[secondCounter] != ']')
-                secondCounter--;
-            return input.Substring(firstCounter, input.Length - firstCounter - (input.Length - secondCounter) + 1);
+            if (input.Contains("[") && input.Contains("]"))
+            {
+                int firstCounter = 0;
+                while (input[firstCounter] != '[')
+                    firstCounter++;
+                int secondCounter = input.Length - 1;
+                while (input[secondCounter] != ']')
+                    secondCounter--;
+                return input.Substring(firstCounter, input.Length - firstCounter - (input.Length - secondCounter) + 1);
+            }
+            else if (input.Contains("{") && input.Contains("}"))
+            {
+                int firstCounter = 0;
+                while (input[firstCounter] != '{')
+                    firstCounter++;
+                int secondCounter = input.Length - 1;
+                while (input[secondCounter] != '}')
+                    secondCounter--;
+                return input.Substring(firstCounter, input.Length - firstCounter - (input.Length - secondCounter) + 1);
+            }
+            else return string.Empty;
         }
     }
 }

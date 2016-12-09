@@ -16,13 +16,15 @@ namespace DWSS.UserControls
             this.InitializeComponent();
         }
 
-        public void SetData(Product product)
+        public void SetData(Product product, bool showFind = false)
         {
             this.product = product;
             this.NameTextBlock.Text = product.name;
             this.CategoryTextBlock.Text = product.category.value;
             this.SubCategoryTextBlock.Text = product.subCategory.value;
             this.ContainerTextBlock.Text = product.container.value;
+            if (showFind)
+                FindGoogleImageButton.Visibility = Windows.UI.Xaml.Visibility.Visible;
         }
 
         private void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)

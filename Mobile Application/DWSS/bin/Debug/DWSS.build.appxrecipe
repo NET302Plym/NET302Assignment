@@ -10,79 +10,109 @@
     <PackageArchitecture>neutral</PackageArchitecture>
     <PackageIdentityName>e7be14f2-a733-4c06-a057-52cb4fae4eb9</PackageIdentityName>
     <PackageIdentityPublisher>CN=Dan</PackageIdentityPublisher>
-    <IntermediateOutputPath>D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\</IntermediateOutputPath>
     <RemoteDeploymentType></RemoteDeploymentType>
     <PackageRegistrationPath></PackageRegistrationPath>
     <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.exe">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.exe">
       <PackagePath>DWSS.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.exe.config">
+      <PackagePath>DWSS.exe.config</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\packages\Google.Apis.Core.1.19.0\lib\portable-net45+sl50+netcore45+wpa81+wp8\Google.Apis.Core.dll">
+      <PackagePath>Google.Apis.Core.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\packages\Google.Apis.Customsearch.v1.1.19.0.466\lib\portable-net45+netcore45+wpa81+wp8\Google.Apis.Customsearch.v1.dll">
+      <PackagePath>Google.Apis.Customsearch.v1.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\packages\Google.Apis.1.19.0\lib\wpa81\Google.Apis.dll">
+      <PackagePath>Google.Apis.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\packages\Google.Apis.1.19.0\lib\wpa81\Google.Apis.PlatformServices.dll">
+      <PackagePath>Google.Apis.PlatformServices.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\packages\Microsoft.Bcl.Async.1.0.168\lib\wpa81\Microsoft.Threading.Tasks.dll">
+      <PackagePath>Microsoft.Threading.Tasks.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\packages\Microsoft.Bcl.Async.1.0.168\lib\wpa81\Microsoft.Threading.Tasks.Extensions.dll">
+      <PackagePath>Microsoft.Threading.Tasks.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\Assets\Logo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\packages\Microsoft.Net.Http.2.2.29\lib\wpa81\System.Net.Http.Extensions.dll">
+      <PackagePath>System.Net.Http.Extensions.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\packages\Microsoft.Net.Http.2.2.29\lib\wpa81\System.Net.Http.Primitives.dll">
+      <PackagePath>System.Net.Http.Primitives.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\packages\Zlib.Portable.Signed.1.11.0\lib\portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid\Zlib.Portable.dll">
+      <PackagePath>Zlib.Portable.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\Assets\Logo.scale-240.png">
       <PackagePath>Assets\Logo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\Assets\SmallLogo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\Assets\SmallLogo.scale-240.png">
       <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\Assets\SplashScreen.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\Assets\SplashScreen.scale-240.png">
       <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\Assets\Square71x71Logo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\Assets\Square71x71Logo.scale-240.png">
       <PackagePath>Assets\Square71x71Logo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\Assets\StoreLogo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\Assets\StoreLogo.scale-240.png">
       <PackagePath>Assets\StoreLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\Assets\WideLogo.scale-240.png">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\Assets\WideLogo.scale-240.png">
       <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.xr.xml">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.xr.xml">
       <PackagePath>DWSS.xr.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\MasterPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\MasterPage.xbf">
       <PackagePath>MasterPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustProductPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustProductPage.xbf">
       <PackagePath>Pages\AdjustProductPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustStockPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustStockPage.xbf">
       <PackagePath>Pages\AdjustStockPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\LoginScreen.xbf">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\LoginScreen.xbf">
       <PackagePath>Pages\LoginScreen.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OptionsPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OptionsPage.xbf">
       <PackagePath>Pages\OptionsPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf">
       <PackagePath>Pages\OrderFulfilmentPage.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\OrderUserControl.xbf">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\OrderUserControl.xbf">
       <PackagePath>UserControls\OrderUserControl.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\ProductUserControl.xbf">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\ProductUserControl.xbf">
       <PackagePath>UserControls\ProductUserControl.xbf</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>

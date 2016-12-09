@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Navigation;
 using DWSS.Data;
 using DWSS.UserControls;
 using System;
+using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -38,9 +39,19 @@ namespace DWSS.Pages
                     orderUI.click += (s, o) =>
                     {
                         // TODO: Search & show a full-screen UI for the image
+                        string url = Middleware.MiddlewareConnections.DownloadImage((s as ProductUserControl).product.name);
+                        if (!string.IsNullOrWhiteSpace(url))
+                            ShowImage(url, (s as ProductUserControl).product.name);
                     };
                     PageContentStackPanel.Children.Add(orderUI);
                 });
+        }
+
+        private void ShowImage(string url, string name)
+        {
+            Image.Source = new BitmapImage(new Uri(url, UriKind.Absolute));
+            ImageText.Text = name;
+            ImageViewer.Visibility = Visibility.Visible;
         }
 
         public async void FulfilOrder(Order orderToFulfill)
@@ -58,6 +69,11 @@ namespace DWSS.Pages
         private void HomeButtonClick(object sender, RoutedEventArgs e)
         {
             StaticData.masterPage.Navigate(typeof(Pages.OptionsPage));
+        }
+
+        private void ImageViewerButtonClick(object sender, RoutedEventArgs e)
+        {
+            ImageViewer.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -10,9 +10,10 @@
     FontSize="16"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400">
-    <StackPanel Orientation="Horizontal">
-        <Grid>
+    d:DesignWidth="400"
+    Name="ProductUserControlName">
+    <StackPanel Orientation="Vertical">
+        <Grid MaxWidth="{Binding ElementName=ProductUserControlName, Path=ActualWidth}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="130" />
                 <ColumnDefinition Width="*" />
@@ -24,7 +25,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Column="0" Grid.Row="0" Text="Name:" Margin="0,0,10,0"></TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="0" Name="NameTextBlock" FontWeight="Bold"></TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="0" Name="NameTextBlock" FontWeight="Bold" TextWrapping="WrapWholeWords"></TextBlock>
             <TextBlock Grid.Column="0" Grid.Row="1" Text="Category:" Margin="0,0,10,0"></TextBlock>
             <TextBlock Grid.Column="1" Grid.Row="1" Name="CategoryTextBlock"></TextBlock>
             <TextBlock Grid.Column="0" Grid.Row="2" Text="Sub Category:" Margin="0,0,10,0"></TextBlock>
@@ -32,6 +33,6 @@
             <TextBlock Grid.Column="0" Grid.Row="3" Text="Container:" Margin="0,0,10,0"></TextBlock>
             <TextBlock Grid.Column="1" Grid.Row="3" Name="ContainerTextBlock"></TextBlock>
         </Grid>
-        <Button VerticalAlignment="Center" HorizontalAlignment="Right" BorderBrush="Gray" BorderThickness="1" Foreground="Black" Content="Find" Padding="5,0,5,0" Margin="20" Click="Button_Click" />
+        <Button Name="FindGoogleImageButton" Visibility="Collapsed" HorizontalAlignment="Center" BorderBrush="Gray" BorderThickness="1" Foreground="Black" Content="Find Google Image" Padding="5,0,5,0" Margin="20" Click="Button_Click" />
     </StackPanel>
 </UserControl>

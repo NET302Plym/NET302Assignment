@@ -27,7 +27,7 @@ namespace DWSS.UserControls
             this.CustomerNameTextBlock.Text = order.staffOrdered.name;
             this.QuantityTextBlock.Text = order.quantity + "x";
             this.LocationTextBlock.Text = order.location.value;
-            this.ProductUserControl.SetData(order.product);
+            this.ProductUserControl.SetData(order.product, true);
             this.ProductUserControl.click += (s, o) =>{ click?.Invoke(s, o); };
             this.FulfillmentButton.Tag = order;
         }
