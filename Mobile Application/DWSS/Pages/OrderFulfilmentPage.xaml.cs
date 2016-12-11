@@ -56,13 +56,19 @@ namespace DWSS.Pages
 
         public async void FulfilOrder(Order orderToFulfill)
         {
-            await Middleware.MiddlewareConnections.FulfillOrder(orderToFulfill, StaticData.currentUser);
+            bool success = await Middleware.MiddlewareConnections.FulfillOrder(orderToFulfill);
             // Reload the UI
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                OnNavigatedTo(null);
                 // Show a notification
-                StaticData.masterPage.ShowNotification("Order " + orderToFulfill.ID + " has been fulfilled");
+                if (success)
+                {
+                    StaticData.masterPage.ShowNotification("Order " + orderToFulfill.ID + " has been fulfilled");
+                    // Reload the data again
+                    OnNavigatedTo(null);
+                }
+                else
+                    StaticData.masterPage.ShowNotification("Error! Internal server error");
             });
         }
 

@@ -36,7 +36,7 @@ namespace DWSS.Middleware
             }
         }
 
-        public async static Task<bool> FulfillOrder(Order orderToFulfil, User currentUser) // Untested but the syntax looks ok
+        public async static Task<bool> FulfillOrder(Order orderToFulfil)
         {
             if (isDebug)
             {
@@ -46,9 +46,9 @@ namespace DWSS.Middleware
             {
                 try
                 {
-                    string serverResponse = await MiddlewareHTTPClient.SendQuery("addOrder.jsp?ORDER=" + Newtonsoft.Json.JsonConvert.SerializeObject(orderToFulfil) + "&NEW=FALSE");
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("fulfillOrder.jsp?ORDER="+orderToFulfil.ID.ToString());
                     return serverResponse.StartsWith("SUCCESS");
-                } catch (Exception)
+                } catch (Exception ex)
                 {
                     return false;
                 }

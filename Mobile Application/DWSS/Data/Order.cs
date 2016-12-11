@@ -56,6 +56,13 @@ namespace DWSS.Data
         [JsonConstructor]
         public Order() { }
         
+        public Order StripExcessData()
+        {
+            Order o = new Order();
+            o.ID = ID;
+            return o;
+        }
+
         //public Order(string jsonString)
         //{
         //    var order = Newtonsoft.Json.JsonConvert.DeserializeObject<Order>(jsonString);

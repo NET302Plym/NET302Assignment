@@ -33,6 +33,13 @@ public class User {
         this.staffType      = staff_type;
     }
     
+    public User(int ID, String username, String name)
+    {
+        this.ID = ID;
+        this.username = username;
+        this.name = name;
+    }
+    
     //************************************************************************//
     //  -   GETTERS + SETTERS                                             -   //
     //************************************************************************//
