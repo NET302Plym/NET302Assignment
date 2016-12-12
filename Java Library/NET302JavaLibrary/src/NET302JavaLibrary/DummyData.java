@@ -13,15 +13,15 @@ import java.util.ArrayList;
  */
 public class DummyData {
     
-    private final ArrayList<Product>          products;
-    private final ArrayList<Order>            orders;
-    private final ArrayList<User>             users;
-    private final ArrayList<GenericLookup>    categories;
-    private final ArrayList<GenericLookup>    subCategories;
-    private final ArrayList<GenericLookup>    orderStatus;
-    private final ArrayList<GenericLookup>    containers;
-    private final ArrayList<GenericLookup>    staffTypes;
-    private final ArrayList<GenericLookup>    locations;
+    private ArrayList<Product>          products;
+    private ArrayList<Order>            orders;
+    private ArrayList<User>             users;
+    private ArrayList<GenericLookup>    categories;
+    private ArrayList<GenericLookup>    subCategories;
+    private ArrayList<GenericLookup>    orderStatus;
+    private ArrayList<GenericLookup>    containers;
+    private ArrayList<GenericLookup>    staffTypes;
+    private ArrayList<GenericLookup>    locations;
 
     public ArrayList<Product> getProducts() {
         return products;
@@ -58,7 +58,43 @@ public class DummyData {
     public ArrayList<GenericLookup> getLocations() {
         return locations;
     }
-    
+
+    public void setProducts(ArrayList<Product> products) {
+        this.products = products;
+    }
+
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
+
+    public void setCategories(ArrayList<GenericLookup> categories) {
+        this.categories = categories;
+    }
+
+    public void setSubCategories(ArrayList<GenericLookup> subCategories) {
+        this.subCategories = subCategories;
+    }
+
+    public void setOrderStatus(ArrayList<GenericLookup> orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public void setContainers(ArrayList<GenericLookup> containers) {
+        this.containers = containers;
+    }
+
+    public void setStaffTypes(ArrayList<GenericLookup> staffTypes) {
+        this.staffTypes = staffTypes;
+    }
+
+    public void setLocations(ArrayList<GenericLookup> locations) {
+        this.locations = locations;
+    }
+
     public DummyData(int dataSize) {
         products = new ArrayList<>();
         orders = new ArrayList<>();

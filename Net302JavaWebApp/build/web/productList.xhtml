@@ -12,7 +12,7 @@
         <h:form><h:commandButton value="Submit Order" action="displayOrder"/></h:form>
         <br/>      
         <h:form>
-            <h:dataTable value="#{managementBean.productList}" var="products">
+            <h:dataTable value="#{managementBean.products}" var="products">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                     #{products.ID}
@@ -50,7 +50,8 @@
                     <h:inputText binding="#{quant}" />
                 </h:column>
                 <h:column>
-                  <!-- <h:form><h:commandButton action="#{managementBean.addToTestOrder(products.ID, quant.value)}" value="Order Product" /></h:form>-->
+                  <h:commandButton action="#{managementBean.addToTestOrder(products.ID, quant.value)}" value="Order Product" />
+
                 </h:column>
             </h:dataTable>   
         </h:form>
