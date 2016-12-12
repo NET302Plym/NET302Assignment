@@ -4,8 +4,16 @@ using DWSS.Data;
 
 namespace DWSS.Development
 {
+    /// <summary>
+    /// You can ignore this. 
+    /// This was initially used to provide some data to use within the application before the REST service was up and running 
+    /// </summary>
     class DummyData
     {
+        /// <summary>
+        /// Returns a few fake orders
+        /// </summary>
+        /// <returns></returns>
         public static List<Order> GetOrders()
         {
             var orderList = new List<Order>();
@@ -51,6 +59,10 @@ namespace DWSS.Development
             return orderList;
         }
 
+        /// <summary>
+        /// Returns a few fake products
+        /// </summary>
+        /// <returns></returns>
         public static List<Product> GetProdutcs()
         {
             var productList = new List<Product>();

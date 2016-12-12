@@ -11,27 +11,37 @@ using System;
 namespace DWSS.Pages
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// This is the page shown when searching for a product to modify 
     /// </summary>
     public sealed partial class AdjustStockPage : Page
     {
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public AdjustStockPage()
         {
             this.InitializeComponent();
         }
 
-        /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
-        /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.
-        /// This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
+        ///// <summary>
+        ///// Invoked when this page is about to be displayed in a Frame.
+        ///// </summary>
+        ///// <param name="e">Event data that describes how this page was reached.
+        ///// This parameter is typically used to configure the page.</param>
+        //protected override void OnNavigatedTo(NavigationEventArgs e)
+        //{
             
-        }
-        
+        //}
+        /// <summary>
+        /// Cache the search terms to prevent unnessesary stress on the server by constantly re-searching the same terms 
+        /// </summary>
         private string searchTermsCache = "";
         
+        /// <summary>
+        /// Used when clicking a result, loads the searched item and navigates to the product change page 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="tappedRoutedEventArgs"></param>
         private void VisualProductOnTapped(object sender, TappedRoutedEventArgs tappedRoutedEventArgs)
         {
             Product product = (sender as ProductUserControl).product;
@@ -41,6 +51,11 @@ namespace DWSS.Pages
             StaticData.adjustProductPage.SetData(product);
         }
 
+        /// <summary>
+        /// Searches using the given search terms and outputs to the page all the results that match that criteria. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void FindButtonClick(object sender, RoutedEventArgs e)
         {
             string searchTerms = SearchTermsTextBox.Text;

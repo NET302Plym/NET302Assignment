@@ -10,12 +10,18 @@ using System;
 namespace DWSS.Pages
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// This is the page shown when changing a product quantity
     /// </summary>
     public sealed partial class AdjustProductPage : Page
     {
+        /// <summary>
+        /// The internal product
+        /// </summary>
         private Product product;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public AdjustProductPage()
         {
             this.InitializeComponent();
@@ -31,6 +37,10 @@ namespace DWSS.Pages
             StaticData.adjustProductPage = this; // Register to the static data
         }
 
+        /// <summary>
+        /// Externally load a product into this page and display on the screen
+        /// </summary>
+        /// <param name="product"></param>
         public void SetData(Product product)
         {
             this.product = product;
@@ -40,18 +50,28 @@ namespace DWSS.Pages
             NewQuantityTextBox.Text = product.stockCount.ToString();
         }
 
+        /// <summary>
+        /// Submits the new quantity
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void SubmitChangesButtonClick(object sender, RoutedEventArgs e) 
         {
             // Submit the changes
             int x;
             if (int.TryParse(NewQuantityTextBox.Text, out x))
             {
-                await Middleware.MiddlewareConnections.UploadChanges(product, x);
+                bool success = await Middleware.MiddlewareConnections.UploadChanges(product, x);
                 // Show a message
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    StaticData.masterPage.ShowNotification("Quantity has been changed to " + x.ToString());
-                    StaticData.masterPage.GoBack();
+                    if (success)
+                    {
+                        StaticData.masterPage.ShowNotification("Quantity has been changed to " + x.ToString());
+                        StaticData.masterPage.GoBack();
+                    }
+                    else
+                        StaticData.masterPage.ShowNotification("Error! Internal Server Error");
                 });
             }
             else

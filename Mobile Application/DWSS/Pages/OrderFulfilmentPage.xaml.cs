@@ -5,6 +5,7 @@ using DWSS.Data;
 using DWSS.UserControls;
 using System;
 using Windows.UI.Xaml.Media.Imaging;
+using System.Linq;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
 
@@ -25,28 +26,17 @@ namespace DWSS.Pages
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.
         /// This parameter is typically used to configure the page.</param>
-        protected async override void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             StaticData.OrderFulfilmentPage = this; // Subscribe to the static data page
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                PageContentStackPanel.Children.Clear();
-            });
-            foreach (var order in await Middleware.MiddlewareConnections.GetOutstandingOrders())
-                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-                {
-                    var orderUI = new OrderUserControl(order);
-                    orderUI.click += (s, o) =>
-                    {
-                        // TODO: Search & show a full-screen UI for the image
-                        string url = Middleware.MiddlewareConnections.DownloadImage((s as ProductUserControl).product.name);
-                        if (!string.IsNullOrWhiteSpace(url))
-                            ShowImage(url, (s as ProductUserControl).product.name);
-                    };
-                    PageContentStackPanel.Children.Add(orderUI);
-                });
+            LoadUI(); // Loads all unfulfilled orders from the REST API into the GUI
         }
 
+        /// <summary>
+        /// This shows an image for a clicked product
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="name"></param>
         private void ShowImage(string url, string name)
         {
             Image.Source = new BitmapImage(new Uri(url, UriKind.Absolute));
@@ -54,29 +44,74 @@ namespace DWSS.Pages
             ImageViewer.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Calls the Middleware fulfillment page for a particular order
+        /// </summary>
+        /// <param name="orderToFulfill"></param>
         public async void FulfilOrder(Order orderToFulfill)
         {
             bool success = await Middleware.MiddlewareConnections.FulfillOrder(orderToFulfill);
             // Reload the UI
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            if (success)
             {
-                // Show a notification
-                if (success)
+                // Show a message & clear the children
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
                     StaticData.masterPage.ShowNotification("Order " + orderToFulfill.ID + " has been fulfilled");
-                    // Reload the data again
-                    OnNavigatedTo(null);
-                }
-                else
+                });
+                // Reload the data 
+                LoadUI();
+            }
+            else
+            {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
                     StaticData.masterPage.ShowNotification("Error! Internal server error");
+                });
+            }
+        }
+        
+        /// <summary>
+        /// Loads orders from the Middleware REST API into the GUI
+        /// </summary>
+        private async void LoadUI()
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                PageContentStackPanel.Children.Clear();
             });
+
+            foreach (var order in (await Middleware.MiddlewareConnections.GetOutstandingOrders()).Where(xOrder => !xOrder.fulfilled))
+            {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                {
+                    var orderUI = new OrderUserControl(order);
+                    orderUI.click += (s, o) =>
+                    {
+                        string url = Middleware.MiddlewareConnections.DownloadImage((s as ProductUserControl).product.name);
+                        if (!string.IsNullOrWhiteSpace(url))
+                            ShowImage(url, (s as ProductUserControl).product.name);
+                    };
+                    PageContentStackPanel.Children.Add(orderUI);
+                });
+            }
         }
 
+        /// <summary>
+        /// Returns the user to the home page 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HomeButtonClick(object sender, RoutedEventArgs e)
         {
             StaticData.masterPage.Navigate(typeof(Pages.OptionsPage));
         }
 
+        /// <summary>
+        /// Closes the image viewer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImageViewerButtonClick(object sender, RoutedEventArgs e)
         {
             ImageViewer.Visibility = Visibility.Collapsed;
