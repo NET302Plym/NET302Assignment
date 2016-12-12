@@ -9,10 +9,22 @@ using Google.Apis.Customsearch.v1.Data;
 
 namespace DWSS.Middleware
 {
+    /// <summary>
+    /// Provides static accessors to the REST API service
+    /// </summary>
     class MiddlewareConnections
     {
+        /// <summary>
+        /// Set to :
+        ///     true to use dummy data
+        /// or
+        ///     false to use the REST API
+        /// </summary>
         private static bool isDebug = false;
-
+        /// <summary>
+        /// Returns a list of outstanding orders (unfulfilled orders)
+        /// </summary>
+        /// <returns></returns>
         public async static Task<List<Order>> GetOutstandingOrders() 
         {
             if (isDebug)
@@ -35,7 +47,11 @@ namespace DWSS.Middleware
                 return orderList;
             }
         }
-
+        /// <summary>
+        /// Fulfills an order
+        /// </summary>
+        /// <param name="orderToFulfil">The order to fulfill</param>
+        /// <returns></returns>
         public async static Task<bool> FulfillOrder(Order orderToFulfil)
         {
             if (isDebug)
@@ -54,7 +70,11 @@ namespace DWSS.Middleware
                 }
             }
         }
-
+        /// <summary>
+        /// Returns a User based on their username. This won't return any of their passwords or personal information
+        /// </summary>
+        /// <param name="username"></param>
+        /// <returns></returns>
         public async static Task<User> GetUser(string username) 
         {
             if (isDebug) 
@@ -74,7 +94,11 @@ namespace DWSS.Middleware
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<User>(serverResponse);
             }
         }
-
+        /// <summary>
+        /// This searches the database for a particular item, based on their search terms
+        /// </summary>
+        /// <param name="searchTerms"></param>
+        /// <returns></returns>
         public async static Task<List<Product>> SearchForProduct(string searchTerms) 
         {
             searchTerms = searchTerms.ToLower();
@@ -88,7 +112,12 @@ namespace DWSS.Middleware
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(serverResponse);
             }
         }
-
+        /// <summary>
+        /// This uploads a new quantity to the database
+        /// </summary>
+        /// <param name="product">The product to change</param>
+        /// <param name="newQuantity">The new quantity</param>
+        /// <returns></returns>
         public async static Task<bool> UploadChanges(Product product, int newQuantity) 
         {
             product.stockCount = newQuantity;
@@ -109,7 +138,12 @@ namespace DWSS.Middleware
                 }
             }
         }
-
+        /// <summary>
+        /// This returns a URL for an image. 
+        /// This uses Google and will return the first image result from a search term. 
+        /// </summary>
+        /// <param name="searchTerms"></param>
+        /// <returns></returns>
         public static string DownloadImage(string searchTerms)
         {
             string apiKey = "AIzaSyAD5OsjTu6d-8xwOEkewvgA0JtNecMfoNo";

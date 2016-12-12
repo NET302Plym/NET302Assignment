@@ -1105,6 +1105,11 @@ public class DB_Handler {
         updateOrder.executeQuery();
     }
     
+    /**
+     * This simply fulfills a given order
+     * @param orderToFulfill
+     * @throws SQLException 
+     */
     public void fulfillOrder(int orderToFulfill) throws SQLException {
         updateOrder = connection.prepareStatement(fulfillOrderQ);
         

@@ -56,6 +56,10 @@ namespace DWSS.Data
         [JsonConstructor]
         public Order() { }
         
+        /// <summary>
+        /// Returns an order with only the ID. This is used in the JSON -> JAVA upload as some of the other data isn't being passed correctly, mainly strings containing illegal chars
+        /// </summary>
+        /// <returns></returns>
         public Order StripExcessData()
         {
             Order o = new Order();

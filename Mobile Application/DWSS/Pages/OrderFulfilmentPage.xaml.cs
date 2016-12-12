@@ -29,9 +29,14 @@ namespace DWSS.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             StaticData.OrderFulfilmentPage = this; // Subscribe to the static data page
-            LoadUI();
+            LoadUI(); // Loads all unfulfilled orders from the REST API into the GUI
         }
 
+        /// <summary>
+        /// This shows an image for a clicked product
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="name"></param>
         private void ShowImage(string url, string name)
         {
             Image.Source = new BitmapImage(new Uri(url, UriKind.Absolute));
@@ -39,6 +44,10 @@ namespace DWSS.Pages
             ImageViewer.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Calls the Middleware fulfillment page for a particular order
+        /// </summary>
+        /// <param name="orderToFulfill"></param>
         public async void FulfilOrder(Order orderToFulfill)
         {
             bool success = await Middleware.MiddlewareConnections.FulfillOrder(orderToFulfill);
@@ -62,6 +71,9 @@ namespace DWSS.Pages
             }
         }
         
+        /// <summary>
+        /// Loads orders from the Middleware REST API into the GUI
+        /// </summary>
         private async void LoadUI()
         {
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
@@ -85,11 +97,21 @@ namespace DWSS.Pages
             }
         }
 
+        /// <summary>
+        /// Returns the user to the home page 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void HomeButtonClick(object sender, RoutedEventArgs e)
         {
             StaticData.masterPage.Navigate(typeof(Pages.OptionsPage));
         }
 
+        /// <summary>
+        /// Closes the image viewer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ImageViewerButtonClick(object sender, RoutedEventArgs e)
         {
             ImageViewer.Visibility = Visibility.Collapsed;
