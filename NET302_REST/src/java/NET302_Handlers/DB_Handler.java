@@ -78,6 +78,7 @@ public class DB_Handler {
     private PreparedStatement   authUser        = null;
     private PreparedStatement   checkUsername   = null;
     private PreparedStatement   searchProduct   = null;
+    private PreparedStatement   updateQuantity  = null;
     
     // SQL QUERY STRINGS:
     // ';' is included in the strings, 
@@ -339,6 +340,9 @@ public class DB_Handler {
     private final String        checkUsernameQ  =
             "SELECT ID, username FROM NET302.Staff WHERE Staff.Username = ?;";
             
+    private final String        updateQuantityQ = 
+            "UPDATE NET302.Products SET stockCount = ? WHERE ID = ?";
+    
     private final String        searchProductQ  =
             "SELECT (Products.ID) as ID, "
             + "stockCount, "
@@ -539,7 +543,7 @@ public class DB_Handler {
         return new Order(
                 id, 
                 quantity, 
-                !(status == "Active"), 
+                !(statusID == 1),  
                 dateOrdered, 
                 new User(
                         staffID, 
@@ -1226,15 +1230,22 @@ public class DB_Handler {
         return (resultSet.getString("username").length() > 0);
     }
     
-    private int GetResultSetCount(ResultSet set){
-        int size = 0;
-        try {
-            set.last();
-            size = set.getRow();
-            set.beforeFirst();
-        } catch (Exception ex){
-            
-        }
-        return size;
+    public void updateQuantity(int productID, int newQuantity) throws SQLException {
+        updateQuantity = connection.prepareStatement(updateQuantityQ);
+        updateQuantity.setInt(1, newQuantity);
+        updateQuantity.setInt(2, productID);
+        updateQuantity.executeUpdate();
     }
+    
+//    private int GetResultSetCount(ResultSet set){
+//        int size = 0;
+//        try {
+//            set.last();
+//            size = set.getRow();
+//            set.beforeFirst();
+//        } catch (Exception ex){
+//            
+//        }
+//        return size;
+//    }
 }

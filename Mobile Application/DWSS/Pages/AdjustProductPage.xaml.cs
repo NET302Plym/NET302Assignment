@@ -46,12 +46,17 @@ namespace DWSS.Pages
             int x;
             if (int.TryParse(NewQuantityTextBox.Text, out x))
             {
-                await Middleware.MiddlewareConnections.UploadChanges(product, x);
+                bool success = await Middleware.MiddlewareConnections.UploadChanges(product, x);
                 // Show a message
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
                 {
-                    StaticData.masterPage.ShowNotification("Quantity has been changed to " + x.ToString());
-                    StaticData.masterPage.GoBack();
+                    if (success)
+                    {
+                        StaticData.masterPage.ShowNotification("Quantity has been changed to " + x.ToString());
+                        StaticData.masterPage.GoBack();
+                    }
+                    else
+                        StaticData.masterPage.ShowNotification("Error! Internal Server Error");
                 });
             }
             else

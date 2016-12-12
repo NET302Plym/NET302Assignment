@@ -13,7 +13,7 @@ namespace DWSS.Middleware
     {
         private static bool isDebug = false;
 
-        public async static Task<List<Order>> GetOutstandingOrders() // This could be working, everything is talking OK just no orders in the database to test this on. 
+        public async static Task<List<Order>> GetOutstandingOrders() 
         {
             if (isDebug)
             {
@@ -47,7 +47,7 @@ namespace DWSS.Middleware
                 try
                 {
                     string serverResponse = await MiddlewareHTTPClient.SendQuery("fulfillOrder.jsp?ORDER="+orderToFulfil.ID.ToString());
-                    return serverResponse.StartsWith("SUCCESS");
+                    return serverResponse.Contains("SUCCESS");
                 } catch (Exception ex)
                 {
                     return false;
@@ -55,7 +55,7 @@ namespace DWSS.Middleware
             }
         }
 
-        public async static Task<User> GetUser(string username) // Untested but the syntax looks ok
+        public async static Task<User> GetUser(string username) 
         {
             if (isDebug) 
             {
@@ -75,7 +75,7 @@ namespace DWSS.Middleware
             }
         }
 
-        public async static Task<List<Product>> SearchForProduct(string searchTerms) // This is working 
+        public async static Task<List<Product>> SearchForProduct(string searchTerms) 
         {
             searchTerms = searchTerms.ToLower();
             if (isDebug)
@@ -89,7 +89,7 @@ namespace DWSS.Middleware
             }
         }
 
-        public async static Task<bool> UploadChanges(Product product, int newQuantity) // This works but isn't working on the server correctly (it just calls add new again)
+        public async static Task<bool> UploadChanges(Product product, int newQuantity) 
         {
             product.stockCount = newQuantity;
             if (isDebug)
@@ -100,8 +100,8 @@ namespace DWSS.Middleware
             {
                 try
                 {
-                    string serverResponse = await MiddlewareHTTPClient.SendQuery("addProduct.jsp?PRODUCT=" + Newtonsoft.Json.JsonConvert.SerializeObject(product) + "&NEW=FALSE");
-                    return serverResponse.StartsWith("SUCCESS");
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("changeProductQuantity.jsp?PRODUCT=" + product.ID.ToString() + "&NEWQUANTITY=" + newQuantity.ToString());
+                    return serverResponse.Contains("SUCCESS");
                 }
                 catch (Exception)
                 {

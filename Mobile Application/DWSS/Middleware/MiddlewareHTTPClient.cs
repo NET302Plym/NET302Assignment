@@ -15,6 +15,7 @@ namespace DWSS.Middleware
         public static async Task<string> SendQuery(string queryURL, bool expectResponse = true)
         {
             httpClient = new HttpClient();
+            httpClient.DefaultRequestHeaders.IfModifiedSince = DateTime.Now;
             var responseMessage = await httpClient.GetAsync(serverAddress + queryURL);
             httpClient.Dispose();
             if (responseMessage.StatusCode != System.Net.HttpStatusCode.OK)
@@ -48,7 +49,7 @@ namespace DWSS.Middleware
                     secondCounter--;
                 return input.Substring(firstCounter, input.Length - firstCounter - (input.Length - secondCounter) + 1);
             }
-            else return string.Empty;
+            else return input; // The returned string is not a JSON string, rather a plain string. 
         }
     }
 }
