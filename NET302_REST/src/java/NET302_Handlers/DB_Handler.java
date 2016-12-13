@@ -1,6 +1,5 @@
 package NET302_Handlers;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import NET302JavaLibrary.GenericLookup;
@@ -12,12 +11,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// TODO: JavaDoc comments throughout.
 // TODO: Testing throughout.
 // TODO: Ensure things are up to standards (security, etc.)
 
@@ -105,18 +102,30 @@ public class DB_Handler {
             + "WHERE NET302.Products.ID = ?;"; // ID last.
     
     private final String        getOrderQ       =
-            "SELECT (Orders.ID) as ID, "
-            + "quantity, "
-            + "TO_CHAR(dateOrdered, 'DD/MM/YYYY') as dateOrdered, "
-            + "(staff.ID) as staffOrdered, "
-            + "(Products.ID) as productID, "
+            "SELECT "
+            + "Orders.ID, "
+            + "Orders.quantity, "
+            + "Orders.dateOrdered, "
+            + "Staff.staffName as staffOrdered, "
+            + "Staff.username as staffUsername, " 
+            + "Staff.ID as staffID, "
+            + "Products.ID as productID, "
+            + "Products.stockCount as productStockCount, "
+            + "Products.available as productAvailable, "
+            + "Products.prodName as productName, "
+            + "Products.unitPrice as productUnitPrice, "
+            //+ "Products.categoryID as productCategoryID, " // duplicate
+            + "(" + p_cat + ".ID) as productCategoryID, "
+            + "(" + p_sub + ".ID) as productSubCategoryID, "
+            + "(" + p_con + ").ID as productContainerID, "
+            + "(" + p_cat + ".categoryVal) as productCategory, "
+            + "(" + p_sub + ".subcatVal) as productSubcategory, "
+            + "(" + p_con + ".containerVal) as productContainer, "
             + "(" + p_loc + ".ID) as loc_id, "
             + "(" + p_loc + ".locationVal) as loc_value, "
             + "(" + o_sta + ".ID) as status_id, "
             + "(" + o_sta + ".statusName) as status_value, "
-            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered "
-            //+ "timeDelivered, " // MISSING FROM TABLE.
-            // TODO: Time may need a mask, but wait to see how it returns first.
+            + "Orders.dateDelivered as dateDelivered "
             
             // FROM + JOINS + WHERE:
             + "FROM NET302.Orders "
@@ -207,7 +216,6 @@ public class DB_Handler {
             + "username, staffContact, staffName, staffType, password) "
             + "VALUES (?, ?, ?, ?, ?);";
     
-    
     private final String        getAllProductsQ =
             "SELECT (Products.ID) as ID, "
             + "stockCount, "
@@ -229,18 +237,30 @@ public class DB_Handler {
             + "ORDER BY ID;";
     
     private final String        getAllOrdersQ   =
-            "SELECT (Orders.ID) as ID, "
-            + "quantity, "
-            + "TO_CHAR(dateOrdered, 'DD/MM/YYYY') as dateOrdered, "
-            + "(staff.ID) as staffOrdered, "
-            + "(Products.ID) as productID, "
+            "SELECT "
+            + "Orders.ID, "
+            + "Orders.quantity, "
+            + "Orders.dateOrdered, "
+            + "Staff.staffName as staffOrdered, "
+            + "Staff.username as staffUsername, " 
+            + "Staff.ID as staffID, "
+            + "Products.ID as productID, "
+            + "Products.stockCount as productStockCount, "
+            + "Products.available as productAvailable, "
+            + "Products.prodName as productName, "
+            + "Products.unitPrice as productUnitPrice, "
+            //+ "Products.categoryID as productCategoryID, " // duplicate
+            + "(" + p_cat + ".ID) as productCategoryID, "
+            + "(" + p_sub + ".ID) as productSubCategoryID, "
+            + "(" + p_con + ").ID as productContainerID, "
+            + "(" + p_cat + ".categoryVal) as productCategory, "
+            + "(" + p_sub + ".subcatVal) as productSubcategory, "
+            + "(" + p_con + ".containerVal) as productContainer, "
             + "(" + p_loc + ".ID) as loc_id, "
             + "(" + p_loc + ".locationVal) as loc_value, "
             + "(" + o_sta + ".ID) as status_id, "
             + "(" + o_sta + ".statusName) as status_value, "
-            + "TO_CHAR(dateDelivered, 'DD/MM/YYYY') as dateDelivered "
-            //+ "timeDelivered, " // MISSING FROM TABLE.
-            // TODO: Time may need a mask, but wait to see how it returns first.
+            + "Orders.dateDelivered as dateDelivered "
             
             // FROM + JOINS + WHERE:
             + "FROM NET302.Orders "
@@ -261,29 +281,29 @@ public class DB_Handler {
             + "Products.stockCount as productStockCount, "
             + "Products.available as productAvailable, "
             + "Products.prodName as productName, "
-            + "Product_Category.ID as productCategoryID, "
-            + "Product_Subcategory.ID as productSubCategoryID, "
-            + "Product_Container.ID as productContainerID, "
             + "Products.unitPrice as productUnitPrice, "
-            + "Products.categoryID as productCategoryID, "
-            + "Product_Category.categoryVal as productCategory, "
-            + "Product_Subcategory.subcatVal as productSubcategory, "
-            + "Product_Container.containerVal as productContainer, "
-            + "Location.ID as loc_id, "
-            + "Location.locationVal as loc_value, "
-            + "Order_Status.ID as status_id, "
-            + "Order_Status.statusName as status_value, "
+            //+ "Products.categoryID as productCategoryID, " // duplicate
+            + "(" + p_cat + ".ID) as productCategoryID, "
+            + "(" + p_sub + ".ID) as productSubCategoryID, "
+            + "(" + p_con + ").ID as productContainerID, "
+            + "(" + p_cat + ".categoryVal) as productCategory, "
+            + "(" + p_sub + ".subcatVal) as productSubcategory, "
+            + "(" + p_con + ".containerVal) as productContainer, "
+            + "(" + p_loc + ".ID) as loc_id, "
+            + "(" + p_loc + ".locationVal) as loc_value, "
+            + "(" + o_sta + ".ID) as status_id, "
+            + "(" + o_sta + ".statusName) as status_value, "
             + "Orders.dateDelivered as dateDelivered "
             + "FROM NET302.Orders "
             + "JOIN NET302.Staff ON Staff.ID = Orders.staffID "
-            + "JOIN NET302.Order_Status ON Order_Status.ID = Orders.statusID "
+            + "JOIN " + o_sta + " ON " + o_sta + ".ID = Orders.statusID "
             + "JOIN NET302.Products ON Products.ID = Orders.productID "
             + "JOIN NET302.Location ON Location.ID = Orders.locationID "
             + "JOIN NET302.Product_Category ON Products.categoryID = Product_Category.ID "
-            + "JOIN NET302.Product_Subcategory ON Products.subcatID = Product_Subcategory.ID "
-            + "JOIN NET302.Product_Container ON Products.containerID = Product_Container.ID "
+            + "JOIN " + p_sub + " ON Products.subcatID = " + p_sub + ".ID "
+            + "JOIN " + p_con + " ON Products.containerID = " + p_con + ".ID "
             + "WHERE Orders.statusID = 1 "
-            + "ORDER BY Orders.ID";
+            + "ORDER BY Orders.ID;";
             
             // old
 //            "SELECT (Orders.ID) as ID, "
@@ -442,6 +462,21 @@ public class DB_Handler {
     }
     */
     
+    // USED FOR DEBUGGING:
+    /*
+    private int GetResultSetCount(ResultSet set) {
+        int size = 0;
+        try {
+            set.last();
+            size = set.getRow();
+            set.beforeFirst();
+        } catch (Exception ex) {
+
+        }
+        return size;
+    }
+    */
+    
     //************************************************************************//
     //  -   PROCESSING STATEMENTS + RESULTSETS                            -   //
     //************************************************************************//
@@ -526,17 +561,22 @@ public class DB_Handler {
         
         int productID = set.getInt("productID");
         int stockCount = set.getInt("productStockCount");
-        boolean available = set.getString("productAvailable") == "YES";
+        boolean available = set.getBoolean("productAvailable");
         String productName = set.getString("productName");
         double unitPrice = set.getDouble("productUnitPrice");
+        
         int categoryID = set.getInt("productCategoryID");
         String category = set.getString("productCategory");
+        
         int subCategoryID = set.getInt("productSubCategoryID");
         String subCategory = set.getString("productSubcategory");
+        
         int containerID = set.getInt("productContainerID");
         String container = set.getString("productContainer");
+        
         int locationID = set.getInt("loc_id");
         String location = set.getString("loc_value");
+        
         int statusID = set.getInt("status_id");
         String status = set.getString("status_value");
         
@@ -563,48 +603,48 @@ public class DB_Handler {
                 new GenericLookup(statusID, status)
         );
         
-        // Order details, ordered by constructr usage:
-//        int     id              = set.getInt("ID");
-//        int     quantity        = set.getInt("quantity");
-//        
-//        String  dateOrdered     = set.getString("dateOrdered");
-//        
-//        // Staff Ordered    [use existing method]:
-//        int     staffO          = set.getInt("staffOrdered");
-//        //User    staffOrdered    = getUser(staffO);
-//        
-//        // Product          [use existing method]:
-//        int     productID       = set.getInt("productID");
-//        //Product product         = getProduct(productID);
-//        
-//        // Location
-//        int     loc_id          = set.getInt("loc_id");
-//        String  loc_value       = set.getString("loc_value");
-//        GenericLookup location  = new GenericLookup(loc_id, loc_value);
-//        
-//        // Status:
-//        int     status_id       = set.getInt("status_id");
-//        String  status_value    = set.getString("status_value");
-//        GenericLookup status    = new GenericLookup(status_id, status_value);
-//       //boolean fulfilled       = set.getBoolean("");
-//        
-//        
-//        // Get non-constructor data:
-//        // This is only called from unfulfilled orders and so this probably won't even be used. Causing errors. 
-//        String  dateDelivered   = "";// new SimpleDateFormat("dd-mm-yyyy").format(set.getDate("dateDelivered"));
-//        //Time    timeDelivered   = set.getTime("timeDelivered");
-//        
-//        //int     staffF          = set.getInt("staffFulfilled");
-//        //User    staffFulfilled  = getUser(staffF);
-//
-//        // Construct object:
-//        Order order = new Order(id, quantity, !(status_id == 1), dateOrdered, staffOrdered, null, location, status);
-        
-        //order.setDateDelivered(dateDelivered);
-        //order.setTimeDelivered(timeDelivered);
-        //order.setStaffFulfilled(staffFulfilled);
-        
-        //return order; 
+        // OLD QUERY FOR CONSTRUCTING THE ORDER:
+        /*
+        int     id              = set.getInt("ID");
+        int quantity = set.getInt("quantity");
+
+        String dateOrdered = set.getString("dateOrdered");
+
+        // Staff Ordered    [use existing method]:
+        int staffO = set.getInt("staffOrdered");
+        //User    staffOrdered    = getUser(staffO);
+
+        // Product          [use existing method]:
+        int productID = set.getInt("productID");
+        //Product product         = getProduct(productID);
+
+        // Location
+        int loc_id = set.getInt("loc_id");
+        String loc_value = set.getString("loc_value");
+        GenericLookup location = new GenericLookup(loc_id, loc_value);
+
+        // Status:
+        int status_id = set.getInt("status_id");
+        String status_value = set.getString("status_value");
+        GenericLookup status = new GenericLookup(status_id, status_value);
+        //boolean fulfilled       = set.getBoolean("");
+
+        // Get non-constructor data:
+        // This is only called from unfulfilled orders and so this probably won't even be used. Causing errors. 
+        String dateDelivered = "";// new SimpleDateFormat("dd-mm-yyyy").format(set.getDate("dateDelivered"));
+        //Time    timeDelivered   = set.getTime("timeDelivered");
+
+        //int     staffF          = set.getInt("staffFulfilled");
+        //User    staffFulfilled  = getUser(staffF);
+        // Construct object:
+        Order order = new Order(id, quantity, !(status_id == 1), dateOrdered, staffOrdered, null, location, status);
+
+        order.setDateDelivered(dateDelivered);
+        order.setTimeDelivered(timeDelivered);
+        order.setStaffFulfilled(staffFulfilled);
+
+        return order;
+        */
     }
     
     /**
@@ -1084,6 +1124,20 @@ public class DB_Handler {
     }
     
     /**
+     * This method updates the quantity of a specific Product.
+     * @param productID int - being the ID of the Product.
+     * @param newQuantity int - being the new quantity to set.
+     * @throws SQLException - Thrown as errors will be passed back to JSP pages.
+     * Error here indicates a problem with the SQLQuery or the execution of it.  
+     */
+    public void updateQuantity(int productID, int newQuantity) throws SQLException {
+        updateQuantity = connection.prepareStatement(updateQuantityQ);
+        updateQuantity.setInt(1, newQuantity);
+        updateQuantity.setInt(2, productID);
+        updateQuantity.executeUpdate();
+    }
+    
+    /**
      * This method performs an update on the database using a given Order.
      * @param orderUpdate Order - being the details to update.
      * @throws SQLException - Thrown as errors will be passed back to JSP pages.
@@ -1234,23 +1288,4 @@ public class DB_Handler {
         
         return (resultSet.getString("username").length() > 0);
     }
-    
-    public void updateQuantity(int productID, int newQuantity) throws SQLException {
-        updateQuantity = connection.prepareStatement(updateQuantityQ);
-        updateQuantity.setInt(1, newQuantity);
-        updateQuantity.setInt(2, productID);
-        updateQuantity.executeUpdate();
-    }
-    
-//    private int GetResultSetCount(ResultSet set){
-//        int size = 0;
-//        try {
-//            set.last();
-//            size = set.getRow();
-//            set.beforeFirst();
-//        } catch (Exception ex){
-//            
-//        }
-//        return size;
-//    }
 }

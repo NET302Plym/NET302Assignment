@@ -367,6 +367,28 @@ public class Connector {
         // Pass query to URL:
         String result = SendQuery(SERVER + urlEnd);
         
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
+    }
+    
+    /**
+     * Updates the quantity of a given Product using it's ID.
+     * @param productID int - being the ID of the Product to update.
+     * @param quantity int - being the quantity to set.
+     * @return boolean - being whether or not the operation was successful.
+     */
+    public boolean setQuantity(int productID, int quantity) {
+        urlEnd = "changeProductQuantity.jsp?PRODUCT=" + productID 
+                + "?NEWQUANTITY=" + quantity;
+        
+        // Pass query to URL:
+        String result = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(result);
+        
         return result.startsWith("SUCCESS");
     }
     
@@ -377,6 +399,23 @@ public class Connector {
      */
     public boolean updateOrder(Order o) {
         urlEnd = "addOrder.jsp?ORDER=" + o.GetJSONString() + "&NEW=FALSE";
+        
+        // Pass query to URL:
+        String result = SendQuery(SERVER + urlEnd);
+        
+        // Log the result in case of error message:
+        System.err.println(result);
+        
+        return result.startsWith("SUCCESS");
+    } 
+    
+    /**
+     * Sets the given Order to be fulfilled (status change).
+     * @param orderID int - being the ID of the Order to change.
+     * @return boolean - being whether or not the operation was successful.
+     */
+    public boolean fulfillOrder(int orderID) {
+        urlEnd = "fulfillOrder.jsp?ORDER=" + orderID;
         
         // Pass query to URL:
         String result = SendQuery(SERVER + urlEnd);
