@@ -15,7 +15,7 @@ import javax.enterprise.context.Dependent;
 @Dependent
 public class ManagementBean {
     // DEBUG: If true, then no commands will be sent to the REST server!
-    private final boolean debug = true;
+    private final boolean debug = false;
     
     // TODO LISR:
     // How often to update the data? Perhaps only when needed, using the pages?
@@ -41,9 +41,13 @@ public class ManagementBean {
      */
     public ManagementBean()
     {
+        System.out.println("**** ManagementBean Loaded ****");
         // Get the connector:
         client_connector = new Connector();
-        dummy_data = new DummyData(10);
+        dummy_data = new DummyData(0);
+        products = client_connector.getAllProducts();
+     
+        
     }
     
     //************************************************************************//
