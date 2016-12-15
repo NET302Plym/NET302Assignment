@@ -551,7 +551,7 @@ public class Connector {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, category);
         urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
-        
+       
         String result = SendQuery(SERVER + urlEnd);
         
         // Log the result in case of error message:

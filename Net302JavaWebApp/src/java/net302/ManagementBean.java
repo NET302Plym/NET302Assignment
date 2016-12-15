@@ -45,8 +45,9 @@ public class ManagementBean {
         // Get the connector:
         client_connector = new Connector();
         dummy_data = new DummyData(0);
-        products = client_connector.getAllProducts();
-     
+        
+       // products = client_connector.getAllProducts();
+       products = client_connector.getAllProducts();
         
     }
     
