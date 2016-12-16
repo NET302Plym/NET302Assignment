@@ -5,7 +5,12 @@ import NET302JavaLibrary.*;
 import java.util.ArrayList;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
-
+import javax.servlet.http.HttpSession;
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import java.util.Date;
+import javax.faces.context.FacesContext;
 
 /**
  * ManagementBean, provides methods and data access for the web session.
@@ -25,6 +30,7 @@ public class ManagementBean {
     
     private final Connector             client_connector;
     private final DummyData             dummy_data;
+    public String f = "";
     
     private ArrayList<Product>          products            = null;
     private ArrayList<Product>          filteredProducts    = null;
@@ -41,7 +47,7 @@ public class ManagementBean {
      * Creates a new instance of ManagementBean.
      */
     public ManagementBean()
-    {
+    {        
         System.out.println("**** ManagementBean Loaded ****");
         // Get the connector:
         client_connector = new Connector();
@@ -49,7 +55,7 @@ public class ManagementBean {
         
        // products = client_connector.getAllProducts();
        products = client_connector.getAllProducts();
-        
+       
     }
     
     //************************************************************************//
@@ -89,7 +95,7 @@ public class ManagementBean {
             System.out.println("[DEBUG] ORDER GENERATED FOR " + quantity + " OF " + p.getName());
             orders.add(o);
             dummy_data.setOrders(orders);
-        } else  { client_connector.addOrder(o); }
+        } else  { } //client_connector.addOrder(o); }
     }
     
     //************************************************************************//
