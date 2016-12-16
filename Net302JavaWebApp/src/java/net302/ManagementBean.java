@@ -27,6 +27,7 @@ public class ManagementBean {
     private final DummyData             dummy_data;
     
     private ArrayList<Product>          products            = null;
+    private ArrayList<Product>          filteredProducts    = null;
     private ArrayList<Order>            orders              = null;
     private ArrayList<User>             users               = null;
     private ArrayList<GenericLookup>    categories          = null;
@@ -98,6 +99,16 @@ public class ManagementBean {
     // the DummyData class or from the middleware connection (depending on    //
     // debug). They also return the ArrayList for use in the webpages.        //
     //************************************************************************//
+        
+    public String filterProducts(String filter)
+    {
+        System.out.println("*** filtered products based on filter: " + filter);
+        filteredProducts = client_connector.searchProduct(filter);
+        return "filteredProductList.xhtml";
+    }
+    
+    
+    
     
     /**
      * Gets the up-to-date ArrayList of Products from the REST server.
@@ -225,6 +236,10 @@ public class ManagementBean {
      */
     public ArrayList<Product> getProducts() {
         return products;
+    }
+    
+      public ArrayList<Product> getFilteredProducts() {
+        return filteredProducts;
     }
 
     /**

@@ -9,16 +9,16 @@
     <h:body>
         Hello from Product List
         <br/>
-        <h:form><h:commandButton value="Submit Order" action="displayOrder"/></h:form>
+        <h:form><h:inputText binding="#{search}" /><h:commandButton value="Search" action="#{managementBean.filterProducts(search.value)}"/></h:form>
         <br/>      
         <h:form>
-            <h:dataTable value="#{managementBean.products}" var="products">
+            <h:dataTable id="myTable" value="#{managementBean.products}" var="products">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                     #{products.ID}
                 </h:column>
                  <h:column>
-                    <f:facet name="header">Item</f:facet>
+                    <f:facet id="valName" name="header">Item</f:facet>
                     #{products.name}
                 </h:column>
                 <h:column>
@@ -31,26 +31,26 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Category</f:facet>
-                    #{products.category}
+                    #{products.category.value}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Sub-Category</f:facet>
-                    #{products.subCategory}
+                    #{products.subCategory.value}
                 </h:column>
                <h:column>
                     <f:facet name="header">Container</f:facet>
-                    #{products.container}
+                    #{products.container.value}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Unit Price</f:facet>
-                    #{products.unitPrice}
+                    £#{products.unitPrice}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Quantity To Order</f:facet>
-                    <h:inputText binding="#{quant}" />
+                    <h:inputText binding="#{quantity}" />
                 </h:column>
                 <h:column>
-                  <h:commandButton action="#{managementBean.addToTestOrder(products.ID, quant.value)}" value="Order Product" />
+                  <h:commandButton action="#{managementBean.addToTestOrder(products.ID, quantity.value)}" value="Order Product" />
 
                 </h:column>
             </h:dataTable>   

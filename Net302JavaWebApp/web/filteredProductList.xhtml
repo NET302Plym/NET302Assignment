@@ -7,50 +7,50 @@
         <title>D-WSS</title>
     </h:head>
     <h:body>
-        Hello from Product List
+        Hello from Product List FILTERED
         <br/>
         <h:form><h:inputText binding="#{search}" /><h:commandButton value="Search" action="#{managementBean.filterProducts(search.value)}"/></h:form>
         <br/>      
         <h:form>
-            <h:dataTable id="myTable" value="#{managementBean.products}" var="products">
+            <h:dataTable id="myTable" value="#{managementBean.filteredProducts}" var="filteredProducts">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
-                    #{products.ID}
+                    #{filteredProducts.ID}
                 </h:column>
                  <h:column>
                     <f:facet id="valName" name="header">Item</f:facet>
-                    #{products.name}
+                    #{filteredProducts.name}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Availability</f:facet>
-                    #{products.available}
+                    #{filteredProducts.available}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Quantity</f:facet>
-                    #{products.stockCount}
+                    #{filteredProducts.stockCount}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Category</f:facet>
-                    #{products.category.value}
+                    #{filteredProducts.category.value}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Sub-Category</f:facet>
-                    #{products.subCategory.value}
+                    #{filteredProducts.subCategory.value}
                 </h:column>
                <h:column>
                     <f:facet name="header">Container</f:facet>
-                    #{products.container.value}
+                    #{filteredProducts.container.value}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Unit Price</f:facet>
-                    £#{products.unitPrice}
+                    £#{filteredProducts.unitPrice}
                 </h:column>
                 <h:column>
                     <f:facet name="header">Quantity To Order</f:facet>
-                    <h:inputText binding="#{quantity}" />
+                    <h:inputText binding="#{quant}" />
                 </h:column>
                 <h:column>
-                  <h:commandButton action="#{managementBean.addToTestOrder(products.ID, quantity.value)}" value="Order Product" />
+                  <h:commandButton action="#{managementBean.addToTestOrder(filteredProducts.ID, quant.value)}" value="Order Product" />
 
                 </h:column>
             </h:dataTable>   

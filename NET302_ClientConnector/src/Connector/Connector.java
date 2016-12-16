@@ -33,7 +33,7 @@ public class Connector {
     //  -   SET-UP OF CLASS                                               -   //
     //************************************************************************//
     
-    private static final    String SERVER = "TODO: Specify the server";
+    private static final    String SERVER = "http://localhost:8080/NET302_REST/";
     private                 String urlEnd;
 
     /**
@@ -60,6 +60,7 @@ public class Connector {
             connect.setReadTimeout(10000);
             connect.setConnectTimeout(15000);
             connect.setRequestMethod("GET");
+            connect.setDoOutput(true);
             connect.setChunkedStreamingMode(0);
             connect.setDoInput(true);
             connect.connect();
