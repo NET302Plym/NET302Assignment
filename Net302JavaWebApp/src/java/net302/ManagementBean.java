@@ -5,6 +5,7 @@ import NET302JavaLibrary.*;
 import java.util.ArrayList;
 import javax.inject.Named;
 import javax.enterprise.context.Dependent;
+import javax.servlet.http.HttpSession;
 
 
 /**
