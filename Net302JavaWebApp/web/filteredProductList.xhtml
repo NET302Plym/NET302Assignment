@@ -9,10 +9,10 @@
     <h:body>
         Hello from Product List FILTERED
         <br/>
-        <h:form><h:inputText binding="#{search}" /><h:commandButton value="Search" action="#{managementBean.filterProducts(search.value)}"/></h:form>
+        <h:form><h:inputText binding="#{search}" /><h:commandButton value="Search" action="#{SessionHandler.GetManagementBean().filterProducts(search.value)}"/></h:form>
         <br/>      
         <h:form>
-            <h:dataTable id="myTable" value="#{managementBean.filteredProducts}" var="filteredProducts">
+            <h:dataTable id="myTable" value="#{SessionHandler.GetManagementBean().filteredProducts}" var="filteredProducts">
                 <h:column>
                     <f:facet name="header">ID</f:facet>
                     #{filteredProducts.ID}
@@ -50,7 +50,7 @@
                     <h:inputText binding="#{quant}" />
                 </h:column>
                 <h:column>
-                  <h:commandButton action="#{managementBean.addToTestOrder(filteredProducts.ID, quant.value)}" value="Order Product" />
+                  <h:commandButton action="#{SessionHandler.GetManagementBean().addToTestOrder(filteredProducts.ID, quant.value)}" value="Order Product" />
 
                 </h:column>
             </h:dataTable>   
