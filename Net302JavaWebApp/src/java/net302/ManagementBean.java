@@ -7,10 +7,15 @@ import javax.inject.Named;
 import javax.enterprise.context.Dependent;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.math.BigInteger;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.util.Date;
 import javax.faces.context.FacesContext;
+import java.security.*;
+import java.util.Arrays;
+
+
 
 
 /**
@@ -33,6 +38,8 @@ public class ManagementBean {
     private final DummyData             dummy_data;
     public String f = "";
     
+    private User loggedUser;
+    
     private ArrayList<Product>          products            = null;
     private ArrayList<Product>          filteredProducts    = null;
     private ArrayList<Order>            orders              = null;
@@ -54,10 +61,12 @@ public class ManagementBean {
         client_connector = new Connector();
         dummy_data = new DummyData(0);
         
-       // products = client_connector.getAllProducts();
-       products = client_connector.getAllProducts();
+       //products = client_connector.getAllProducts();
+       //products = client_connector.getAllProducts();
        
     }
+    
+    
     
     //************************************************************************//
     //  -   ADDING OR EDITING PRODUCTS/ORDERS/USERS                       -   //
@@ -73,7 +82,7 @@ public class ManagementBean {
      * @param quantity
      * @param staff 
      */
-    public void orderProduct(Product p, int quantity, User staff) {
+    public void orderProduct(Product p, int quantity) {
         // TODO: Assign these values, not sure if default or extracted from the
         // webpage. For the latter, the method requires additional parameters!
         
@@ -81,14 +90,14 @@ public class ManagementBean {
         GenericLookup status    = null;
         
         // Generate the Order:
-        Order o = new Order(0,  // ID of Order, only used to encapsulate the data here.
-                quantity,       // Quantity of p to order.
-                false,          // Fulfilled is false by default.
-                "",             // Date Ordered
-                staff,          // Staff who ordered.
-                p,              // Product to order.
-                location,       // Location
-                status          // Status ?
+        Order o = new Order(0,       // ID of Order, only used to encapsulate the data here.
+                quantity,            // Quantity of p to order.
+                false,               // Fulfilled is false by default.
+                "",                  // Date Ordered
+                this.loggedUser,     // Staff who ordered.
+                p,                   // Product to order.
+                location,            // Location
+                status               // Status ?
         );
         
         // Action the generated Order:
@@ -98,6 +107,34 @@ public class ManagementBean {
             dummy_data.setOrders(orders);
         } else  { } //client_connector.addOrder(o); }
     }
+    
+    
+    public String auth(String username, String password) throws Exception
+    {
+        String str;
+        try
+        {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(password.getBytes(),0,password.length());
+        String md5Pass = new BigInteger(1, md.digest()).toString(16);
+        
+        System.out.println("MD5(password): "+ md5Pass);
+        
+        //loggedUser = client_connector.getUser(username);
+        
+        //if((loggedUser = client_connector.getUser(username)) != null)  if(client_connector.Authenticate(loggedUser, md5Pass))  return "productList.xhtml";
+        }
+        catch(NoSuchAlgorithmException e)
+        {
+            System.out.println(e);
+        }
+        
+
+
+        return "index.xhtml";
+    }
+    
+    
     
     //************************************************************************//
     //  -   ARRAYLIST LOADERS                                             -   //
@@ -113,8 +150,6 @@ public class ManagementBean {
         filteredProducts = client_connector.searchProduct(filter);
         return "filteredProductList.xhtml";
     }
-    
-    
     
     
     /**

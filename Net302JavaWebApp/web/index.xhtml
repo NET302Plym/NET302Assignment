@@ -69,24 +69,26 @@
                 <div style="text-align:center;  margin-right:auto; margin-left:auto;">
                     <div class="authenticationBox">
                         <p style="font-size:18px;"><b>Log Into the System</b></p>
+                        <h:form>
                         <table>
                             <tr>
                                 <td>Username</td>
-                                <td><Input type="Text" class="textBox" id="usernameText" /></td>
+                                <td><h:inputText class="textBox" id="usernameText" binding="#{username}"/></td>
                             </tr>
                             <tr>
                                 <td>Password</td>
-                                <td><Input type="Text" class="textBox" id="passwordText" /></td>
+                                <td><h:inputText class="textBox" id="passwordText" binding="#{password}" /></td>
                             </tr>
                         </table>
                         <table style="padding:10px; width:100%;">
                             <tr>
                                 <td>&nbsp;</td>
                                 <td><input type="Button" class="customButton" value="Clear" onclick="clearFunction()" /></td>
-                                <td><input type="Button" class="customButton" value="Submit" /></td>
+                                <td><h:commandButton value="Search" action="#{SessionHandler.GetManagementBean().auth(username.value, password.value)}"/></td>
                                 <td>&nbsp;</td>
                             </tr>
                         </table>
+                        </h:form>
                     </div>
                     <h:form>
                         <h:commandButton style="" value="Stock List" action="productList"/>

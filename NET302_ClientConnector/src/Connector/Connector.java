@@ -122,7 +122,7 @@ public class Connector {
         // Pass query to URL:
         String q = SendQuery(SERVER + urlEnd);
         
-        // Log the result in case of error message:
+        // Log the result in case of error message
         System.err.println(q);
         
         // Check for the result being SUCCESS or not, and return boolean:
@@ -288,6 +288,7 @@ public class Connector {
         
         return new User(u);
     }
+
     
     /**
      * Returns a specified User of the given username from the database.

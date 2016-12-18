@@ -51,13 +51,9 @@
                 </h:column>
                 <h:column>
                   <h:commandButton action="#{SessionHandler.GetManagementBean().addToTestOrder(filteredProducts.ID, quant.value)}" value="Order Product" />
-
                 </h:column>
             </h:dataTable>   
         </h:form>
-        <br/>
-        <h:form><h:commandButton value="Submit Order" action="displayOrder"/></h:form>
-        <br/>
     </h:body>
 </html>
 
