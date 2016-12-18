@@ -1,5 +1,6 @@
 package Connector;
 
+import Encrypter.Encrypter;
 import NET302JavaLibrary.GenericLookup;
 import NET302JavaLibrary.Order;
 import NET302JavaLibrary.Product;
@@ -16,6 +17,14 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 // TODO: Full testing of methods.
 // TODO: Be careful of the GSON conversion on ArrayLists, this is the most
@@ -33,9 +42,11 @@ public class Connector {
     //  -   SET-UP OF CLASS                                               -   //
     //************************************************************************//
     
-    private static final    String SERVER = "http://localhost:8080/NET302_REST/";
-    private                 String urlEnd;
-
+    private final   String KEY    = "NET_302_Plym_KEY";
+    private final   String SERVER = "http://localhost:8080/NET302_REST/";
+    private         String urlEnd;
+    private         Encrypter enc;
+    
     /**
      * Empty constructor for referencing this class to use.
      */
@@ -53,6 +64,11 @@ public class Connector {
         String result;
         
         try {
+            // Encrypt the queryURL:
+            enc = new Encrypter();
+            //queryURL = enc.encryptString(queryURL); // commented out for testing.
+            String q = enc.encryptString(queryURL); // left in for testing.
+            
             // Connect to the URL:
             URL url = new URL(queryURL);
             HttpURLConnection connect;
@@ -82,6 +98,10 @@ public class Connector {
             Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
             result = "ERROR: Reader Error. Connector failed to use BufferedReader on resulting query."
                     + "\n" + ex.getMessage();
+        } catch (InvalidKeySpecException | IllegalBlockSizeException | BadPaddingException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            result = "ERROR: Encrypter Error. Encrypter failed when generating keys or encrypting."
+                    + "\n" + ex.getMessage();
         }
         return result;
     }
@@ -101,7 +121,75 @@ public class Connector {
         do {
             result = reader.readLine();
         } while (result.length() < 1);
+
+        // Here we decrypt the String:
+        try {
+            //result = enc.decryptString(result); // commented out for testing.
+            String r = enc.decryptString(result); // left in for testing.
+        } catch (IllegalBlockSizeException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPaddingException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeyException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidAlgorithmParameterException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
+    }
+    
+    //************************************************************************//
+    //  -   GET + TEST SESSION KEY                                        -   //
+    //************************************************************************//
+    
+    public boolean testSessionKey() {
+        // send query to rest server to get boolean result
+        // the parameter to confirm will be.............?
+        return false;
+    }
+    
+    public void getIV() {
+        // Generate a PP key:
+        try {
+            enc = new Encrypter();
+            enc.genPPKeys(512); // chosen arbitary length for RSA - should be fine?
+            
+            byte[] keyBytes = enc.getPublKey().getEncoded();
+            
+            // Add the public key bytes to the query:
+            urlEnd = "requestSessionKey?KEY=" 
+                    + new String(keyBytes, StandardCharsets.UTF_8);
+            
+            // Send query to REST:
+            String result = SendQuery(SERVER + urlEnd);
+            
+            // Log the result in case of error message:
+            System.err.println(result);
+            
+            // Translate the resulting String back into bytes for the IV:
+            if (!result.startsWith("SUCCESS") & !result.startsWith("ERROR")) {
+                byte[] iv = result.getBytes();
+                enc.setIv(iv);
+            } else {
+                throw new Exception();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeySpecException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            // This is either all other situations (won't be unless something
+            // very strange occurs) or that the result is not a series of bytes!
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
     
     //************************************************************************//
@@ -117,7 +205,7 @@ public class Connector {
      * @return boolean - being whether or not the authentication is successful.
      */
     public boolean Authenticate(User user, String hash) {
-        urlEnd = "authUser.jsp?ID=" + user.getID() + "?HASH=" + hash;
+        urlEnd = "authUser.jsp?ID=" + user.getID() + "&HASH=" + hash;
         
         // Pass query to URL:
         String q = SendQuery(SERVER + urlEnd);
@@ -146,12 +234,13 @@ public class Connector {
         // Log the result in case of error message:
         System.err.println(q);
         
-        // TEST: Convert result using GSON:
-        Gson gson = new Gson();
-        Type token = new TypeToken<ArrayList<Product>>() {}.getType();
-        ArrayList<Product> list = gson.fromJson(q, token);
-        
-        return list;
+        // TEST: Convert result using GSON, making sure it appears to be JSON:
+        if (!q.startsWith("SUCCESS") & !q.startsWith("ERROR")) {
+            Gson gson = new Gson();
+            Type token = new TypeToken<ArrayList<Product>>() {}.getType();
+            ArrayList<Product> list = gson.fromJson(q, token);
+            return list;
+        } else { return null; }
     }
     
     /**
@@ -167,12 +256,13 @@ public class Connector {
         // Log the result in case of error message:
         System.err.println(q);
         
-        // TEST: Convert result using GSON:
-        Gson gson = new Gson();
-        Type token = new TypeToken<ArrayList<Product>>() {}.getType();
-        ArrayList<Product> list = gson.fromJson(q, token);
-        
-        return list;
+        // TEST: Convert result using GSON, making sure it appears to be JSON:
+        if (!q.startsWith("SUCCESS") & !q.startsWith("ERROR")) {
+            Gson gson = new Gson();
+            Type token = new TypeToken<ArrayList<Product>>() {}.getType();
+            ArrayList<Product> list = gson.fromJson(q, token);
+            return list;
+        } else { return null; }
     }
     
     /**
@@ -188,12 +278,13 @@ public class Connector {
         // Log the result in case of error message:
         System.err.println(o);
         
-        // TEST: Convert result using GSON:
-        Gson gson = new Gson();
-        Type token = new TypeToken<ArrayList<Order>>() {}.getType();
-        ArrayList<Order> list = gson.fromJson(o, token);
-        
-        return list;
+        // TEST: Convert result using GSON, making sure it appears to be JSON:
+        if (!o.startsWith("SUCCESS") & !o.startsWith("ERROR")) {
+            Gson gson = new Gson();
+            Type token = new TypeToken<ArrayList<Order>>() {}.getType();
+            ArrayList<Order> list = gson.fromJson(o, token);
+            return list;
+        } else { return null; }
     }
     
     /**
@@ -209,12 +300,13 @@ public class Connector {
         // Log the result in case of error message:
         System.err.println(o);
         
-        // TEST: Convert result using GSON:
-        Gson gson = new Gson();
-        Type token = new TypeToken<ArrayList<Order>>() {}.getType();
-        ArrayList<Order> list = gson.fromJson(o, token);
-        
-        return list;
+        // TEST: Convert result using GSON, making sure it appears to be JSON:
+        if (!o.startsWith("SUCCESS") & !o.startsWith("ERROR")) {
+            Gson gson = new Gson();
+            Type token = new TypeToken<ArrayList<Order>>() {}.getType();
+            ArrayList<Order> list = gson.fromJson(o, token);
+            return list;
+        } else { return null; }
     }
     
     /**
@@ -230,12 +322,13 @@ public class Connector {
         // Log the result in case of error message:
         System.err.println(u);
         
-        // TEST: Convert result using GSON:
-        Gson gson = new Gson();
-        Type token = new TypeToken<ArrayList<User>>() {}.getType();
-        ArrayList<User> list = gson.fromJson(u, token);
-        
-        return list;
+        // TEST: Convert result using GSON, making sure it appears to be JSON:
+        if (!u.startsWith("SUCCESS") & !u.startsWith("ERROR")) {
+            Gson gson = new Gson();
+            Type token = new TypeToken<ArrayList<User>>() {}.getType();
+            ArrayList<User> list = gson.fromJson(u, token);
+            return list;
+        } else { return null; }
     }
     
     /**
@@ -252,7 +345,10 @@ public class Connector {
         // Log the result in case of error message:
         System.err.println(q);
         
-        return new Product(q);
+        // TEST: Convert result using GSON, making sure it appears to be JSON:
+        if (!q.startsWith("SUCCESS") & !q.startsWith("ERROR")) {
+            return new Product(q);
+        } else { return null; }
     }
     
     /**
@@ -269,7 +365,10 @@ public class Connector {
         // Log the result in case of error message:
         System.err.println(o);
         
-        return new Order(o);
+        // TEST: Convert result using GSON, making sure it appears to be JSON:
+        if (!o.startsWith("SUCCESS") & !o.startsWith("ERROR")) {
+            return new Order(o);
+        } else { return null; }
     }
     
     /**
@@ -286,7 +385,10 @@ public class Connector {
         // Log the result in case of error message:
         System.err.println(u);
         
-        return new User(u);
+        // TEST: Convert result using GSON, making sure it appears to be JSON:
+        if (!u.startsWith("SUCCESS") & !u.startsWith("ERROR")) {
+            return new User(u);
+        } else { return null; }
     }
     
     /**
@@ -303,7 +405,10 @@ public class Connector {
         // Log the result in case of error message:
         System.err.println(u);
         
-        return new User(u);
+        // TEST: Convert result using GSON, making sure it appears to be JSON:
+        if (!u.startsWith("SUCCESS") & !u.startsWith("ERROR")) {
+            return new User(u);
+        } else { return null; }
     }
     
     /**
@@ -470,15 +575,14 @@ public class Connector {
             // Log the result in case of error message:
             System.err.println(l);
 
-            // If NOT starting with ERROR then continue...
-            if (!l.startsWith("ERROR")) {
+            // If NOT starting with ERROR (or SUCCESS to be thorough) then...
+            if (!l.startsWith("ERROR") & !l.startsWith("SUCCESS")) {
                 // TEST: Convert result using GSON:
                 Gson gson = new Gson();
                 Type token = new TypeToken<ArrayList<User>>() {}.getType();
                 ArrayList<GenericLookup> list = gson.fromJson(l, token);
                 
                 return list;
-                
             } else  {
                 // Log the result in case of error message:
                 System.err.println(l);
@@ -507,8 +611,8 @@ public class Connector {
                     || identifier.equals("status")) {
             // Construct the URL:
             urlEnd = "addLookup.jsp?IDENTIFIER=" + identifier 
-                    + "?LOOKUP=" + l.GetJSONString()
-                    + "?NEW=FALSE";
+                    + "&LOOKUP=" + l.GetJSONString()
+                    + "&NEW=FALSE";
             
             // Pass query to URL:
             String result = SendQuery(SERVER + urlEnd);
@@ -533,7 +637,7 @@ public class Connector {
     public boolean addLocation(String location) {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, location);
-        urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
+        urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
         String result = SendQuery(SERVER + urlEnd);
         
@@ -551,7 +655,7 @@ public class Connector {
     public boolean addCategory(String category) {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, category);
-        urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
+        urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
        
         String result = SendQuery(SERVER + urlEnd);
         
@@ -569,7 +673,7 @@ public class Connector {
     public boolean addSubCat(String subcat) {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, subcat);
-        urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
+        urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
         String result = SendQuery(SERVER + urlEnd);
         
@@ -587,7 +691,7 @@ public class Connector {
     public boolean addOrderStatus(String status) {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, status);
-        urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
+        urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
         String result = SendQuery(SERVER + urlEnd);
         
@@ -605,7 +709,7 @@ public class Connector {
     public boolean addContainer(String container) {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, container);
-        urlEnd = "addLookup.jsp?IDENTIFIER=location?LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
+        urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
         String result = SendQuery(SERVER + urlEnd);
         

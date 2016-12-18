@@ -142,7 +142,7 @@ public class DB_Handler {
             
             // Get the Staff_Type details:
             + "Staff.staffType as type_id, " 
-            + "Staff.staffType as type_value "
+            + "(" + s_typ + ".staffType) as type_value "
             
             // FROM + WHERE:
             + "FROM NET302.Staff "
@@ -157,7 +157,7 @@ public class DB_Handler {
             
             // Get the Staff_Type details:
             + "Staff.staffType as type_id, "
-            + "staffType as type_value "
+            + "(" + s_typ + ".staffType) as type_value "
             
             // FROM + WHERE:
             + "FROM NET302.Staff "
@@ -1160,7 +1160,7 @@ public class DB_Handler {
     }
     
     /**
-     * This simply fulfills a given order
+     * This simply fulfils a given order
      * @param orderToFulfill
      * @throws SQLException 
      */

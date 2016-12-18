@@ -18,6 +18,7 @@
     
     // Fetch and store the ID parameter:
     String  paraID  = request.getParameter("ID");
+    //String  paraUN  = request.getParameter("UN");
     
     // Create database connection:
     DB_Handler handler = new DB_Handler();
@@ -46,7 +47,8 @@
                 } catch (NumberFormatException ex) {
                     // ID Error.
                     result = "ERROR: Please ensure the ID parameter is a number!"
-                            + "\nThe middleware failed to convert this: " + paraID;
+                            + "\nThe middleware failed to convert this: " + paraID
+                            + "\n" + ex.getMessage();
                 } finally { handler.CloseConnection(); }
             } else {
                 // Failed to get a connection!

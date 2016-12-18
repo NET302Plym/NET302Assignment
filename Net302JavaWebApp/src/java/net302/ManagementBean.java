@@ -57,6 +57,9 @@ public class ManagementBean {
        // products = client_connector.getAllProducts();
        products = client_connector.getAllProducts();
        
+       
+       // DEBUG:
+       //System.out.println("TEST" + client_connector.getUser("sybill.graham").toString());
     }
     
     //************************************************************************//
