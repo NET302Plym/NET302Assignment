@@ -58,6 +58,7 @@ namespace DWSS.Pages
         /// <param name="e"></param>
         private async void FindButtonClick(object sender, RoutedEventArgs e)
         {
+            StaticData.masterPage.ShowProgressRing();
             string searchTerms = SearchTermsTextBox.Text;
             if (searchTerms == searchTermsCache) return;
             if (string.IsNullOrEmpty(searchTerms))
@@ -82,6 +83,7 @@ namespace DWSS.Pages
                 }
             }
             searchTermsCache = searchTerms;
+            StaticData.masterPage.HideProgressRing();
         }
     }
 }
