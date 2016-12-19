@@ -42,7 +42,7 @@ namespace DWSS.Pages
             {
                 ProgressRingUserControl.Visibility = Visibility.Visible;
             });
-            StaticData.currentUser = await MiddlewareConnections.GetUser("1");
+            StaticData.currentUser = await MiddlewareConnections.GetUser("201");
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 if (StaticData.currentUser != null)
