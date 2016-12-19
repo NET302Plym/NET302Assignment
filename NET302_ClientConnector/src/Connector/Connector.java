@@ -204,17 +204,23 @@ public class Connector {
      * @param hash String - being the hashed string to authenticate user against.
      * @return boolean - being whether or not the authentication is successful.
      */
-    public boolean Authenticate(User user, String hash) {
-        urlEnd = "authUser.jsp?ID=" + user.getID() + "&HASH=" + hash;
-        
-        // Pass query to URL:
+    public User Authenticate(String username, String passwordHash) {
+        urlEnd = "authUser.jsp?ID=" + username + "&HASH=" + passwordHash;
         String q = SendQuery(SERVER + urlEnd);
+        if (q.contains("ERROR")) return null;
+        return new User(q);
+        
+        
+        
+//        
+        // Pass query to URL:
+        //String q = SendQuery(SERVER + urlEnd);
         
         // Log the result in case of error message:
-        System.err.println(q);
+        //System.err.println(q);
         
         // Check for the result being SUCCESS or not, and return boolean:
-        return q.startsWith("SUCCESS");
+        //return q.startsWith("SUCCESS");
     }
     
     //************************************************************************//

@@ -18,7 +18,7 @@
     
     // Fetch and store the ID parameter:
     String  paraID  = request.getParameter("ID");
-    //String  paraUN  = request.getParameter("UN");
+    String  hash  = request.getParameter("HASH");
     
     // Create database connection:
     DB_Handler handler = new DB_Handler();
@@ -26,7 +26,6 @@
     // If the ID parameter exists, then return a single User:
     if (paraID != null) {
         paraID = paraID.toUpperCase().trim();
-
             if (handler.GetConnection()) {
                 try {
                     int id = Integer.parseInt(paraID);

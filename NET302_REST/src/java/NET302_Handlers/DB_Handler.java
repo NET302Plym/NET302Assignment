@@ -355,7 +355,7 @@ public class DB_Handler {
             "UPDATE ? SET ? = ? WHERE ID = ?;";
     
     private final String        authUserQ       =
-            "SELECT password FROM NET302.Staff WHERE Staff.ID = ?;";
+            "SELECT Staff.ID, Staff.staffName, Staff.staffContact, Staff.username, Staff_Type.staffType, Staff_Type.ID FROM NET302.Staff LEFT OUTER JOIN Staff_Type ON Staff.staffType = Staff_Type.ID WHERE Staff.username = ? AND Staff.userPassword = ?;";
     
     private final String        checkUsernameQ  =
             "SELECT ID, username FROM NET302.Staff WHERE Staff.Username = ?;";
@@ -1263,14 +1263,17 @@ public class DB_Handler {
      * @throws SQLException - Thrown as errors will be passed back to JSP pages.
      * Error here indicates a problem with the SQLQuery or the execution of it.
      */
-    public boolean authUser(int id, String password) throws SQLException {
+    public User authUser(String username, String password) throws SQLException {
         authUser = connection.prepareStatement(authUserQ);
-        authUser.setInt(1, id);
+        authUser.setString(1, username);
+        authUser.setString(2, password);
         resultSet = authUser.executeQuery();
-        resultSet.next();
-        String db_pass = resultSet.getString("PASSWORD");
+        resultSet.first();
+        int i = resultSet.getRow();
         
-        return (password.equals(db_pass));
+        if (i == 0) return null;
+        
+        return new User(resultSet.getInt(1), resultSet.getString(4), "", resultSet.getString(3), resultSet.getString(2), true, new GenericLookup(resultSet.getInt(6), resultSet.getString(5)));     
     }
     
     /**

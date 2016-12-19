@@ -1,3 +1,4 @@
+<%@page import="NET302JavaLibrary.User"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="NET302JavaLibrary.GenericLookup"%>
 <%@page import="NET302_Handlers.DB_Handler"%>
@@ -19,13 +20,13 @@
     if (idP.length() > 1 & passP.length() > 1) {
         if (handler.GetConnection()) {
             try {
-                int id = Integer.parseInt(idP);
+                //int id = Integer.parseInt(idP);
                 
                 // Test the password:
-                boolean test = handler.authUser(id, passP);
+                User user = handler.authUser(idP, passP);
                 
-                if (test) {
-                    result = "SUCCESS: User authenticated.";
+                if (user != null) {
+                    result = user.GetJSONString();
                 } else {
                     result = "ERROR: User details given do not authenticate.";
                 }
