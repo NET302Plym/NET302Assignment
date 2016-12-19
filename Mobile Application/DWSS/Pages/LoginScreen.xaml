@@ -5,6 +5,7 @@
     xmlns:local="using:DWSS.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:DWSS.UserControls"
     mc:Ignorable="d"
     Foreground="Black"
     FontFamily="Calibri"
@@ -14,5 +15,6 @@
         <TextBlock Margin="10" Name="Title" Text="Distributed-Warehouse Support System (D-WSS)" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" FontSize="28" />
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="Scan Badge to Login"></TextBlock>
         <Button Content="Bypass Login" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="Black" BorderBrush="Red" Padding="5,0,5,0" Click="BypassLoginClick"></Button>
+        <userControls:ProgressRing Visibility="Collapsed" x:Name="ProgressRingUserControl" />
     </Grid>
 </Page>

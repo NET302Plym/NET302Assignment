@@ -99,5 +99,21 @@ namespace DWSS
         {
             NotificationGrid.Visibility = Visibility.Collapsed;
         }
+
+        public async void ShowProgressRing()
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                ProgressRingUserControl.Visibility = Visibility.Visible;
+            });
+        }
+
+        public async void HideProgressRing()
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                ProgressRingUserControl.Visibility = Visibility.Collapsed;
+            });
+        }
     }
 }

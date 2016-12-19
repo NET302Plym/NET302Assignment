@@ -53,9 +53,10 @@ namespace DWSS.UserControls
         /// <param name="e"></param>
         private void FulfillButtonClick(object sender, RoutedEventArgs e)
         {
-            if (!((sender as Button).Tag is Order))
-            // Fulfill the order
-            StaticData.OrderFulfilmentPage.FulfilOrder((sender as Button).Tag as Order);
+            if (sender is Button)
+                if ((sender as Button).Tag is Order)
+                    // Fulfill the order
+                    StaticData.OrderFulfilmentPage.FulfilOrder((sender as Button).Tag as Order);
         }
     }
 }

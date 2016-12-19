@@ -124,33 +124,35 @@ namespace DWSS.DWSS_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[12];
-            _typeNameTable[0] = "DWSS.MasterPage";
-            _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
-            _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[3] = "DWSS.Pages.AdjustProductPage";
-            _typeNameTable[4] = "DWSS.Pages.AdjustStockPage";
-            _typeNameTable[5] = "DWSS.Pages.LoginScreen";
-            _typeNameTable[6] = "DWSS.Pages.OptionsPage";
-            _typeNameTable[7] = "DWSS.Pages.OrderFulfilmentPage";
-            _typeNameTable[8] = "DWSS.UserControls.ProductUserControl";
-            _typeNameTable[9] = "DWSS.Data.Product";
-            _typeNameTable[10] = "Object";
-            _typeNameTable[11] = "DWSS.UserControls.OrderUserControl";
+            _typeNameTable = new string[13];
+            _typeNameTable[0] = "DWSS.UserControls.ProgressRing";
+            _typeNameTable[1] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[2] = "DWSS.MasterPage";
+            _typeNameTable[3] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[4] = "DWSS.Pages.AdjustProductPage";
+            _typeNameTable[5] = "DWSS.Pages.AdjustStockPage";
+            _typeNameTable[6] = "DWSS.Pages.LoginScreen";
+            _typeNameTable[7] = "DWSS.Pages.OptionsPage";
+            _typeNameTable[8] = "DWSS.Pages.OrderFulfilmentPage";
+            _typeNameTable[9] = "DWSS.UserControls.ProductUserControl";
+            _typeNameTable[10] = "DWSS.Data.Product";
+            _typeNameTable[11] = "Object";
+            _typeNameTable[12] = "DWSS.UserControls.OrderUserControl";
 
-            _typeTable = new global::System.Type[12];
-            _typeTable[0] = typeof(global::DWSS.MasterPage);
-            _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
-            _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[3] = typeof(global::DWSS.Pages.AdjustProductPage);
-            _typeTable[4] = typeof(global::DWSS.Pages.AdjustStockPage);
-            _typeTable[5] = typeof(global::DWSS.Pages.LoginScreen);
-            _typeTable[6] = typeof(global::DWSS.Pages.OptionsPage);
-            _typeTable[7] = typeof(global::DWSS.Pages.OrderFulfilmentPage);
-            _typeTable[8] = typeof(global::DWSS.UserControls.ProductUserControl);
-            _typeTable[9] = typeof(global::DWSS.Data.Product);
-            _typeTable[10] = typeof(global::System.Object);
-            _typeTable[11] = typeof(global::DWSS.UserControls.OrderUserControl);
+            _typeTable = new global::System.Type[13];
+            _typeTable[0] = typeof(global::DWSS.UserControls.ProgressRing);
+            _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[2] = typeof(global::DWSS.MasterPage);
+            _typeTable[3] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[4] = typeof(global::DWSS.Pages.AdjustProductPage);
+            _typeTable[5] = typeof(global::DWSS.Pages.AdjustStockPage);
+            _typeTable[6] = typeof(global::DWSS.Pages.LoginScreen);
+            _typeTable[7] = typeof(global::DWSS.Pages.OptionsPage);
+            _typeTable[8] = typeof(global::DWSS.Pages.OrderFulfilmentPage);
+            _typeTable[9] = typeof(global::DWSS.UserControls.ProductUserControl);
+            _typeTable[10] = typeof(global::DWSS.Data.Product);
+            _typeTable[11] = typeof(global::System.Object);
+            _typeTable[12] = typeof(global::DWSS.UserControls.OrderUserControl);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -185,15 +187,16 @@ namespace DWSS.DWSS_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_0_MasterPage() { return new global::DWSS.MasterPage(); }
-        private object Activate_3_AdjustProductPage() { return new global::DWSS.Pages.AdjustProductPage(); }
-        private object Activate_4_AdjustStockPage() { return new global::DWSS.Pages.AdjustStockPage(); }
-        private object Activate_5_LoginScreen() { return new global::DWSS.Pages.LoginScreen(); }
-        private object Activate_6_OptionsPage() { return new global::DWSS.Pages.OptionsPage(); }
-        private object Activate_7_OrderFulfilmentPage() { return new global::DWSS.Pages.OrderFulfilmentPage(); }
-        private object Activate_8_ProductUserControl() { return new global::DWSS.UserControls.ProductUserControl(); }
-        private object Activate_9_Product() { return new global::DWSS.Data.Product(); }
-        private object Activate_11_OrderUserControl() { return new global::DWSS.UserControls.OrderUserControl(); }
+        private object Activate_0_ProgressRing() { return new global::DWSS.UserControls.ProgressRing(); }
+        private object Activate_2_MasterPage() { return new global::DWSS.MasterPage(); }
+        private object Activate_4_AdjustProductPage() { return new global::DWSS.Pages.AdjustProductPage(); }
+        private object Activate_5_AdjustStockPage() { return new global::DWSS.Pages.AdjustStockPage(); }
+        private object Activate_6_LoginScreen() { return new global::DWSS.Pages.LoginScreen(); }
+        private object Activate_7_OptionsPage() { return new global::DWSS.Pages.OptionsPage(); }
+        private object Activate_8_OrderFulfilmentPage() { return new global::DWSS.Pages.OrderFulfilmentPage(); }
+        private object Activate_9_ProductUserControl() { return new global::DWSS.UserControls.ProductUserControl(); }
+        private object Activate_10_Product() { return new global::DWSS.Data.Product(); }
+        private object Activate_12_OrderUserControl() { return new global::DWSS.UserControls.OrderUserControl(); }
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(int typeIndex)
         {
@@ -205,78 +208,85 @@ namespace DWSS.DWSS_XamlTypeInfo
             switch (typeIndex)
             {
 
-            case 0:   //  DWSS.MasterPage
-                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_0_MasterPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 1:   //  Windows.UI.Xaml.Controls.Page
-                xamlType = new global::DWSS.DWSS_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 2:   //  Windows.UI.Xaml.Controls.UserControl
-                xamlType = new global::DWSS.DWSS_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 3:   //  DWSS.Pages.AdjustProductPage
-                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_3_AdjustProductPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 4:   //  DWSS.Pages.AdjustStockPage
-                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_4_AdjustStockPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 5:   //  DWSS.Pages.LoginScreen
-                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_5_LoginScreen;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 6:   //  DWSS.Pages.OptionsPage
-                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_6_OptionsPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 7:   //  DWSS.Pages.OrderFulfilmentPage
-                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_7_OrderFulfilmentPage;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 8:   //  DWSS.UserControls.ProductUserControl
+            case 0:   //  DWSS.UserControls.ProgressRing
                 userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_8_ProductUserControl;
+                userType.Activator = Activate_0_ProgressRing;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 1:   //  Windows.UI.Xaml.Controls.UserControl
+                xamlType = new global::DWSS.DWSS_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 2:   //  DWSS.MasterPage
+                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_2_MasterPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 3:   //  Windows.UI.Xaml.Controls.Page
+                xamlType = new global::DWSS.DWSS_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 4:   //  DWSS.Pages.AdjustProductPage
+                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_4_AdjustProductPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 5:   //  DWSS.Pages.AdjustStockPage
+                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_5_AdjustStockPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 6:   //  DWSS.Pages.LoginScreen
+                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_6_LoginScreen;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 7:   //  DWSS.Pages.OptionsPage
+                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_7_OptionsPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  DWSS.Pages.OrderFulfilmentPage
+                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_8_OrderFulfilmentPage;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  DWSS.UserControls.ProductUserControl
+                userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_9_ProductUserControl;
                 userType.AddMemberName("product");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 9:   //  DWSS.Data.Product
+            case 10:   //  DWSS.Data.Product
                 userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 10:   //  Object
+            case 11:   //  Object
                 xamlType = new global::DWSS.DWSS_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 11:   //  DWSS.UserControls.OrderUserControl
+            case 12:   //  DWSS.UserControls.OrderUserControl
                 userType = new global::DWSS.DWSS_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.UserControl"));
-                userType.Activator = Activate_11_OrderUserControl;
+                userType.Activator = Activate_12_OrderUserControl;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;

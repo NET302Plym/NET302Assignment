@@ -40,9 +40,9 @@ namespace DWSS.Pages
             // Hides the login button as clicking this multiple times can cause problems 
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                (sender as Button).IsEnabled = false;
+                ProgressRingUserControl.Visibility = Visibility.Visible;
             });
-            StaticData.currentUser = await MiddlewareConnections.GetUser("1");
+            StaticData.currentUser = await MiddlewareConnections.GetUser("201");
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 if (StaticData.currentUser != null)
@@ -56,7 +56,7 @@ namespace DWSS.Pages
             // Shows the login button again, in case the login was unsuccesful 
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
-                (sender as Button).IsEnabled = true;
+                ProgressRingUserControl.Visibility = Visibility.Visible;
             });
         }
     }

@@ -7,7 +7,7 @@
         <title>D-WSS</title>
     </h:head>
     <h:body>
-        Hello from Product List
+        
         <br/>
         <h:form><h:inputText binding="#{search}" /><h:commandButton value="Search" action="#{SessionHandler.GetManagementBean().filterProducts(search.value)}"/></h:form>
         <br/>      
@@ -50,8 +50,7 @@
                     <h:inputText binding="#{quantity}" />
                 </h:column>
                 <h:column>
-                  <h:commandButton action="#{SessionHandler.GetManagementBean().addToTestOrder(products.ID, quantity.value)}" value="Order Product" />
-
+                    <h:commandButton action="#{SessionHandler.GetManagementBean().orderProduct(products, quantity.value)}" value="Order Product" />
                 </h:column>
             </h:dataTable>   
         </h:form>

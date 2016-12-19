@@ -18,6 +18,7 @@
     
     // Fetch and store the ID parameter:
     String  paraID  = request.getParameter("ID");
+    String  hash  = request.getParameter("HASH");
     
     // Create database connection:
     DB_Handler handler = new DB_Handler();
@@ -25,7 +26,6 @@
     // If the ID parameter exists, then return a single User:
     if (paraID != null) {
         paraID = paraID.toUpperCase().trim();
-
             if (handler.GetConnection()) {
                 try {
                     int id = Integer.parseInt(paraID);
@@ -46,7 +46,8 @@
                 } catch (NumberFormatException ex) {
                     // ID Error.
                     result = "ERROR: Please ensure the ID parameter is a number!"
-                            + "\nThe middleware failed to convert this: " + paraID;
+                            + "\nThe middleware failed to convert this: " + paraID
+                            + "\n" + ex.getMessage();
                 } finally { handler.CloseConnection(); }
             } else {
                 // Failed to get a connection!

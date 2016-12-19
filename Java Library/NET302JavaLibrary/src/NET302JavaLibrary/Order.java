@@ -1,6 +1,9 @@
 package NET302JavaLibrary;
 import java.sql.Time;
 import com.google.gson.Gson;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import static java.time.temporal.TemporalQueries.localDate;
 
 // TODO: JavaDoc comments throughout.
 
@@ -29,6 +32,21 @@ public class Order {
         this.product = product;
         this.location = location;
         this.status = status;
+    }
+    
+    public Order(Product p, int quantity, User user)
+    {
+        
+        LocalDate localDate = LocalDate.now();
+        
+        this.ID = p.getID();
+        this.quantity = quantity;
+        this.fulfilled = false;
+        this.dateOrdered = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate);
+        this.staffOrdered = user;
+        this.product = p;
+        this.location = new GenericLookup(1, "South West");
+        this.status = new GenericLookup(0, "Open");
     }
     
     //************************************************************************//

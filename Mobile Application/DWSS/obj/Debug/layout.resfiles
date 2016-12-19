@@ -14,3 +14,4 @@ Pages\OptionsPage.xbf
 Pages\OrderFulfilmentPage.xbf
 UserControls\OrderUserControl.xbf
 UserControls\ProductUserControl.xbf
+UserControls\ProgressRingUserControl.xbf

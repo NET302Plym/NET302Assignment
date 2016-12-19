@@ -57,6 +57,7 @@ namespace DWSS.Pages
         /// <param name="e"></param>
         private async void SubmitChangesButtonClick(object sender, RoutedEventArgs e) 
         {
+            StaticData.masterPage.ShowProgressRing();
             // Submit the changes
             int x;
             if (int.TryParse(NewQuantityTextBox.Text, out x))
@@ -82,6 +83,7 @@ namespace DWSS.Pages
                     StaticData.masterPage.ShowNotification("Incorrect quantity has been entered!");
                 });
             }
+            StaticData.masterPage.HideProgressRing();
         }
     }
 }

@@ -50,6 +50,7 @@ namespace DWSS.Pages
         /// <param name="orderToFulfill"></param>
         public async void FulfilOrder(Order orderToFulfill)
         {
+            StaticData.masterPage.ShowProgressRing();
             bool success = await Middleware.MiddlewareConnections.FulfillOrder(orderToFulfill);
             // Reload the UI
             if (success)
@@ -69,6 +70,7 @@ namespace DWSS.Pages
                     StaticData.masterPage.ShowNotification("Error! Internal server error");
                 });
             }
+            StaticData.masterPage.HideProgressRing();
         }
         
         /// <summary>
@@ -76,6 +78,7 @@ namespace DWSS.Pages
         /// </summary>
         private async void LoadUI()
         {
+            StaticData.masterPage.ShowProgressRing();
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
             {
                 PageContentStackPanel.Children.Clear();
@@ -88,13 +91,17 @@ namespace DWSS.Pages
                     var orderUI = new OrderUserControl(order);
                     orderUI.click += (s, o) =>
                     {
+                        StaticData.masterPage.ShowProgressRing();
                         string url = Middleware.MiddlewareConnections.DownloadImage((s as ProductUserControl).product.name);
                         if (!string.IsNullOrWhiteSpace(url))
                             ShowImage(url, (s as ProductUserControl).product.name);
+                        StaticData.masterPage.HideProgressRing();
                     };
+                    
                     PageContentStackPanel.Children.Add(orderUI);
                 });
             }
+            StaticData.masterPage.HideProgressRing();
         }
 
         /// <summary>
