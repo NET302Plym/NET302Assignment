@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group/>
+=======
+        <group>
+            <file>file:/C:/Dev/Repos/PlymUniGitHub/NET302Assignment/NET302_REST/web/getProduct.jsp</file>
+            <file>file:/C:/Dev/Repos/PlymUniGitHub/NET302Assignment/NET302_REST/web/addOrder.jsp</file>
+        </group>
+>>>>>>> b3e01a43bf7f7639b946fd47057a843a6e4185a6
     </open-files>
 </project-private>

@@ -47,10 +47,10 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">Quantity To Order</f:facet>
-                    <h:inputText binding="#{quant}" />
+                    <h:inputText binding="#{quantity}" />
                 </h:column>
                 <h:column>
-                  <h:commandButton action="#{SessionHandler.GetManagementBean().addToTestOrder(filteredProducts.ID, quant.value)}" value="Order Product" />
+                 <h:commandButton action="#{SessionHandler.GetManagementBean().orderProduct(filteredProducts, quantity.value)}" value="Order Product" />
                 </h:column>
             </h:dataTable>   
         </h:form>

@@ -13,6 +13,8 @@ import javax.servlet.http.*;
 import java.util.Date;
 import javax.faces.context.FacesContext;
 import java.security.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 
@@ -39,6 +41,7 @@ public class ManagementBean {
     public String f = "";
     
     private User loggedUser;
+    private Order order;
     
     private ArrayList<Product>          products            = null;
     private ArrayList<Product>          filteredProducts    = null;
@@ -59,11 +62,7 @@ public class ManagementBean {
         System.out.println("**** ManagementBean Loaded ****");
         // Get the connector:
         client_connector = new Connector();
-        dummy_data = new DummyData(0);
-        
-       //products = client_connector.getAllProducts();
-       //products = client_connector.getAllProducts();
-       
+        dummy_data = new DummyData(0);       
     }
     
     
@@ -82,35 +81,40 @@ public class ManagementBean {
      * @param quantity
      * @param staff 
      */
-    public void orderProduct(Product p, int quantity) {
+    public String orderProduct(Product p, int quantity) {
         // TODO: Assign these values, not sure if default or extracted from the
         // webpage. For the latter, the method requires additional parameters!
-        
-        GenericLookup location  = null;
-        GenericLookup status    = null;
-        
+              
         // Generate the Order:
-        Order o = new Order(0,       // ID of Order, only used to encapsulate the data here.
-                quantity,            // Quantity of p to order.
-                false,               // Fulfilled is false by default.
-                "",                  // Date Ordered
-                this.loggedUser,     // Staff who ordered.
-                p,                   // Product to order.
-                location,            // Location
-                status               // Status ?
-        );
+        order = new Order(p, quantity, loggedUser);
         
         // Action the generated Order:
-        if (debug) { 
+        if (debug)
+        { 
             System.out.println("[DEBUG] ORDER GENERATED FOR " + quantity + " OF " + p.getName());
-            orders.add(o);
+            orders.add(order);
             dummy_data.setOrders(orders);
-        } else  { } //client_connector.addOrder(o); }
+        } 
+        else
+        {
+            if(client_connector.addOrder(order))
+            {
+                System.out.println("***** ADDING TO ORDER ******");
+                return "displayOrder.xhtml";
+            }
+        } 
+        return null;
     }
+    
         
     public String getUsername()
     {
         return this.loggedUser.getName();
+    }
+    
+    public Order getOrder()
+    {
+        return this.order;
     }
     
     public String auth(String username, String password) throws Exception
@@ -145,8 +149,8 @@ public class ManagementBean {
     public String filterProducts(String filter)
     {
         System.out.println("*** filtered products based on filter: " + filter);
-        filteredProducts = client_connector.searchProduct(filter);
-        return "filteredProductList.xhtml";
+        products = client_connector.searchProduct(filter);
+        return "productList.xhtml";
     }
     
     

@@ -12,14 +12,14 @@
         <h:commandButton value="Stock List" action="productList"/>
         </h:form>
        
-        <h:dataTable value="#{managementBean.orderItems}" var="item">
+        <h:dataTable value="#{SessionHandler.GetManagementBean().order}" var="item">
             <h:column>
                 <f:facet name="header">ID</f:facet>
-                #{item.ID}
+                #{item.product.ID}
             </h:column>
              <h:column>
                 <f:facet name="header">Quantity</f:facet>
-                #{item.quantity}
+                #{item.product.quantity}
             </h:column>
         </h:dataTable>
     </h:body>
