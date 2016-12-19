@@ -28,7 +28,7 @@
                 if (user != null) {
                     result = user.GetJSONString();
                 } else {
-                    result = "ERROR: User details given do not authenticate.";
+                    result = "ERROR: Failure to authenticate given username/password.";
                 }
             } catch (NumberFormatException ex) {
                 // ID parameter error:

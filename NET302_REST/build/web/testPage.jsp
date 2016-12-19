@@ -5,7 +5,7 @@
     DB_Handler handler = new DB_Handler();
     
     if (handler.GetConnection()) {
-        out.print(
+        out.print(""
             //handler.getAllProductsQ()
         );
     }

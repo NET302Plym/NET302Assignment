@@ -285,7 +285,7 @@ public class DB_Handler {
             //+ "Products.categoryID as productCategoryID, " // duplicate
             + "(" + p_cat + ".ID) as productCategoryID, "
             + "(" + p_sub + ".ID) as productSubCategoryID, "
-            + "(" + p_con + ").ID as productContainerID, "
+            + "(" + p_con + ".ID) as productContainerID, "
             + "(" + p_cat + ".categoryVal) as productCategory, "
             + "(" + p_sub + ".subcatVal) as productSubcategory, "
             + "(" + p_con + ".containerVal) as productContainer, "
@@ -355,7 +355,19 @@ public class DB_Handler {
             "UPDATE ? SET ? = ? WHERE ID = ?;";
     
     private final String        authUserQ       =
-            "SELECT Staff.ID, Staff.staffName, Staff.staffContact, Staff.username, Staff_Type.staffType, Staff_Type.ID FROM NET302.Staff LEFT OUTER JOIN Staff_Type ON Staff.staffType = Staff_Type.ID WHERE Staff.username = ? AND Staff.userPassword = ?;";
+            "SELECT Staff.ID, Staff.staffName, Staff.staffContact, Staff.username, Staff_Type.staffType, Staff_Type.ID FROM NET302.Staff "
+            + "LEFT OUTER JOIN Staff_Type ON Staff.staffType = Staff_Type.ID WHERE Staff.username = ? AND Staff.userPassword = ?;";
+    
+    /* TODO: Possible alternative to the above to support code re-use.
+    private final String        authUserQ       =
+            "SELECT Staff.ID as ID, "
+            + "Staff.staffName as name, "
+            + "Staff.staffContact as contact, "
+            + "Staff.username as username, "
+            + "Staff_Type.staffType as type_value, "
+            + "Staff_Type.ID as type_id "
+            + "FROM NET302.Staff LEFT OUTER JOIN Staff_Type ON Staff.staffType = Staff_Type.ID WHERE Staff.username = ? AND Staff.userPassword = ?;";  
+    */
     
     private final String        checkUsernameQ  =
             "SELECT ID, username FROM NET302.Staff WHERE Staff.Username = ?;";
@@ -1257,9 +1269,10 @@ public class DB_Handler {
      *  This method queries the password for a given ID and password to compare.
      * If the password given is equal to the one stored then it returns true, 
      * else false.
-     * @param id int - being the ID of the User.
-     * @param password String - being the hashed password to compare.
-     * @return boolean - being whether or not the details successfully authenticate.
+     * @param username String - being the username to check for.
+     * @param password String - being the hashed password to check for.
+     * @return User - being the User object if successful, else NULL. Checks
+     * should be made when using this method to ensure the object is not NULL!
      * @throws SQLException - Thrown as errors will be passed back to JSP pages.
      * Error here indicates a problem with the SQLQuery or the execution of it.
      */
@@ -1268,12 +1281,16 @@ public class DB_Handler {
         authUser.setString(1, username);
         authUser.setString(2, password);
         resultSet = authUser.executeQuery();
+        
         resultSet.first();
         int i = resultSet.getRow();
-        
-        if (i == 0) return null;
-        
-        return new User(resultSet.getInt(1), resultSet.getString(4), "", resultSet.getString(3), resultSet.getString(2), true, new GenericLookup(resultSet.getInt(6), resultSet.getString(5)));     
+        if (i == 0) { return null; }
+        else { 
+            // TODO: May be worth utilising the below, better code re-use practise and this is part of the grade.
+            // The SQL query must also be swapped over (see way up above).
+            //return this.constructUser(resultSet);
+            return new User(resultSet.getInt(1), resultSet.getString(4), "", resultSet.getString(3), resultSet.getString(2), true, new GenericLookup(resultSet.getInt(6), resultSet.getString(5))); 
+        }
     }
     
     /**

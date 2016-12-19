@@ -17,18 +17,15 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
-
-// TODO: Full testing of methods.
-// TODO: Be careful of the GSON conversion on ArrayLists, this is the most
-//       uncertain part of the class!
 
 /**
  * Connector class provides a client-side functionality for the REST Middleware
@@ -52,6 +49,10 @@ public class Connector {
      */
     public Connector() { /* I lied, not empty */ }
     
+    //************************************************************************//
+    //  -   UNIVERSAL / KEY METHODS                                       -   //
+    //************************************************************************//
+    
     /**
      * Helper method to send a query off to the given URL.
      * It will open a HTTP GET Request and returns the first non-blank line 
@@ -60,17 +61,17 @@ public class Connector {
      * @param queryURL String - being the full URL to connect to.
      * @return String - being the first non-blank line from the URL.
      */
-    private String SendQuery(String queryURL) {
+    private String SendQuery() {
         String result;
         
         try {
             // Encrypt the queryURL:
             enc = new Encrypter();
             //queryURL = enc.encryptString(queryURL); // commented out for testing.
-            String q = enc.encryptString(queryURL); // left in for testing.
+            String q = enc.encryptString(urlEnd); // left in for testing.
             
             // Connect to the URL:
-            URL url = new URL(queryURL);
+            URL url = new URL(SERVER + urlEnd);
             HttpURLConnection connect;
             connect = (HttpURLConnection) url.openConnection();
             connect.setReadTimeout(10000);
@@ -98,7 +99,7 @@ public class Connector {
             Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
             result = "ERROR: Reader Error. Connector failed to use BufferedReader on resulting query."
                     + "\n" + ex.getMessage();
-        } catch (InvalidKeySpecException | IllegalBlockSizeException | BadPaddingException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException ex) {
+        } catch (IllegalBlockSizeException | BadPaddingException | InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidAlgorithmParameterException ex) {
             Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
             result = "ERROR: Encrypter Error. Encrypter failed when generating keys or encrypting."
                     + "\n" + ex.getMessage();
@@ -147,80 +148,133 @@ public class Connector {
     //************************************************************************//
     
     public boolean testSessionKey() {
-        // send query to rest server to get boolean result
-        // the parameter to confirm will be.............?
-        return false;
+        // TODO: This is not supported on the REST server.
+        // Freshness needs to be tackled.
+       return false;
     }
     
+    // TODO: TEST and finish the method.
+    // After this method is ran, the result should be the ability to encrypt
+    // and decrypt data for the other REST pages using AES. To test, edit the test
+    // page on the REST to try and communicate.
+    // Currently this is UNTESTED!
     public void getIV() {
-        // Generate a PP key:
+        boolean     loaded;
+        PrivateKey  client_priv = null;
+        PublicKey   client_publ = null;
+        
+        String      client_code = "";
+        
+        // Try loading any existing keys:
         try {
-            enc = new Encrypter();
-            enc.genPPKeys(512); // chosen arbitary length for RSA - should be fine?
+            client_priv = Encrypter.loadPrivateKey("client_private.txt");
+            client_publ = Encrypter.loadPublicKey("client_public.txt");
             
-            byte[] keyBytes = enc.getPublKey().getEncoded();
-            
-            // Add the public key bytes to the query:
-            urlEnd = "requestSessionKey?KEY=" 
-                    + new String(keyBytes, StandardCharsets.UTF_8);
-            
-            // Send query to REST:
-            String result = SendQuery(SERVER + urlEnd);
-            
+            // Extra security check for successful load:
+            if (client_priv == null | client_publ == null) {
+                loaded = false;
+            } else { loaded = true; }
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
+            // Issue with stored key here!
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            loaded = false;
+        }
+        
+        // If not loaded, then we will generate the keys:
+        if (!loaded) {
+            try {
+                enc.genPPKeys();
+                
+                client_priv = enc.getPrivKey();
+                client_publ = enc.getPublKey();
+                
+                // Save the keys for next time:
+                if (client_priv != null & client_publ != null) {
+                    Encrypter.savePrivateKey("client_private.txt", client_priv);
+                    Encrypter.savePublicKey("client_public.txt", client_publ);
+                }
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        // Now we have the keys and all is okay, need to query the REST:
+        if (loaded) {
+            urlEnd = "requestPublicKey.jsp?CODE=" + client_code
+                    + "&KEY=" + new String(client_publ.getEncoded());
+
+            // Here the result will be the server's public key, encrypted with our public key:
+            String result = SendQuery();
+
             // Log the result in case of error message:
             System.err.println(result);
-            
-            // Translate the resulting String back into bytes for the IV:
-            if (!result.startsWith("SUCCESS") & !result.startsWith("ERROR")) {
-                byte[] iv = result.getBytes();
-                enc.setIv(iv);
-            } else {
-                throw new Exception();
+
+            try {
+                // Decrypt and decode the given public key:
+                byte[] resultData = enc.decrypt(client_priv, result.getBytes());
+
+                // Log the result after decryption:
+                System.err.println(new String(resultData));
+                PublicKey server_publ = Encrypter.decodePublicKey(resultData);
+                
+                // Query the second page to get the AES IV:
+                byte[] codeBytes = enc.encrypt(server_publ, client_code.getBytes());
+                urlEnd = "requestSessionKey.jsp?CODE=" +new String(codeBytes);
+                result = SendQuery();
+                
+                // Log the result in case of error message:
+                System.err.println(result);
+                
+                // Now decrypt this result with our private key and get the IV:
+                resultData = enc.decrypt(client_priv, result.getBytes());
+                
+                // Log the resultData:
+                System.err.println(new String(resultData));
+                
+                enc.setIv(resultData);
+                enc.saveIV("client_iv.txt");
+
+            } catch (NoSuchAlgorithmException ex) {
+                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NoSuchPaddingException ex) {
+                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvalidKeyException ex) {
+                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalBlockSizeException ex) {
+                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (BadPaddingException ex) {
+                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InvalidKeySpecException ex) {
+                // DECODING:
+                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidKeySpecException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchPaddingException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            // This is either all other situations (won't be unless something
-            // very strange occurs) or that the result is not a series of bytes!
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }
     
     //************************************************************************//
-    //  -   AUTHENTICATE USER + OTHER ASSORTED METHOD                     -   //
+    //  -   AUTHENTICATE USER                                             -   //
     //************************************************************************//
     
     /**
      * This method authenticates a user based on the hashed password value given.
-     * Returns true or false is successful.
+     * Returns the User if successful, otherwise NULL - therefore you MUST check
+     * for NULL values when using this method!
      * Will log any result to System.err.
-     * @param user User - being the User object representing the user to authenticate.
-     * @param hash String - being the hashed string to authenticate user against.
-     * @return boolean - being whether or not the authentication is successful.
+     * @param username String - being the username to authenticate with.
+     * @param passwordHash String - being the hashed password to authenticate with.
+     * @return User - being the User (if correct) else null.
      */
     public User Authenticate(String username, String passwordHash) {
         urlEnd = "authUser.jsp?ID=" + username + "&HASH=" + passwordHash;
-        String q = SendQuery(SERVER + urlEnd);
-        if (q.contains("ERROR")) return null;
-        return new User(q);
         
-        
-        
-//        
         // Pass query to URL:
-        //String q = SendQuery(SERVER + urlEnd);
+        String q = SendQuery();
         
         // Log the result in case of error message:
-        //System.err.println(q);
+        System.err.println(q);
         
-        // Check for the result being SUCCESS or not, and return boolean:
-        //return q.startsWith("SUCCESS");
+        if (q.startsWith("ERROR")) { return null; }
+        else { return new User(q); }
     }
     
     //************************************************************************//
@@ -235,7 +289,7 @@ public class Connector {
         urlEnd = "getProduct.jsp";
         
         // Pass query to URL:
-        String q = SendQuery(SERVER + urlEnd);
+        String q = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(q);
@@ -257,7 +311,7 @@ public class Connector {
     public ArrayList<Product> searchProduct(String searchTerm) {
         urlEnd = "searchProducts.jsp?TERM=" + searchTerm;
         
-        String q = SendQuery(SERVER + urlEnd);
+        String q = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(q);
@@ -279,7 +333,7 @@ public class Connector {
         urlEnd = "getOrder.jsp";
         
         // Pass query to URL:
-        String o = SendQuery(SERVER + urlEnd);
+        String o = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(o);
@@ -301,7 +355,7 @@ public class Connector {
         urlEnd = "getFulfilled.jsp";
         
         // Pass query to URL:
-        String o = SendQuery(SERVER + urlEnd);
+        String o = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(o);
@@ -323,7 +377,7 @@ public class Connector {
         urlEnd = "getUser.jsp";
         
         // Pass query to URL:
-        String u = SendQuery(SERVER + urlEnd);
+        String u = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(u);
@@ -346,7 +400,7 @@ public class Connector {
         urlEnd = "getProduct.jsp?ID=" + id;
         
         // Pass query to URL:
-        String q = SendQuery(SERVER + urlEnd);
+        String q = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(q);
@@ -366,7 +420,7 @@ public class Connector {
         urlEnd = "getOrder.jsp?ID=" + id;
         
         // Pass query to URL:
-        String o = SendQuery(SERVER + urlEnd);
+        String o = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(o);
@@ -386,7 +440,7 @@ public class Connector {
         urlEnd = "getUser.jsp?ID=" + id;
         
         // Pass query to URL:
-        String u = SendQuery(SERVER + urlEnd);
+        String u = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(u);
@@ -406,7 +460,7 @@ public class Connector {
         urlEnd = "getUser.jsp?ID=0&UN=" + username;
         
         // Pass query to URL:
-        String u = SendQuery(SERVER + urlEnd);
+        String u = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(u);
@@ -426,7 +480,7 @@ public class Connector {
         urlEnd = "addProduct.jsp?PRODUCT=" + p.GetJSONString() + "&NEW=TRUE";
         
         // Pass query to URL:
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -443,7 +497,7 @@ public class Connector {
         urlEnd = "addOrder.jsp?ORDER=" + o.GetJSONString() + "&NEW=TRUE";
         
         // Pass query to URL:
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -460,7 +514,7 @@ public class Connector {
         urlEnd = "addUser.jsp?USER=" + u.GetJSONString() + "&NEW=TRUE";
         
         // Pass query to URL:
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -477,7 +531,7 @@ public class Connector {
         urlEnd = "addProduct.jsp?PRODUCT=" + p.GetJSONString() + "&NEW=FALSE";
         
         // Pass query to URL:
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -496,7 +550,7 @@ public class Connector {
                 + "?NEWQUANTITY=" + quantity;
         
         // Pass query to URL:
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -513,7 +567,7 @@ public class Connector {
         urlEnd = "addOrder.jsp?ORDER=" + o.GetJSONString() + "&NEW=FALSE";
         
         // Pass query to URL:
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -530,7 +584,7 @@ public class Connector {
         urlEnd = "fulfillOrder.jsp?ORDER=" + orderID;
         
         // Pass query to URL:
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -546,7 +600,7 @@ public class Connector {
     public boolean updateUser(User u) {
         urlEnd = "addUser.jsp?USER=" + u.GetJSONString() + "&NEW=FALSE";
         
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -576,7 +630,7 @@ public class Connector {
             urlEnd = "getLookups.jsp?IDENTIFIER=" + identifier;
             
             // Pass query to URL:
-            String l = SendQuery(SERVER + urlEnd);
+            String l = SendQuery();
             
             // Log the result in case of error message:
             System.err.println(l);
@@ -621,7 +675,7 @@ public class Connector {
                     + "&NEW=FALSE";
             
             // Pass query to URL:
-            String result = SendQuery(SERVER + urlEnd);
+            String result = SendQuery();
             
             // Log the result in case of error message:
             System.err.println(result);
@@ -645,7 +699,7 @@ public class Connector {
         GenericLookup l = new GenericLookup(1, location);
         urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -663,7 +717,7 @@ public class Connector {
         GenericLookup l = new GenericLookup(1, category);
         urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
        
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -681,7 +735,7 @@ public class Connector {
         GenericLookup l = new GenericLookup(1, subcat);
         urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -699,7 +753,7 @@ public class Connector {
         GenericLookup l = new GenericLookup(1, status);
         urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -717,7 +771,7 @@ public class Connector {
         GenericLookup l = new GenericLookup(1, container);
         urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
-        String result = SendQuery(SERVER + urlEnd);
+        String result = SendQuery();
         
         // Log the result in case of error message:
         System.err.println(result);
