@@ -38,7 +38,7 @@ namespace DWSS.Middleware
                 List<Order> orderList;
                 try
                 {
-                    string serverResponse = await MiddlewareHTTPClient.SendQuery("getUnfulfilled.jsp");
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("getUnfulfilled.jsp", new List<KeyValuePair<string, string>>());
                     orderList = serverResponse == null ? new List<Order>() : Newtonsoft.Json.JsonConvert.DeserializeObject<List<Order>>(serverResponse);
                 } catch (Exception)
                 {
@@ -62,7 +62,10 @@ namespace DWSS.Middleware
             {
                 try
                 {
-                    string serverResponse = await MiddlewareHTTPClient.SendQuery("fulfillOrder.jsp?ORDER="+orderToFulfil.ID.ToString());
+                    var listToSend = new List<KeyValuePair<string, string>>() {
+                        new KeyValuePair<string, string>("ORDER",orderToFulfil.ID.ToString())
+                    };
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("fulfillOrder.jsp", listToSend);
                     return serverResponse.Contains("SUCCESS");
                 } catch (Exception ex)
                 {
@@ -90,7 +93,11 @@ namespace DWSS.Middleware
             }
             else
             {
-                string serverResponse = await MiddlewareHTTPClient.SendQuery("getUser.jsp?ID=" + username);
+                var listToSend = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("ID", username)
+                };
+                string serverResponse = await MiddlewareHTTPClient.SendQuery("getUser.jsp", listToSend);
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<User>(serverResponse);
             }
         }
@@ -108,7 +115,11 @@ namespace DWSS.Middleware
             }
             else
             {
-                string serverResponse = await MiddlewareHTTPClient.SendQuery("searchProducts.jsp?TERM=" + searchTerms);
+                var listToSend = new List<KeyValuePair<string, string>>()
+                {
+                    new KeyValuePair<string, string>("TERM", searchTerms)
+                };
+                string serverResponse = await MiddlewareHTTPClient.SendQuery("searchProducts.jsp", listToSend);
                 return Newtonsoft.Json.JsonConvert.DeserializeObject<List<Product>>(serverResponse);
             }
         }
@@ -129,7 +140,12 @@ namespace DWSS.Middleware
             {
                 try
                 {
-                    string serverResponse = await MiddlewareHTTPClient.SendQuery("changeProductQuantity.jsp?PRODUCT=" + product.ID.ToString() + "&NEWQUANTITY=" + newQuantity.ToString());
+                    var listToSend = new List<KeyValuePair<string, string>>()
+                    {
+                        new KeyValuePair<string, string>("PRODUCT", product.ID.ToString()),
+                        new KeyValuePair<string, string>("NEWQUANTITY", newQuantity.ToString())
+                    };
+                    string serverResponse = await MiddlewareHTTPClient.SendQuery("changeProductQuantity.jsp", listToSend);
                     return serverResponse.Contains("SUCCESS");
                 }
                 catch (Exception)

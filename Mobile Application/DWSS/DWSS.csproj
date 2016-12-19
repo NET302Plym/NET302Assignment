@@ -89,6 +89,7 @@
     <Compile Include="Data\Product.cs" />
     <Compile Include="Data\User.cs" />
     <Compile Include="Development\DummyData.cs" />
+    <Compile Include="Encryption\Encrypter.cs" />
     <Compile Include="MasterPage.xaml.cs">
       <DependentUpon>MasterPage.xaml</DependentUpon>
     </Compile>

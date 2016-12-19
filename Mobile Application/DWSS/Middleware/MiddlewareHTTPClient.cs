@@ -27,11 +27,21 @@ namespace DWSS.Middleware
         /// <param name="queryURL">The URL to post the query to</param>
         /// <param name="expectResponse">Will only post-process the results if they are required</param>
         /// <returns></returns>
-        public static async Task<string> SendQuery(string queryURL, bool expectResponse = true)
+        public static async Task<string> SendQuery(string queryURL, List<KeyValuePair<string, string>> values, bool expectResponse = true)
         {
-            httpClient = new HttpClient();
-            httpClient.DefaultRequestHeaders.IfModifiedSince = DateTime.Now;
-            var responseMessage = await httpClient.GetAsync(serverAddress + queryURL);
+            //// Encrypt the data to send
+            //List<KeyValuePair<string, string>> newValues = new List<KeyValuePair<string, string>>();
+            //for (int i = 0; i < values.Count(); i++)
+            //    newValues.Add(new KeyValuePair<string, string>(values[i].Key, Encryption.Encrypter.Encrypt(values[i].Value)));
+
+            //httpClient = new HttpClient();
+            //httpClient.DefaultRequestHeaders.IfModifiedSince = DateTime.Now;
+            //// var responseMessage = await httpClient.GetAsync(serverAddress + queryURL);
+
+            //var content = new FormUrlEncodedContent(newValues);
+            var content = new FormUrlEncodedContent(values);
+
+            var responseMessage = await httpClient.PostAsync(serverAddress + queryURL, content);
             httpClient.Dispose();
             if (responseMessage.StatusCode != System.Net.HttpStatusCode.OK)
             {

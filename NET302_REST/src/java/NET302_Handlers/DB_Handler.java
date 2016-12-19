@@ -285,7 +285,7 @@ public class DB_Handler {
             //+ "Products.categoryID as productCategoryID, " // duplicate
             + "(" + p_cat + ".ID) as productCategoryID, "
             + "(" + p_sub + ".ID) as productSubCategoryID, "
-            + "(" + p_con + ").ID as productContainerID, "
+            + "(" + p_con + ".ID) as productContainerID, "
             + "(" + p_cat + ".categoryVal) as productCategory, "
             + "(" + p_sub + ".subcatVal) as productSubcategory, "
             + "(" + p_con + ".containerVal) as productContainer, "
