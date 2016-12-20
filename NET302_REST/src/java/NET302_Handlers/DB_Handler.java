@@ -64,6 +64,7 @@ public class DB_Handler {
     private PreparedStatement   updateUser      = null;
     private PreparedStatement   addProduct      = null;
     private PreparedStatement   addOrder        = null;
+    private PreparedStatement   addOrder2        = null;
     private PreparedStatement   addUser         = null;
     private PreparedStatement   allProducts     = null;
     private PreparedStatement   allOrders       = null;
@@ -210,6 +211,11 @@ public class DB_Handler {
             "INSERT INTO orders ("
             + "quantity, dateOrdered, staffID, productID, locationID, statusID)"
             + " VALUES (?, GETDATE(), ?, ?, ?, ?);";
+    
+    private final String        addOrderQ2       =
+            "INSERT INTO orders ("
+            + "quantity, dateOrdered, staffID, productID, locationID, statusID)"
+            + " VALUES (?, ?, ?, ?, ?, ?);";
     
     private final String        addUserQ        =
             "INSERT INTO staff ("
@@ -1224,6 +1230,25 @@ public class DB_Handler {
         addProduct.executeUpdate();
     }
     
+    public void newOrderQ2(Order orderNew) throws SQLException {
+        addOrder = connection.prepareStatement(addOrderQ2);
+        /*private final String        addOrderQ2       =
+            "INSERT INTO orders ("
+            + "quantity, dateOrdered, staffID, productID, locationID, statusID)"
+            + " VALUES (?, ?, ?, ?, ?, ?);";*/
+
+        
+        // Populate query - we do not need to use ID:
+        addOrder.setInt(1, orderNew.getQuantity());
+        addOrder.setString(2, orderNew.getDateOrdered());
+        addOrder.setInt(3, orderNew.getStaffOrdered().getID());
+        addOrder.setInt(4, orderNew.getProduct().getID());
+        addOrder.setInt(5, orderNew.getLocation().getID());
+        addOrder.setInt(6, orderNew.getStatus().getID());
+        
+        addOrder.executeUpdate();
+    }
+    
     /**
      * This method performs an insert on the database using a given Order.
      * @param orderNew Order - being the details to add to the database.
@@ -1232,6 +1257,15 @@ public class DB_Handler {
      */
     public void newOrder(Order orderNew) throws SQLException {
         addOrder = connection.prepareStatement(addOrderQ);
+        /*private final String        addOrderQ2       =
+            "INSERT INTO orders ("
+            + "quantity, dateOrdered, staffID, productID, locationID, statusID)"
+            + " VALUES (?, GETDATE(), ?, ?, ?, ?);";*/
+        
+        //SHOULD GETDATE() be ? - need to test but i feel like this is against the
+        //system as we are specifying date and even implementing it below. will this not
+        //cause an SQL error? - See newOrderQ2 above
+
         
         // Populate query - we do not need to use ID:
         addOrder.setInt(1, orderNew.getQuantity());

@@ -1,6 +1,7 @@
 package net302;
 
 import Connector.Connector;
+import Encrypter.Encrypter;
 import NET302JavaLibrary.*;
 import java.util.ArrayList;
 import javax.inject.Named;
@@ -32,23 +33,16 @@ public class ManagementBean {
     // DEBUG: If true, then no commands will be sent to the REST server!
     private final boolean debug = false;
     
-    // TODO LISR:
-    // How often to update the data? Perhaps only when needed, using the pages?
-    // It should be cached per session thanks to the @Depenedant tag.
-    // Should fetching all data even be used? It works well for DummyData to
-    // display and populate the pages but perhaps it will be querying too much!
-    
     private final Connector             client_connector;
     private final DummyData             dummy_data;
-    public String f = "";
     
+    public String f = "";
     private User loggedUser;
-
+    private Boolean authenticated = false;
     private Order order;
-
+    private Encrypter encrypter;
     
     private ArrayList<Product>          products            = null;
-    private ArrayList<Product>          filteredProducts    = null;
     private ArrayList<Order>            orders              = null;
     private ArrayList<User>             users               = null;
     private ArrayList<GenericLookup>    categories          = null;
@@ -64,14 +58,9 @@ public class ManagementBean {
     public ManagementBean()
     {        
         System.out.println("**** ManagementBean Loaded ****");
-        // Get the connector:
         client_connector = new Connector();
-
-        dummy_data = new DummyData(0);
-        
+        dummy_data = new DummyData(0);        
        //products = client_connector.getAllProducts();
-       //products = client_connector.getAllProducts();
-       
     }
     
     
@@ -92,18 +81,11 @@ public class ManagementBean {
      */
 
     public String orderProduct(Product p, int quantity) {
-
-        // TODO: Assign these values, not sure if default or extracted from the
-        // webpage. For the latter, the method requires additional parameters!
-              
-        // Generate the Order:
+        if(authenticated == false)return "index.html";
         
         System.out.println("Product ID = " + p.getID() + " and Qualtity = " + quantity);
+        order = new Order(p, quantity, loggedUser, true);
 
-        order = new Order(p, quantity, loggedUser);
-
-        
-        // Action the generated Order:
         if (debug)
         { 
             System.out.println("[DEBUG] ORDER GENERATED FOR " + quantity + " OF " + p.getName());
@@ -120,10 +102,7 @@ public class ManagementBean {
         } 
         return null;
     }
-    
 
- 
-        
     public String getUsername()
     {
         return this.loggedUser.getName();
@@ -135,17 +114,21 @@ public class ManagementBean {
     }
     
     public String auth(String username, String password) throws Exception
-    {
-        Boolean authenticated = false; 
-        
+    {  
+        authenticated = false;    
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes(),0,password.length());
             String md5Pass = new BigInteger(1, md.digest()).toString(16);
-            User user = client_connector.Authenticate(username, md5Pass);
+            User user = client_connector.authenticatePost(username, md5Pass);
+           /* String encUsername = encrypter.encryptString(username);
+            String encMD5Pass = encrypter.encryptString(password);
+            User user = client_connector.authenticatePost(encUsername, encMD5Pass);
+            System.out.println("encrypt usename " + encUsername);*/
             if (user != null)
             {
                 loggedUser = user;
+                authenticated = true;
                 return "productList.xhtml";
             }                        
         } catch (Exception ex){
@@ -153,8 +136,6 @@ public class ManagementBean {
         }
         return "index.xhtml";        
     }
-    
-    
 
     //************************************************************************//
     //  -   ARRAYLIST LOADERS                                             -   //
@@ -166,6 +147,7 @@ public class ManagementBean {
         
     public String filterProducts(String filter)
     {
+        if(authenticated == false) return "index.xhtml";
         System.out.println("*** filtered products based on filter: " + filter);
         products = client_connector.searchProduct(filter);
         return "productList.xhtml";
@@ -178,10 +160,14 @@ public class ManagementBean {
      * @return ArrayList<Product> - being the list of Products.
      */
     public ArrayList<Product> loadProducts() {
-        if (debug) {
-            products = dummy_data.getProducts();
-        } else { products = client_connector.getAllProducts(); }
+        if(authenticated != false)
+        {
+             if (debug) {
+                products = dummy_data.getProducts();
+            } else { products = client_connector.getAllProducts(); }
         return products;
+        }
+        return new ArrayList<>();
     }
     
     /**
@@ -190,10 +176,13 @@ public class ManagementBean {
      * @return ArrayList<Order> - being the list of Orders.
      */
     public ArrayList<Order> loadOrders() {
-        if (debug) {
-            orders = dummy_data.getOrders();
-        } else { orders = client_connector.getAllOrders(); }
-        return orders;
+        if(authenticated != false)
+        {
+            if (debug) {
+               orders = dummy_data.getOrders();
+            } else { orders = client_connector.getAllOrders(); }
+        }
+    return orders;
     }
     
     /**
@@ -202,9 +191,12 @@ public class ManagementBean {
      * @return ArrayList<User> - being the list of Users.
      */
     public ArrayList<User> loadUsers() {
-        if (debug) {
-            users = dummy_data.getUsers();
-        } else { users = client_connector.getAllUsers(); }
+        if(authenticated != false)
+        {
+            if (debug) {
+                users = dummy_data.getUsers();
+            } else { users = client_connector.getAllUsers(); }
+        }
         return users;
     }
     
@@ -214,9 +206,12 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup> - being the list of categories.
      */
     public ArrayList<GenericLookup> loadCategories() {
-        if (debug) {
-            categories = dummy_data.getCategories();
-        } else { categories = client_connector.getAllLookups("category"); }
+        if(authenticated != false)
+        {
+            if (debug) {
+                categories = dummy_data.getCategories();
+            } else { categories = client_connector.getAllLookups("category"); }              
+        }
         return categories;
     }
     
@@ -226,9 +221,12 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup> - being the list of sub-categories.
      */
     public ArrayList<GenericLookup> loadSubCategories() {
-        if (debug) {
-            subCategories = dummy_data.getSubCategories();
-        } else { subCategories = client_connector.getAllLookups("subcategory"); }
+        if(authenticated != false)
+        {
+            if (debug) {
+                subCategories = dummy_data.getSubCategories();
+            } else { subCategories = client_connector.getAllLookups("subcategory"); }
+        } 
         return subCategories;
     }
     
@@ -239,9 +237,12 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup> - being the list of Product containers.
      */
     public ArrayList<GenericLookup> loadContainers() {
-        if (debug) {
-            containers = dummy_data.getContainers();
-        } else { containers = client_connector.getAllLookups("container"); }
+        if(authenticated != false)
+        {
+            if (debug) {
+                containers = dummy_data.getContainers();
+            } else { containers = client_connector.getAllLookups("container"); }
+        }
         return containers;
     }
     
@@ -251,9 +252,12 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup> - being the list of Order statuses.
      */
     public ArrayList<GenericLookup> loadStatuses() {
+        if(authenticated != false)
+        {
         if (debug) {
             orderStatus = dummy_data.getOrderStatus();
         } else { orderStatus = client_connector.getAllLookups("status"); }
+        }
         return orderStatus;
     }
     
@@ -263,9 +267,12 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup> - being the list of Locations.
      */
     public ArrayList<GenericLookup> loadLocations() {
+        if(authenticated != false)
+        {
         if (debug) {
             locations = dummy_data.getLocations();
         } else { locations = client_connector.getAllLookups("location"); }
+        }
         return locations;
     }
     
@@ -276,6 +283,8 @@ public class ManagementBean {
      * @return ArrayList<Order> - being the list of unfulfilled Orders.
      */
     public ArrayList<Order> loadUnfulfilled() {
+        if(authenticated != false)
+        {
         if (debug) {
             // Not a supported method in DummyData, will manually remove here:
             unfulfilled = dummy_data.getOrders();
@@ -285,6 +294,7 @@ public class ManagementBean {
                 }
             }
         } else { unfulfilled = client_connector.getUnfulfilled(); }
+        }
         return unfulfilled;
     }
 
@@ -297,19 +307,18 @@ public class ManagementBean {
      * @return ArrayList<Product>
      */
     public ArrayList<Product> getProducts() {
-        return products;
+        if(authenticated != false)return products;
+        return new ArrayList<>();
     }
     
-      public ArrayList<Product> getFilteredProducts() {
-        return filteredProducts;
-    }
 
     /**
      * Gets the local copy of the Orders ArrayList.
      * @return ArrayList<Order>
      */
     public ArrayList<Order> getOrders() {
-        return orders;
+        if(authenticated != false)return orders;
+        return new ArrayList<>();
     }
 
     /**
@@ -317,7 +326,8 @@ public class ManagementBean {
      * @return ArrayList<User>
      */
     public ArrayList<User> getUsers() {
-        return users;
+        if(authenticated != false)return users;
+        return new ArrayList<>();
     }
 
     /**
@@ -325,7 +335,8 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup>
      */
     public ArrayList<GenericLookup> getCategories() {
-        return categories;
+        if(authenticated != false)return categories;
+        return new ArrayList<>();
     }
 
     /**
@@ -333,7 +344,8 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup>
      */
     public ArrayList<GenericLookup> getSubCategories() {
-        return subCategories;
+        if(authenticated != false)return subCategories;
+        return new ArrayList<>();
     }
 
     /**
@@ -341,7 +353,8 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup>
      */
     public ArrayList<GenericLookup> getOrderStatus() {
-        return orderStatus;
+        if(authenticated != false)return orderStatus;
+        return new ArrayList<>();
     }
 
     /**
@@ -349,7 +362,8 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup>
      */
     public ArrayList<GenericLookup> getContainers() {
-        return containers;
+        if(authenticated != false)return containers;
+        return new ArrayList<>();
     }
 
     /**
@@ -357,7 +371,8 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup>
      */
     public ArrayList<GenericLookup> getLocations() {
-        return locations;
+        if(authenticated != false)return locations;
+        return new ArrayList<>();
     }
 
     /**
@@ -365,6 +380,7 @@ public class ManagementBean {
      * @return ArrayList<GenericLookup>
      */
     public ArrayList<Order> getUnfulfilled() {
-        return unfulfilled;
+        if(authenticated != false)return unfulfilled;
+        return new ArrayList<>();
     }
 }

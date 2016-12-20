@@ -33,20 +33,51 @@ public class Order {
         this.location = location;
         this.status = status;
     }
-    
-    public Order(Product p, int quantity, User user)
+    /**
+     * DONT USE FOR ANYTHING OTHER THAN NEW ORDER
+     * @param p
+     * @param quantity
+     * @param user
+     * @param limitData 
+     */
+    public Order(Product p, int quantity, User user, Boolean limitData)
     {
-        
         LocalDate localDate = LocalDate.now();
-        
-        this.ID = p.getID();
-        this.quantity = quantity;
-        this.fulfilled = false;
-        this.dateOrdered = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate);
-        this.staffOrdered = user;
-        this.product = p;
-        this.location = new GenericLookup(1, "South West");
-        this.status = new GenericLookup(0, "Open");
+         if (limitData)
+        {
+            this.ID = p.getID();
+            this.quantity = quantity;
+            this.dateOrdered = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate);
+            this.staffOrdered = user;
+            this.product = p;
+            this.location = new GenericLookup(1, "South West");
+            this.status = new GenericLookup(0, "Open");
+            this.product.setName("");
+            this.product.setCategory(null);
+            this.product.setCategory(null);
+            this.product.setContainer(null);
+            this.product.setName(null);
+            this.product.setStockCount(40);
+            this.product.setSubCategory(null);
+            this.product.setUnitPrice(null);
+       // addOrder.setInt(1, orderNew.getQuantity());
+       // addOrder.setString(2, orderNew.getDateOrdered());
+       // addOrder.setInt(3, orderNew.getStaffOrdered().getID());
+       // addOrder.setInt(4, orderNew.getProduct().getID());
+       // addOrder.setInt(5, orderNew.getLocation().getID());
+       // addOrder.setInt(6, orderNew.getStatus().getID());
+        }
+        else
+         {
+            this.ID = p.getID();
+            this.quantity = quantity;
+            this.fulfilled = false;
+            this.dateOrdered = DateTimeFormatter.ofPattern("yyy-MM-dd").format(localDate);
+            this.staffOrdered = user;
+            this.product = p;
+            this.location = new GenericLookup(1, "South West");
+            this.status = new GenericLookup(0, "Open");
+         }
     }
     
     //************************************************************************//

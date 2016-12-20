@@ -8,6 +8,7 @@ import NET302JavaLibrary.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.reflect.Type;
+import java.net.ProtocolException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -42,6 +45,7 @@ public class Connector {
     private final   String KEY    = "NET_302_Plym_KEY";
     private final   String SERVER = "http://localhost:8080/NET302_REST/";
     private         String urlEnd;
+    private         String urlEndPost;
     private         Encrypter enc;
     
     /**
@@ -52,6 +56,64 @@ public class Connector {
     //************************************************************************//
     //  -   UNIVERSAL / KEY METHODS                                       -   //
     //************************************************************************//
+    
+    
+
+    
+    
+    private String postQuery(String[] postParamsArr) throws ProtocolException, IOException
+    {
+        String postParams = "?";
+        String result;
+          for(int i = 0; i < postParamsArr.length;i++)
+            {
+                postParams += postParamsArr[i];
+                if(i < postParamsArr.length -1)
+                {
+                    postParams += "&";
+                }
+            }
+        try {
+            
+            URL url = new URL( SERVER + urlEndPost + postParams);
+            HttpURLConnection conn= (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod( "POST" );
+
+          
+
+            conn.setDoOutput( true );
+            DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+            wr.writeBytes(postParams);
+            wr.flush();
+            wr.close();
+
+            int responseCode = conn.getResponseCode();
+            System.out.println("\nSending 'POST' request to URL : " + url);
+            System.out.println("Post parameters : " + postParams);
+            System.out.println("Response Code : " + responseCode);
+
+            //BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            // Get the resulting JSP page as a whole:
+            BufferedReader in = new BufferedReader(
+                new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            
+            result = getFirstLine(in);
+            
+        } catch (MalformedURLException ex) {
+            // URL Error - Straightforward
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            result = "ERROR: URL error. Connector failed to reach specified URL."
+                    + "\n" + ex.getMessage();
+        } catch (IOException ex) {
+            // Reader error - Poor error message so may need to be corrected!
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            result = "ERROR: Reader Error. Connector failed to use BufferedReader on resulting query."
+                    + "\n" + ex.getMessage();
+        } 
+        return result;
+    }
+    
+    
     
     /**
      * Helper method to send a query off to the given URL.
@@ -107,6 +169,41 @@ public class Connector {
         return result;
     }
     
+    
+    
+            //************************************************************************//
+    //  -   AUTHENTICATEPOST USER                                             -   //
+    //************************************************************************//
+    
+    /**
+     * This method authenticates a user based on the hashed password value given.
+     * Returns the User if successful, otherwise NULL - therefore you MUST check
+     * for NULL values when using this method!
+     * Will log any result to System.err.
+     * @param username String - being the username to authenticate with.
+     * @param passwordHash String - being the hashed password to authenticate with.
+     * @return User - being the User (if correct) else null.
+     */
+    public User authenticatePost(String username, String passwordHash) throws IOException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchPaddingException {
+        urlEndPost = "authUser.jsp";
+
+        String[] postParams = new String[] { "ID="+ username, "HASH="+passwordHash };
+
+        
+        
+        
+        // Pass query to URL:
+        String q = postQuery(postParams);
+        
+        // Log the result in case of error message
+        System.err.println(q);
+        
+        if (q.startsWith("ERROR")) { return null; }
+        else { return new User(q); }
+    }
+    
+    
+    
     /**
      * Helper method to return the first non-blank line of a BufferedReader.
      * This removes white-spacing that will otherwise appear at the start of 
@@ -122,25 +219,26 @@ public class Connector {
         do {
             result = reader.readLine();
         } while (result.length() < 1);
-
-        // Here we decrypt the String:
-        try {
-            //result = enc.decryptString(result); // commented out for testing.
-            String r = enc.decryptString(result); // left in for testing.
-        } catch (IllegalBlockSizeException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (BadPaddingException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidKeyException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InvalidAlgorithmParameterException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchPaddingException ex) {
-            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-        }
         return result;
+//        // Here we decrypt the String:
+//        try {
+//            //result = enc.decryptString(result); // commented out for testing.
+//            String r = enc.decryptString(result); // left in for testing.
+//            
+//        } catch (IllegalBlockSizeException ex) {
+//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (BadPaddingException ex) {
+//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InvalidKeyException ex) {
+//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (InvalidAlgorithmParameterException ex) {
+//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (NoSuchAlgorithmException ex) {
+//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (NoSuchPaddingException ex) {
+//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return result;
     }
     
     //************************************************************************//
@@ -251,31 +349,7 @@ public class Connector {
         }
     }
     
-    //************************************************************************//
-    //  -   AUTHENTICATE USER                                             -   //
-    //************************************************************************//
-    
-    /**
-     * This method authenticates a user based on the hashed password value given.
-     * Returns the User if successful, otherwise NULL - therefore you MUST check
-     * for NULL values when using this method!
-     * Will log any result to System.err.
-     * @param username String - being the username to authenticate with.
-     * @param passwordHash String - being the hashed password to authenticate with.
-     * @return User - being the User (if correct) else null.
-     */
-    public User Authenticate(String username, String passwordHash) {
-        urlEnd = "authUser.jsp?ID=" + username + "&HASH=" + passwordHash;
-        
-        // Pass query to URL:
-        String q = SendQuery();
-        
-        // Log the result in case of error message
-        System.err.println(q);
-        
-        if (q.startsWith("ERROR")) { return null; }
-        else { return new User(q); }
-    }
+
     
     //************************************************************************//
     //  -   GET / ADD / UPDATE ITEMS METHODS                              -   //
