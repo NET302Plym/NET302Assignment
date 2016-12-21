@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\App.xbf
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\MainPage.xbf
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\Pages\LoginScreen.xbf
@@ -413,7 +412,47 @@ C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Projec
 C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.dll
 C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.pdb
 C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.exe.config
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\App.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\MasterPage.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\AdjustProductPage.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\AdjustStockPage.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\LoginScreen.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\OptionsPage.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\UserControls\OrderUserControl.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\UserControls\ProductUserControl.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\UserControls\ProgressRingUserControl.xbf
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.xr.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.exe
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.pdb
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\resources.pri
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\AppxManifest.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.build.appxrecipe
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Extensions.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Primitives.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Zlib.Portable.dll
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.pdb
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.pdb
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.pdb
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.pdb
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Extensions.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Primitives.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Zlib.Portable.xml
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\App.g.i.cs
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\App.g.cs
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\MasterPage.g.i.cs
@@ -456,47 +495,6 @@ D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xbf
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.xbf
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\XamlSaveStateFile.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.exe.config
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\App.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\MasterPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\AdjustProductPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\AdjustStockPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\LoginScreen.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\OptionsPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\UserControls\OrderUserControl.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\UserControls\ProductUserControl.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\UserControls\ProgressRingUserControl.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.xr.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.exe
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\resources.pri
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\AppxManifest.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.build.appxrecipe
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Extensions.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Primitives.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Zlib.Portable.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Extensions.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Primitives.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Zlib.Portable.xml
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\DWSS.exe
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\DWSS.pdb
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\DWSS.csproj.GenerateResource.Cache
@@ -512,518 +510,4 @@ D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\qualifiers.txt.intermediate
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\ProjectArchitectures.txt
-=======
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\App.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\MainPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\Pages\LoginScreen.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\DWSS.xr.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\DWSS.exe
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\DWSS.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\resources.pri
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\AppxManifest.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\DWSS.build.appxrecipe
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\Newtonsoft.Json.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\bin\Debug\Newtonsoft.Json.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\App.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\App.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\MainPage.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\MainPage.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\Pages\LoginScreen.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\Pages\LoginScreen.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\XamlTypeInfo.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\App.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\MainPage.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\App.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\MainPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\XamlSaveStateFile.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\Pages\LoginScreen.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\Pages\LoginScreen.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\DWSS.exe
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\DWSS.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\DWSS.csproj.GenerateResource.Cache
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\priconfig.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\priconfig.xml.intermediate
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\layout.resfiles
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\layout.resfiles.intermediate
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\resources.resfiles
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\resources.resfiles.intermediate
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\pri.resfiles
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\pri.resfiles.intermediate
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\qualifiers.txt
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\qualifiers.txt.intermediate
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\DWSS\DWSS\obj\Debug\ProjectArchitectures.txt
-E:\NET302 Start\DWSS\DWSS\bin\Debug\App.xbf
-E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\LoginScreen.xbf
-E:\NET302 Start\DWSS\DWSS\bin\Debug\DWSS.xr.xml
-E:\NET302 Start\DWSS\DWSS\bin\Debug\DWSS.exe
-E:\NET302 Start\DWSS\DWSS\bin\Debug\DWSS.pdb
-E:\NET302 Start\DWSS\DWSS\bin\Debug\resources.pri
-E:\NET302 Start\DWSS\DWSS\bin\Debug\AppxManifest.xml
-E:\NET302 Start\DWSS\DWSS\bin\Debug\DWSS.build.appxrecipe
-E:\NET302 Start\DWSS\DWSS\bin\Debug\Newtonsoft.Json.dll
-E:\NET302 Start\DWSS\DWSS\bin\Debug\Newtonsoft.Json.xml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
-E:\NET302 Start\DWSS\DWSS\obj\Debug\App.g.i.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\App.g.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\LoginScreen.g.i.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\LoginScreen.g.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\XamlTypeInfo.g.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\App.xaml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\LoginScreen.xaml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\App.xbf
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\LoginScreen.xbf
-E:\NET302 Start\DWSS\DWSS\obj\Debug\XamlSaveStateFile.xml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\DWSS.exe
-E:\NET302 Start\DWSS\DWSS\obj\Debug\DWSS.pdb
-E:\NET302 Start\DWSS\DWSS\obj\Debug\DWSS.csproj.GenerateResource.Cache
-E:\NET302 Start\DWSS\DWSS\obj\Debug\priconfig.xml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\priconfig.xml.intermediate
-E:\NET302 Start\DWSS\DWSS\obj\Debug\layout.resfiles
-E:\NET302 Start\DWSS\DWSS\obj\Debug\layout.resfiles.intermediate
-E:\NET302 Start\DWSS\DWSS\obj\Debug\resources.resfiles
-E:\NET302 Start\DWSS\DWSS\obj\Debug\resources.resfiles.intermediate
-E:\NET302 Start\DWSS\DWSS\obj\Debug\pri.resfiles
-E:\NET302 Start\DWSS\DWSS\obj\Debug\pri.resfiles.intermediate
-E:\NET302 Start\DWSS\DWSS\obj\Debug\qualifiers.txt
-E:\NET302 Start\DWSS\DWSS\obj\Debug\qualifiers.txt.intermediate
-E:\NET302 Start\DWSS\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
-E:\NET302 Start\DWSS\DWSS\obj\Debug\ProjectArchitectures.txt
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OptionsPage.g.i.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OptionsPage.g.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OptionsPage.xaml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OptionsPage.xbf
-E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\OptionsPage.xbf
-E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf
-E:\NET302 Start\DWSS\DWSS\bin\Debug\UserControls\OrderUserControl.xbf
-E:\NET302 Start\DWSS\DWSS\bin\Debug\UserControls\ProductUserControl.xbf
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.i.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\OrderUserControl.g.i.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\OrderUserControl.g.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\ProductUserControl.g.i.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\ProductUserControl.g.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xaml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xbf
-E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\OrderUserControl.xaml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\ProductUserControl.xaml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\OrderUserControl.xbf
-E:\NET302 Start\DWSS\DWSS\obj\Debug\UserControls\ProductUserControl.xbf
-E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\AdjustStockPage.xbf
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustStockPage.g.i.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustStockPage.g.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustStockPage.xaml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustStockPage.xbf
-E:\NET302 Start\DWSS\DWSS\bin\Debug\Pages\AdjustProductPage.xbf
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustProductPage.g.i.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustProductPage.g.cs
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustProductPage.xaml
-E:\NET302 Start\DWSS\DWSS\obj\Debug\Pages\AdjustProductPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\App.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\MasterPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustProductPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustStockPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\LoginScreen.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OptionsPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\OrderUserControl.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\ProductUserControl.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.xr.xml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.exe
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.pdb
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\resources.pri
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\AppxManifest.xml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.build.appxrecipe
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.g.i.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.g.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.g.i.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.g.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.g.i.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.g.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.g.i.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.g.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.g.i.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.g.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.g.i.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.g.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.i.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.g.i.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.g.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.g.i.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.g.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\XamlTypeInfo.g.cs
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.xaml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.xaml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.xaml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.xaml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.xaml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.xaml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xaml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.xaml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xaml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xbf
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\XamlSaveStateFile.xml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.exe
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.pdb
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.csproj.GenerateResource.Cache
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\priconfig.xml
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\priconfig.xml.intermediate
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\layout.resfiles
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\layout.resfiles.intermediate
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\resources.resfiles
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\resources.resfiles.intermediate
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\pri.resfiles
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\pri.resfiles.intermediate
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\qualifiers.txt
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\qualifiers.txt.intermediate
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
-C:\Users\Daniel\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\ProjectArchitectures.txt
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\App.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\MasterPage.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustProductPage.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustStockPage.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\LoginScreen.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OptionsPage.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\OrderUserControl.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\ProductUserControl.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.xr.xml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.exe
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.pdb
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\resources.pri
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\AppxManifest.xml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.build.appxrecipe
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.dll
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.xml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.g.i.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.g.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.g.i.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.g.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.g.i.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.g.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.g.i.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.g.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.g.i.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.g.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.g.i.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.g.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.i.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.g.i.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.g.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.g.i.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.g.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\XamlTypeInfo.g.cs
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.xaml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.xaml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.xaml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.xaml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.xaml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.xaml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xaml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.xaml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xaml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xbf
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\XamlSaveStateFile.xml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.exe
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.pdb
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.csproj.GenerateResource.Cache
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\priconfig.xml
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\priconfig.xml.intermediate
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\layout.resfiles
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\layout.resfiles.intermediate
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\resources.resfiles
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\resources.resfiles.intermediate
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\pri.resfiles
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\pri.resfiles.intermediate
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\qualifiers.txt
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\qualifiers.txt.intermediate
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
-D:\my-files\Documents\git\NET302Assignment\Mobile Application\DWSS\obj\Debug\ProjectArchitectures.txt
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\App.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\MasterPage.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustProductPage.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustStockPage.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\LoginScreen.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OptionsPage.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\OrderUserControl.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\ProductUserControl.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.xr.xml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.exe
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.pdb
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\resources.pri
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\AppxManifest.xml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.build.appxrecipe
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.dll
-D:\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.xml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.g.i.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.g.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.g.i.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.g.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.g.i.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.g.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.g.i.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.g.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.g.i.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.g.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.g.i.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.g.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.i.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.g.i.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.g.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.g.i.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.g.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\XamlTypeInfo.g.cs
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.xaml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.xaml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.xaml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.xaml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.xaml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.xaml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xaml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.xaml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xaml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xbf
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\XamlSaveStateFile.xml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.exe
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.pdb
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.csproj.GenerateResource.Cache
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\priconfig.xml
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\priconfig.xml.intermediate
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\layout.resfiles
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\layout.resfiles.intermediate
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\resources.resfiles
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\resources.resfiles.intermediate
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\pri.resfiles
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\pri.resfiles.intermediate
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\qualifiers.txt
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\qualifiers.txt.intermediate
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
-D:\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\ProjectArchitectures.txt
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.exe.config
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\App.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\MasterPage.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustProductPage.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\AdjustStockPage.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\LoginScreen.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OptionsPage.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\OrderUserControl.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\ProductUserControl.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.xr.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.exe
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.pdb
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\resources.pri
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\AppxManifest.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\DWSS.build.appxrecipe
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.dll
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.dll
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.dll
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.dll
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.dll
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\System.Net.Http.Extensions.dll
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\System.Net.Http.Primitives.dll
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Zlib.Portable.dll
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.pdb
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.pdb
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.pdb
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\System.Net.Http.Extensions.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\System.Net.Http.Primitives.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Zlib.Portable.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.g.i.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.g.i.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.g.i.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.g.i.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.g.i.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.g.i.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.i.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.g.i.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.g.i.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\XamlTypeInfo.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.xaml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.xaml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.xaml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.xaml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.xaml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.xaml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xaml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.xaml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xaml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\App.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MasterPage.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\XamlSaveStateFile.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.exe
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.pdb
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\DWSS.csproj.GenerateResource.Cache
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\priconfig.xml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\priconfig.xml.intermediate
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\layout.resfiles
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\layout.resfiles.intermediate
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\resources.resfiles
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\resources.resfiles.intermediate
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\pri.resfiles
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\pri.resfiles.intermediate
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\qualifiers.txt
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\qualifiers.txt.intermediate
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\ProjectArchitectures.txt
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.dll
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.pdb
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.xml
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\App.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\App.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\MasterPage.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\MasterPage.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.g.i.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\XamlTypeInfo.g.cs
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\App.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\MasterPage.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.xaml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\App.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\MasterPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\AdjustProductPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\AdjustStockPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\LoginScreen.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\OptionsPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\Pages\OrderFulfilmentPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\OrderUserControl.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\ProductUserControl.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\XamlSaveStateFile.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.exe.config
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\App.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\MasterPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\AdjustProductPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\AdjustStockPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\LoginScreen.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\OptionsPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Pages\OrderFulfilmentPage.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\UserControls\OrderUserControl.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\UserControls\ProductUserControl.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\UserControls\ProgressRingUserControl.xbf
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.xr.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.exe
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\resources.pri
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\AppxManifest.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.build.appxrecipe
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.Extensions.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Extensions.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Primitives.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Zlib.Portable.dll
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Core.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Google.Apis.PlatformServices.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Microsoft.Threading.Tasks.Extensions.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Newtonsoft.Json.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Extensions.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Primitives.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Zlib.Portable.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\DWSS.exe
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\DWSS.pdb
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\DWSS.csproj.GenerateResource.Cache
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\priconfig.xml
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\priconfig.xml.intermediate
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\layout.resfiles
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\layout.resfiles.intermediate
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\resources.resfiles
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\resources.resfiles.intermediate
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\pri.resfiles
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\pri.resfiles.intermediate
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\qualifiers.txt
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\qualifiers.txt.intermediate
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\ProjectArchitectures.txt
->>>>>>> b3e01a43bf7f7639b946fd47057a843a6e4185a6
