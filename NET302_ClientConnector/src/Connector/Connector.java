@@ -1,6 +1,7 @@
 package Connector;
 
 import Encrypter.Encrypter;
+import Encrypter.SymmetricEncrypter;
 import NET302JavaLibrary.GenericLookup;
 import NET302JavaLibrary.Order;
 import NET302JavaLibrary.Product;
@@ -26,6 +27,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.List;
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
@@ -46,6 +49,7 @@ public class Connector {
     private final   String SERVER = "http://localhost:8080/NET302_REST/";
     private         String urlEnd;
     private         String urlEndPost;
+    private         String urlEndEncrypted;
     private         Encrypter enc;
     
     /**
@@ -58,7 +62,57 @@ public class Connector {
     //************************************************************************//
     
     
+    private String postEncryptedData(List<SimpleEntry> input){
+        String postParams = "?";
+        SymmetricEncrypter e = new SymmetricEncrypter();
+        String result;
+          for (int i = 0; i < input.size(); i++)
+          {
+              try {
+                  String prefix = "";
+                  if (i != 0) prefix = "&";
+                  postParams += prefix + input.get(i).getKey().toString() + "=" + e.EncryptString(input.get(i).getValue().toString());
+              } catch (Exception ex){}
+          }
+        try {
+            
+            URL url = new URL( SERVER + urlEndEncrypted + postParams);
+            HttpURLConnection conn= (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod( "POST" );
 
+          
+
+            conn.setDoOutput( true );
+            DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
+            wr.writeBytes(postParams);
+            wr.flush();
+            wr.close();
+
+            int responseCode = conn.getResponseCode();
+            System.out.println("\nSending 'POST' request to URL : " + url);
+            System.out.println("Post parameters : " + postParams);
+            System.out.println("Response Code : " + responseCode);
+
+            //BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            // Get the resulting JSP page as a whole:
+            BufferedReader in = new BufferedReader(
+                new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            
+            result = getFirstLine(in);
+            
+        } catch (MalformedURLException ex) {
+            // URL Error - Straightforward
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            result = "ERROR: URL error. Connector failed to reach specified URL."
+                    + "\n" + ex.getMessage();
+        } catch (IOException ex) {
+            // Reader error - Poor error message so may need to be corrected!
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+            result = "ERROR: Reader Error. Connector failed to use BufferedReader on resulting query."
+                    + "\n" + ex.getMessage();
+        } 
+        return result;        
+    }
     
     
     private String postQuery(String[] postParamsArr) throws ProtocolException, IOException
@@ -185,15 +239,16 @@ public class Connector {
      * @return User - being the User (if correct) else null.
      */
     public User authenticatePost(String username, String passwordHash) throws IOException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException, InvalidAlgorithmParameterException, NoSuchAlgorithmException, NoSuchPaddingException {
-        urlEndPost = "authUser.jsp";
+        urlEndEncrypted = "authUser.jsp";
 
-        String[] postParams = new String[] { "ID="+ username, "HASH="+passwordHash };
-
-        
-        
+        //String[] postParams = new String[] { "ID="+ username, "HASH="+passwordHash };
         
         // Pass query to URL:
-        String q = postQuery(postParams);
+        //String q = postQuery(postParams);
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("ID",username));
+        ar.add(new SimpleEntry("HASH",passwordHash));
+        String q = postEncryptedData(ar);
         
         // Log the result in case of error message
         System.err.println(q);
@@ -201,8 +256,7 @@ public class Connector {
         if (q.startsWith("ERROR")) { return null; }
         else { return new User(q); }
     }
-    
-    
+        
     
     /**
      * Helper method to return the first non-blank line of a BufferedReader.
@@ -215,30 +269,32 @@ public class Connector {
      */
     private String getFirstLine(BufferedReader reader) throws IOException {
         String result = "";     // Initialised for return.
-        
+        SymmetricEncrypter e = new SymmetricEncrypter();
         do {
             result = reader.readLine();
+                        
         } while (result.length() < 1);
+        //return result;
+        //Here we decrypt the String:
+        try {
+            //result = enc.decryptString(result); // commented out for testing.
+            result = e.DecryptString(result); // left in for testing.
+        } catch (IllegalBlockSizeException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (BadPaddingException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidKeyException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InvalidAlgorithmParameterException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NoSuchPaddingException ex) {
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex){
+            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return result;
-//        // Here we decrypt the String:
-//        try {
-//            //result = enc.decryptString(result); // commented out for testing.
-//            String r = enc.decryptString(result); // left in for testing.
-//            
-//        } catch (IllegalBlockSizeException ex) {
-//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (BadPaddingException ex) {
-//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (InvalidKeyException ex) {
-//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (InvalidAlgorithmParameterException ex) {
-//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (NoSuchAlgorithmException ex) {
-//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (NoSuchPaddingException ex) {
-//            Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        return result;
     }
     
     //************************************************************************//
@@ -383,9 +439,13 @@ public class Connector {
      * @return ArrayList<Product> - being the list of returned Products.
      */
     public ArrayList<Product> searchProduct(String searchTerm) {
-        urlEnd = "searchProducts.jsp?TERM=" + searchTerm;
+        urlEndEncrypted = "searchProducts.jsp";//?TERM=" + searchTerm;
         
-        String q = SendQuery();
+        //String q = SendQuery();
+        
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("TERM",searchTerm));
+        String q = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(q);
@@ -471,11 +531,15 @@ public class Connector {
      * @return Product - being the requested Product.
      */
     public Product getProduct(int id) {
-        urlEnd = "getProduct.jsp?ID=" + id;
+        urlEndEncrypted = "getProduct.jsp";//?ID=" + id;
         
         // Pass query to URL:
-        String q = SendQuery();
+        //String q = SendQuery();
         
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("ID",id));
+        String q = postEncryptedData(ar);
+
         // Log the result in case of error message:
         System.err.println(q);
         
@@ -491,10 +555,14 @@ public class Connector {
      * @return Order - being the requested Order.
      */
     public Order getOrder(int id) {
-        urlEnd = "getOrder.jsp?ID=" + id;
+        urlEndEncrypted = "getOrder.jsp";//?ID=" + id;
         
         // Pass query to URL:
-        String o = SendQuery();
+        //String o = SendQuery();
+        
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("ID",id));
+        String o = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(o);
@@ -511,10 +579,13 @@ public class Connector {
      * @return User - being the requested User.
      */
     public User getUser(int id) {
-        urlEnd = "getUser.jsp?ID=" + id;
+        urlEndEncrypted = "getUser.jsp";//?ID=" + id;
         
         // Pass query to URL:
-        String u = SendQuery();
+        //String u = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("ID",id));
+        String u = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(u);
@@ -532,10 +603,14 @@ public class Connector {
      * @return User - being the requested User.
      */
     public User getUser(String username) {
-        urlEnd = "getUser.jsp?ID=0&UN=" + username;
+        urlEndEncrypted = "getUser.jsp";//?ID=0&UN=" + username;
         
         // Pass query to URL:
-        String u = SendQuery();
+        //String u = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("ID","0"));
+        ar.add(new SimpleEntry("UN",username));
+        String u = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(u);
@@ -552,10 +627,14 @@ public class Connector {
      * @return boolean - being whether or not the operation was successful.
      */
     public boolean addProduct(Product p) {
-        urlEnd = "addProduct.jsp?PRODUCT=" + p.GetJSONString() + "&NEW=TRUE";
+        urlEndEncrypted = "addProduct.jsp";//?PRODUCT=" + p.GetJSONString() + "&NEW=TRUE";
         
         // Pass query to URL:
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("PRODUCT",p.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","TRUE"));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -569,10 +648,14 @@ public class Connector {
      * @return boolean - being whether or not the operation was successful.
      */
     public boolean addOrder(Order o) {
-        urlEnd = "addOrder.jsp?ORDER=" + o.GetJSONString() + "&NEW=TRUE";
+        urlEndEncrypted = "addOrder.jsp";//?ORDER=" + o.GetJSONString() + "&NEW=TRUE";
         
         // Pass query to URL:
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("ORDER",o.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","TRUE"));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -586,10 +669,14 @@ public class Connector {
      * @return boolean - being whether or not the operation was successful.
      */
     public boolean addUser(User u) {
-        urlEnd = "addUser.jsp?USER=" + u.GetJSONString() + "&NEW=TRUE";
+        urlEndEncrypted = "addUser.jsp";//?USER=" + u.GetJSONString() + "&NEW=TRUE";
         
         // Pass query to URL:
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("USER",u.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","TRUE"));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -603,10 +690,14 @@ public class Connector {
      * @return boolean - being whether or not the operation was successful.
      */
     public boolean updateProduct(Product p) {
-        urlEnd = "addProduct.jsp?PRODUCT=" + p.GetJSONString() + "&NEW=FALSE";
+        urlEndEncrypted = "addProduct.jsp";//?PRODUCT=" + p.GetJSONString() + "&NEW=FALSE";
         
         // Pass query to URL:
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("PRODUCT",p.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","FALSE"));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -621,11 +712,14 @@ public class Connector {
      * @return boolean - being whether or not the operation was successful.
      */
     public boolean setQuantity(int productID, int quantity) {
-        urlEnd = "changeProductQuantity.jsp?PRODUCT=" + productID 
-                + "?NEWQUANTITY=" + quantity;
+        urlEndEncrypted = "changeProductQuantity.jsp";//?PRODUCT=" + productID + "?NEWQUANTITY=" + quantity;
         
         // Pass query to URL:
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("PRODUCT",productID));
+        ar.add(new SimpleEntry("NEWQUANTITY",String.valueOf(quantity)));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -639,10 +733,14 @@ public class Connector {
      * @return boolean - being whether or not the operation was successful.
      */
     public boolean updateOrder(Order o) {
-        urlEnd = "addOrder.jsp?ORDER=" + o.GetJSONString() + "&NEW=FALSE";
+        urlEndEncrypted = "addOrder.jsp";//?ORDER=" + o.GetJSONString() + "&NEW=FALSE";
         
         // Pass query to URL:
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("ORDER",o.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","FALSE"));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -656,10 +754,13 @@ public class Connector {
      * @return boolean - being whether or not the operation was successful.
      */
     public boolean fulfillOrder(int orderID) {
-        urlEnd = "fulfillOrder.jsp?ORDER=" + orderID;
+        urlEndEncrypted = "fulfillOrder.jsp";//?ORDER=" + orderID;
         
         // Pass query to URL:
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("ORDER",String.valueOf(orderID)));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -673,9 +774,13 @@ public class Connector {
      * @return boolean - being whether or not the operation was successful.
      */
     public boolean updateUser(User u) {
-        urlEnd = "addUser.jsp?USER=" + u.GetJSONString() + "&NEW=FALSE";
+        urlEndEncrypted = "addUser.jsp";//?USER=" + u.GetJSONString() + "&NEW=FALSE";
         
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("USER",u.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","FALSE"));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -702,10 +807,13 @@ public class Connector {
                     || identifier.equals("location")
                     || identifier.equals("status")) {
             // Construct the URL:
-            urlEnd = "getLookups.jsp?IDENTIFIER=" + identifier;
+            urlEndEncrypted = "getLookups.jsp";//?IDENTIFIER=" + identifier;
             
             // Pass query to URL:
-            String l = SendQuery();
+            //String l = SendQuery();
+            ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+            ar.add(new SimpleEntry("IDENTIFIER",identifier));
+            String l = postEncryptedData(ar);
             
             // Log the result in case of error message:
             System.err.println(l);
@@ -745,12 +853,15 @@ public class Connector {
                     || identifier.equals("location")
                     || identifier.equals("status")) {
             // Construct the URL:
-            urlEnd = "addLookup.jsp?IDENTIFIER=" + identifier 
-                    + "&LOOKUP=" + l.GetJSONString()
-                    + "&NEW=FALSE";
+            urlEndEncrypted = "addLookup.jsp";//?IDENTIFIER=" + identifier + "&LOOKUP=" + l.GetJSONString() + "&NEW=FALSE";
             
             // Pass query to URL:
-            String result = SendQuery();
+            //String result = SendQuery();
+            ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+            ar.add(new SimpleEntry("IDENTIFIER",identifier));
+            ar.add(new SimpleEntry("LOOKUP",l.GetJSONString()));
+            ar.add(new SimpleEntry("NEW","FALSE"));
+            String result = postEncryptedData(ar);
             
             // Log the result in case of error message:
             System.err.println(result);
@@ -772,9 +883,14 @@ public class Connector {
     public boolean addLocation(String location) {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, location);
-        urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
+        urlEndEncrypted = "addLookup.jsp";//?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("IDENTIFIER",location));
+        ar.add(new SimpleEntry("LOOKUP",l.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","TRUE"));
+        String result = postEncryptedData(ar);        
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -790,12 +906,17 @@ public class Connector {
     public boolean addCategory(String category) {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, category);
-        urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
+        urlEndEncrypted = "addLookup.jsp";//?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
        
-        String result = SendQuery();
+        //String result = SendQuery();
         
         // Log the result in case of error message:
-        System.err.println(result);
+        //System.err.println(result);
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("IDENTIFIER","location"));
+        ar.add(new SimpleEntry("LOOKUP",l.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","FALSE"));
+        String result = postEncryptedData(ar);
         
         return result.startsWith("SUCCESS");
     }
@@ -808,9 +929,14 @@ public class Connector {
     public boolean addSubCat(String subcat) {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, subcat);
-        urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
+        urlEndEncrypted = "addLookup.jsp";//?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("IDENTIFIER","location"));
+        ar.add(new SimpleEntry("LOOKUP",l.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","TRUE"));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -826,9 +952,14 @@ public class Connector {
     public boolean addOrderStatus(String status) {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, status);
-        urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
+        urlEndEncrypted = "addLookup.jsp";//?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("IDENTIFIER","location"));
+        ar.add(new SimpleEntry("LOOKUP",l.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","TRUE"));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);
@@ -844,9 +975,14 @@ public class Connector {
     public boolean addContainer(String container) {
         // Create lookup with ID of 1, it won't be used but just encapsulates the data.
         GenericLookup l = new GenericLookup(1, container);
-        urlEnd = "addLookup.jsp?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
+        urlEndEncrypted = "addLookup.jsp";//?IDENTIFIER=location&LOOKUP=" + l.GetJSONString() + "?NEW=TRUE";
         
-        String result = SendQuery();
+        //String result = SendQuery();
+        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ar.add(new SimpleEntry("IDENTIFIER","location"));
+        ar.add(new SimpleEntry("LOOKUP",l.GetJSONString()));
+        ar.add(new SimpleEntry("NEW","TRUE"));
+        String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
         System.err.println(result);

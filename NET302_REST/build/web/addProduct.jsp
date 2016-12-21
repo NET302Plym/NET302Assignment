@@ -7,10 +7,10 @@
     
     // Used to send back the data, presume initial error and inform:
     String  result = "ERROR: No change of result reached. Consult system administrator.";
-    
+    Encrypter.SymmetricEncrypter e = new Encrypter.SymmetricEncrypter();
     // Get the parameters:
-    String  orderP  = request.getParameter("PRODUCT");
-    String  newP    = request.getParameter("NEW");
+    String  orderP  = e.DecryptString(request.getParameter("PRODUCT"));
+    String  newP    = e.DecryptString(request.getParameter("NEW"));
     
     // Create database connection:
     DB_Handler handler = new DB_Handler();
@@ -53,7 +53,7 @@
     }
     // Print out the result & flush:
     handler.CloseConnection();
-    out.print(result);
+    out.print(e.EncryptString(result));
     out.flush();
 %>
     

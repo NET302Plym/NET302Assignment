@@ -15,10 +15,10 @@
     
     // Used to send back the data, presume initial error and inform:
     String  result = "ERROR: No change of result reached. Consult system administrator.";
-    
+    Encrypter.SymmetricEncrypter e = new Encrypter.SymmetricEncrypter();
     // Fetch and store the ID parameter:
-    String  paraID  = request.getParameter("ID");
-    String  hash  = request.getParameter("HASH");
+    String  paraID  = e.DecryptString(request.getParameter("ID"));
+    //String  hash  = request.getParameter("HASH");
     
     // Create database connection:
     DB_Handler handler = new DB_Handler();
@@ -55,6 +55,7 @@
                         + "\n Please consult adminstrator.";
             }
     } 
+    /* - Should we really be sending out all users?
     // NO PARAMETER SPECIFIED - Return all Products
     else {
         if (handler.GetConnection()) {
@@ -77,9 +78,10 @@
                     + "\n Please consult adminstrator.";
         }
     }
+    */
     // Print out the result & flush:
     handler.CloseConnection();
-    out.print(result);
+    out.print(e.EncryptString(result));
     out.flush();
 %>
 <br>
