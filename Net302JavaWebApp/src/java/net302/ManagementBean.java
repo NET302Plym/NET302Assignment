@@ -84,7 +84,7 @@ public class ManagementBean {
         if(authenticated == false)return "index.html";
         
         System.out.println("Product ID = " + p.getID() + " and Qualtity = " + quantity);
-        order = new Order(p, quantity, loggedUser, true);
+        
 
         if (debug)
         { 
@@ -94,7 +94,7 @@ public class ManagementBean {
         } 
         else
         {
-            if(client_connector.addOrder(order))
+            if(client_connector.addOrder(quantity, this.loggedUser.getID(), p.getID())) //int quantity, int staffID, int productID
             {
                 System.out.println("***** ADDING TO ORDER ******");
                 return "displayOrder.xhtml";

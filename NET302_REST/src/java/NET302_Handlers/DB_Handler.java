@@ -213,7 +213,7 @@ public class DB_Handler {
             + " VALUES (?, GETDATE(), ?, ?, ?, ?);";
     
     private final String        addOrderQ2       =
-            "INSERT INTO orders ("
+            "INSERT INTO NET302.Orders  ("
             + "quantity, dateOrdered, staffID, productID, locationID, statusID)"
             + " VALUES (?, ?, ?, ?, ?, ?);";
     
@@ -1230,23 +1230,36 @@ public class DB_Handler {
         addProduct.executeUpdate();
     }
     
-    public void newOrderQ2(Order orderNew) throws SQLException {
+    public void newOrderQ2(int quantity, int staffOrderedID, int productID, int locationID) throws SQLException {
         addOrder = connection.prepareStatement(addOrderQ2);
-        /*private final String        addOrderQ2       =
-            "INSERT INTO orders ("
-            + "quantity, dateOrdered, staffID, productID, locationID, statusID)"
-            + " VALUES (?, ?, ?, ?, ?, ?);";*/
-
-        
         // Populate query - we do not need to use ID:
-        addOrder.setInt(1, orderNew.getQuantity());
-        addOrder.setString(2, orderNew.getDateOrdered());
-        addOrder.setInt(3, orderNew.getStaffOrdered().getID());
-        addOrder.setInt(4, orderNew.getProduct().getID());
-        addOrder.setInt(5, orderNew.getLocation().getID());
-        addOrder.setInt(6, orderNew.getStatus().getID());
+        addOrder.setInt(1, quantity);
+        addOrder.setString(2, new SimpleDateFormat("yyyy-MM-dd").format(new Date())); 
+        addOrder.setInt(3, staffOrderedID);
+        addOrder.setInt(4, productID);
+        addOrder.setInt(5, locationID);
+        addOrder.setInt(6, 1);
         
         addOrder.executeUpdate();
+        
+//        
+//        
+//        addOrder = connection.prepareStatement(addOrderQ2);
+//        /*private final String        addOrderQ2       =
+//            "INSERT INTO orders ("
+//            + "quantity, dateOrdered, staffID, productID, locationID, statusID)"
+//            + " VALUES (?, ?, ?, ?, ?, ?);";*/
+//
+//        
+//        // Populate query - we do not need to use ID:
+//        addOrder.setInt(1, orderNew.getQuantity());
+//        addOrder.setString(2, orderNew.getDateOrdered());
+//        addOrder.setInt(3, orderNew.getStaffOrdered().getID());
+//        addOrder.setInt(4, orderNew.getProduct().getID());
+//        addOrder.setInt(5, orderNew.getLocation().getID());
+//        addOrder.setInt(6, orderNew.getStatus().getID());
+//        
+//        addOrder.executeUpdate();
     }
     
     /**

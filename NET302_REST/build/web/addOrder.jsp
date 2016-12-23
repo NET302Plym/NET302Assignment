@@ -9,48 +9,53 @@
     String  result = "ERROR: No change of result reached. Consult system administrator.";
     Encrypter.SymmetricEncrypter e = new Encrypter.SymmetricEncrypter();
     // Get the parameters:
-    String  orderP  = e.DecryptString(request.getParameter("ORDER"));
+    //String  orderP  = e.DecryptString(request.getParameter("ORDER"));
     String  newP    = e.DecryptString(request.getParameter("NEW"));
+    String  quantityS = e.DecryptString(request.getParameter("QUANTITY"));
+    String  staffOrderedIDS = e.DecryptString(request.getParameter("STAFF"));
+    String  productIDS = e.DecryptString(request.getParameter("PRODUCT"));
     
     // Create database connection:
     DB_Handler handler = new DB_Handler();
     
     // Check for both parameters existing:
-    if (orderP.length() > 1 & newP.length() > 1) {
+    if (quantityS.length() > 0 && newP.length() > 0 && staffOrderedIDS.length() > 0 && productIDS.length() > 0) {
         // Presume success unless errored:
         result = "SUCCESS: Query passed to handler method without error.";
         
         // Create Order from String which should be of JSON format:
-        Order tempOrder = new Order(orderP);
+        int quantity = Integer.parseInt(quantityS);
+        int staffID = Integer.parseInt(staffOrderedIDS);
+        int productID = Integer.parseInt(productIDS);        
         
-        if (result.equals("SUCCESS")) {
+        //if (result.equals("SUCCESS")) {
             if (handler.GetConnection()) {
                 if (newP.equals("TRUE")) {
                     try {
-                        handler.newOrder(tempOrder);
+                        handler.newOrderQ2(quantity, staffID, productID, 1);
                     } catch (SQLException ex) {
                         // SQL Error.
                         result = "ERROR: Please check DB_Handler for following error:"
                             + "\n" + ex.getMessage();
                     } finally { handler.CloseConnection(); }
                 }
-                else { // else, UPDATE:
+                /*else { // else, UPDATE:
                     try {
                         handler.updateOrder(tempOrder);
                     } catch (SQLException ex) {
                         result = "ERROR: Please check DB_Handler for following error:"
                             + "\n" + ex.getMessage();
                     } finally { handler.CloseConnection(); }
-                }
+                }*/
             } else {
                 // Failed to get a connection!
                 result = "ERROR: Could not get connection from database.";
             }
         }
-    } else {
-        result = "ERROR: Parameters not correct. Please give:"
-                + "\nORDER={GSON}, NEW=TRUE/FALSE.";
-    }
+    //} else {
+    //    result = "ERROR: Parameters not correct. Please give:"
+    //            + "\nORDER={GSON}, NEW=TRUE/FALSE.";
+    //}
     // Print out the result & flush:
     handler.CloseConnection();
     out.print(e.EncryptString(result));

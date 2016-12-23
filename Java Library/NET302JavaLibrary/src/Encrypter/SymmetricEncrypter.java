@@ -67,6 +67,8 @@ public class SymmetricEncrypter {
      * @throws Exception 
      */
     public String DecryptString(String s) throws Exception {
+        if (s.contains(" "))
+            s = s.replace(" ", "+");
         cipher  = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, aesKey, ivSpec);
         

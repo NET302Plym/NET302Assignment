@@ -654,14 +654,17 @@ public class Connector {
      * @param o Order - being the set of details to insert.
      * @return boolean - being whether or not the operation was successful.
      */
-    public boolean addOrder(Order o) {
+    public boolean addOrder(int quantity, int staffID, int productID) {
         urlEndEncrypted = "addOrder.jsp";//?ORDER=" + o.GetJSONString() + "&NEW=TRUE";
         
         // Pass query to URL:
         //String result = SendQuery();
         ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
-        ar.add(new SimpleEntry("ORDER",o.GetJSONString()));
+        //ar.add(new SimpleEntry("ORDER",o.GetJSONString()));
         ar.add(new SimpleEntry("NEW","TRUE"));
+        ar.add(new SimpleEntry("QUANTITY",String.valueOf(quantity)));
+        ar.add(new SimpleEntry("STAFF",String.valueOf(staffID)));
+        ar.add(new SimpleEntry("PRODUCT",String.valueOf(productID)));
         String result = postEncryptedData(ar);
         
         // Log the result in case of error message:
