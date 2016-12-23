@@ -20,7 +20,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.reflect.Type;
 import java.net.ProtocolException;
-import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -61,7 +60,13 @@ public class Connector {
     //  -   UNIVERSAL / KEY METHODS                                       -   //
     //************************************************************************//
     
-    
+    /**
+     * This method utilises the SymmetricEncrytper() class to send encrypted data
+     * via POST, to the REST server. This would need to be changed in the future
+     * if Asymmetric encryption could be supported (in progress).
+     * @param input List<SimpleEntry> - being the list of 
+     * @return 
+     */
     private String postEncryptedData(List<SimpleEntry> input){
         String postParams = "?";
         SymmetricEncrypter e = new SymmetricEncrypter();
@@ -114,7 +119,7 @@ public class Connector {
         return result;        
     }
     
-    
+    // TODO: JavaDoc here.
     private String postQuery(String[] postParamsArr) throws ProtocolException, IOException
     {
         String postParams = "?";
@@ -170,6 +175,10 @@ public class Connector {
     
     
     /**
+     * OLD: Previous method of communication, does not function with
+     * encrypted data due to the nature of the =/& sign usages.
+     * Instead, this method is used where no data is sent up!
+     * 
      * Helper method to send a query off to the given URL.
      * It will open a HTTP GET Request and returns the first non-blank line 
      * (uses another method to do so)that is found in the response page.
@@ -222,11 +231,9 @@ public class Connector {
         }
         return result;
     }
-    
-    
-    
-            //************************************************************************//
-    //  -   AUTHENTICATEPOST USER                                             -   //
+
+    //************************************************************************//
+    //  -   AUTHENTICATEPOST USER                                         -   //
     //************************************************************************//
     
     /**
@@ -301,18 +308,25 @@ public class Connector {
     //  -   GET + TEST SESSION KEY                                        -   //
     //************************************************************************//
     
+    /**
+     * Debugging method for Asymmetric encryption. This is now empty as work on
+     * this feature was stopped due to limited project time.
+     * @return boolean - for testing.
+     */
     public boolean testSessionKey() {
-        // TODO: This is not supported on the REST server.
-        // Freshness needs to be tackled.
+        // TODO: Write the test case into the middleware server.
+        // TODO: Freshness needs to be addressed fully.
        return false;
     }
-    
-    // TODO: TEST and finish the method.
-    // After this method is ran, the result should be the ability to encrypt
-    // and decrypt data for the other REST pages using AES. To test, edit the test
-    // page on the REST to try and communicate.
-    // Currently this is UNTESTED!
+
+    /**
+     * This is the initial work on Asymmetric communication. The method is not
+     * currently used due to support for this encryption not being completed.
+     * The purpose here is to retrieve a session key (in the form of IV), so that
+     * the REST server and a client can communicate securely.
+     */
     public void getIV() {
+        // TODO: Test the method for errors / unexpected results or usages.
         boolean     loaded;
         PrivateKey  client_priv = null;
         PublicKey   client_publ = null;
@@ -325,16 +339,16 @@ public class Connector {
             client_publ = Encrypter.loadPublicKey("client_public.txt");
             
             // Extra security check for successful load:
-            if (client_priv == null | client_publ == null) {
-                loaded = false;
-            } else { loaded = true; }
+            loaded = !(client_priv == null | client_publ == null);
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-            // Issue with stored key here!
+            // ERROR: Issue with stored key here.
             Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
             loaded = false;
         }
         
-        // If not loaded, then we will generate the keys:
+        // If not loaded, then we will have to generate the keys.
+        // Expected usage would be the first time the system is used, or
+        // as a security policy these could be remade every 24 hours.
         if (!loaded) {
             try {
                 enc.genPPKeys();
@@ -348,11 +362,12 @@ public class Connector {
                     Encrypter.savePublicKey("client_public.txt", client_publ);
                 }
             } catch (NoSuchAlgorithmException ex) {
+                // ERROR: issue with the Encrypter!
                 Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
-        // Now we have the keys and all is okay, need to query the REST:
+        // We now have a set of keys, we can use them to query the REST server:
         if (loaded) {
             urlEnd = "requestPublicKey.jsp?CODE=" + client_code
                     + "&KEY=" + new String(client_publ.getEncoded());
@@ -388,24 +403,14 @@ public class Connector {
                 enc.setIv(resultData);
                 enc.saveIV("client_iv.txt");
 
-            } catch (NoSuchAlgorithmException ex) {
-                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NoSuchPaddingException ex) {
-                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InvalidKeyException ex) {
-                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalBlockSizeException ex) {
-                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (BadPaddingException ex) {
-                Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InvalidKeySpecException ex) {
-                // DECODING:
+            } catch (NoSuchAlgorithmException | NoSuchPaddingException | 
+                    InvalidKeyException | IllegalBlockSizeException | 
+                    BadPaddingException | InvalidKeySpecException ex) {
+                
                 Logger.getLogger(Connector.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-    
-
     
     //************************************************************************//
     //  -   GET / ADD / UPDATE ITEMS METHODS                              -   //
@@ -443,7 +448,7 @@ public class Connector {
         
         //String q = SendQuery();
         
-        ArrayList<SimpleEntry> ar = new ArrayList<SimpleEntry>();
+        ArrayList<SimpleEntry> ar = new ArrayList<>();
         ar.add(new SimpleEntry("TERM",searchTerm));
         String q = postEncryptedData(ar);
         
@@ -481,6 +486,7 @@ public class Connector {
         } else { return null; }
     }
     
+    // TODO: THE FOLLOWING METHOD DOES NOT USE ENCRYPTION
     /**
      * Returns a list of unfulfilled Orders from the database.
      * @return ArrayList<Order> - being the list of all Orders.
@@ -504,6 +510,7 @@ public class Connector {
     }
     
     /**
+     * DEPRECIATED: Support on REST is commented out due to security concerns.
      * Returns a list of ALL Users from the database.
      * @return ArrayList<User> - being the list of all Users.
      */

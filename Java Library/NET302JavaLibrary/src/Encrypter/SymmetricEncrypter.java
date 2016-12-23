@@ -12,20 +12,22 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 
 /**
- *
+ * This class provides a Symmetric only version of the Encrypter class, 
+ * as we could not get the system fully supporting the Asymmetric approach.
+ * The class should be used by initialising an object, then using the encrypt
+ * / decrypt methods to return data.
  * @author Dan
  */
 public class SymmetricEncrypter {
-    private String keyString = "NET_302_Plym_KEY";
-    private String ivString = "YEK_mylP_203_TEN";
+    private final String    keyString   = "NET_302_Plym_KEY";
+    private final String    ivString    = "YEK_mylP_203_TEN";
     // | Type = AesCbcPkcs7
-    private int keyLength = 128;
+    private final int       keyLength   = 128;
     
-    private Cipher cipher;
-    private IvParameterSpec ivSpec;
-    private SecretKey aesKey;
-    
-    private byte[] keyBytes;
+    private       Cipher            cipher;
+    private final IvParameterSpec   ivSpec;
+    private final SecretKey         aesKey;
+    private final byte[]            keyBytes;
     
     public SymmetricEncrypter(){
         // Padd out the key & IV
@@ -38,6 +40,14 @@ public class SymmetricEncrypter {
         aesKey = new SecretKeySpec(keyBytes, "AES");
     }
     
+    /**
+     * Encrypts a given String using the AES key in this class. It changes the
+     * string to byte[], then back to String to be read by the REST server,
+     * MobileApplication, or ClientConnector.
+     * @param s String - being the data to encrypt.
+     * @return String - being the encrypted String.
+     * @throws Exception 
+     */
     public String EncryptString(String s) throws Exception {
         cipher  = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, aesKey, ivSpec);
@@ -48,6 +58,14 @@ public class SymmetricEncrypter {
         return str_val;
     }
     
+    /**
+     * Decrypts a given String using the AES key in this class. It changes the
+     * String to byte[], and back to String to be read by the REST server,
+     * MobileApplication, or ClientConnector.
+     * @param s String - being the data to decrypt.
+     * @return String - being the decrypted data.
+     * @throws Exception 
+     */
     public String DecryptString(String s) throws Exception {
         cipher  = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, aesKey, ivSpec);

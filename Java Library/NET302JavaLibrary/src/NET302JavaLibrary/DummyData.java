@@ -1,15 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package NET302JavaLibrary;
 
 import java.util.ArrayList;
 
 /**
- *
- * @author Dan
+ * DummyData to represent the Middleware without having the query and use up
+ * the AWS allowances. This creates a series of numbers in place of any real
+ * information, simply for testing object manipulation and table display.
+ * 
+ * MUST BE INITIALISED IN THE CONSTRUCTOR.
+ * 
+ * @author Sam
  */
 public class DummyData {
     
