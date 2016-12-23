@@ -5,55 +5,76 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>D-WSS</title>
+        <link rel="stylesheet" href="Main.css" />
     </h:head>
     <h:body>
-        
-        <br/>
-        <h:form><h:inputText binding="#{search}" /><h:commandButton value="Search" action="#{SessionHandler.GetManagementBean().filterProducts(search.value)}"/></h:form>
-        <br/>      
         <h:form>
-            <h:dataTable id="myTable" value="#{SessionHandler.GetManagementBean().products}" var="products">
-                <h:column>
-                    <f:facet name="header">ID</f:facet>
-                    #{products.ID}
-                </h:column>
-                 <h:column>
-                    <f:facet id="valName" name="header">Item</f:facet>
-                    #{products.name}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Availability</f:facet>
-                    #{products.available}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Quantity</f:facet>
-                    #{products.stockCount}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Category</f:facet>
-                    #{products.category.value}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Sub-Category</f:facet>
-                    #{products.subCategory.value}
-                </h:column>
-               <h:column>
-                    <f:facet name="header">Container</f:facet>
-                    #{products.container.value}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Unit Price</f:facet>
-                    £#{products.unitPrice}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Quantity To Order</f:facet>
-                    <h:inputText binding="#{quantity}" />
-                </h:column>
-                <h:column>
-                    <h:commandButton action="#{SessionHandler.GetManagementBean().orderProduct(products, quantity.value)}" value="Order Product" />
-                </h:column>
-            </h:dataTable>   
-        </h:form>
+        <div class="header">
+            <center><b>D-WSS</b> The Distributed Warehouse Support System</center>
+            <p style="position:absolute; right:10px; top:-6px;">Logged in as #{SessionHandler.GetManagementBean().getUsername()} </p>
+        </div>
+            </h:form>
+        <div class="mainBodyContent">
+                <h:form style="position: absolute; right:13px; top:30px;" >
+                    <table>
+                        <tr>
+                            <td>
+                                <h:inputText binding="#{search}" />
+                            </td>
+                            <td>
+                                <h:commandButton class="customButton" value="Search" action="#{SessionHandler.GetManagementBean().filterProducts(search.value)}"/>
+                            </td>
+                        </tr>
+                    </table>
+                  </h:form>
+                <br/>      
+                <div class="mainBodyContentInner">
+                    <h:form>
+                        <p class="title">Showing Results For #{search.value}</p>
+                        <h:dataTable width="100%" id="myTable" value="#{SessionHandler.GetManagementBean().products}" var="products">
+                        <h:column class="cellStyle">
+                            <f:facet name="header">ID</f:facet>
+                            #{products.ID}
+                        </h:column>
+                         <h:column class="cellStyle">
+                            <f:facet id="valName" name="header">Item</f:facet>
+                            #{products.name}
+                        </h:column>
+                        <h:column class="cellStyle">
+                            <f:facet name="header">Availability</f:facet>
+                            #{products.available}
+                        </h:column>
+                        <h:column class="cellStyle">
+                            <f:facet name="header">Quantity</f:facet>
+                            #{products.stockCount}
+                        </h:column>
+                        <h:column class="cellStyle">
+                            <f:facet name="header">Category</f:facet>
+                            #{products.category.value}
+                        </h:column>
+                        <h:column class="cellStyle">
+                            <f:facet name="header">Sub-Category</f:facet>
+                            #{products.subCategory.value}
+                        </h:column>
+                       <h:column class="cellStyle">
+                            <f:facet name="header">Container</f:facet>
+                            #{products.container.value}
+                        </h:column>
+                        <h:column class="cellStyle">
+                            <f:facet name="header">Unit Price</f:facet>
+                            £#{products.unitPrice}
+                        </h:column>
+                        <h:column class="cellStyle">
+                            <f:facet name="header">Quantity To Order</f:facet>
+                            <h:inputText binding="#{quantity}" />
+                        </h:column>
+                        <h:column class="cellStyle">
+                            <h:commandButton class="customButton" action="#{SessionHandler.GetManagementBean().orderProduct(products, quantity.value)}" value="Order Product" />
+                        </h:column>
+                    </h:dataTable>   
+                </h:form>
+            </div>
+        </div>
     </h:body>
 </html>
 

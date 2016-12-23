@@ -5,23 +5,35 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>D-WSS</title>
+        <link rel="stylesheet" href="Main.css" />
     </h:head>
     <h:body>
-        Distributed-Warehouse Support System gonsogndoifngo
         <h:form>
-        <h:commandButton value="Stock List" action="productList"/>
+        <div class="header">
+            <center><b>D-WSS</b> The Distributed Warehouse Support System</center>
+            <p style="position:absolute; right:10px; top:-6px;">Logged in as #{SessionHandler.GetManagementBean().getUsername()} </p>
+        </div>
         </h:form>
-       
-        <h:dataTable value="#{SessionHandler.GetManagementBean().order}" var="item">
-            <h:column>
-                <f:facet name="header">ID</f:facet>
-                #{item.product.ID}
-            </h:column>
-             <h:column>
-                <f:facet name="header">Quantity</f:facet>
-                #{item.quantity}
-            </h:column>
-        </h:dataTable>
+        <div class="mainBodyContent">
+            <div class="mainBodyContentInner">
+                <p class="title">Order Successfully Created!</p>
+
+                <table>
+                    <tr>
+                        <td>Product Ordered:</td>
+                        <td>#{SessionHandler.GetManagementBean().GetProductName()}</td>
+                    </tr>
+                    <tr>
+                        <td>Quantity Ordered:</td>
+                        <td>#{SessionHandler.GetManagementBean().GetOrderQuantity()}</td>
+                    </tr>
+                </table>
+
+                <h:form>
+                    <h:commandButton value="Back to Search Results" action="productList"/>
+                </h:form>
+            </div>
+        </div>
     </h:body>
 </html>
 

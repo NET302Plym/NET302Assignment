@@ -36,10 +36,15 @@ public class ManagementBean {
     private final Connector             client_connector;
     private final DummyData             dummy_data;
     
-    public String f = "";
     private User loggedUser;
     private Boolean authenticated = false;
-    private Order order;
+    
+    public String orderID;
+    public String productName;
+    public String orderQuantity;
+    
+    
+            
     private Encrypter encrypter;
     
     private ArrayList<Product>          products            = null;
@@ -80,17 +85,30 @@ public class ManagementBean {
      * @param staff 
      */
 
+    public String GetProductName(){
+        return this.productName;
+    }
+    public String GetOrderQuantity(){
+        return this.orderQuantity;
+    }
+    
+//    public String orderID;
+//    public String productName;
+//    public String orderQuantity;
+    
     public String orderProduct(Product p, int quantity) {
         if(authenticated == false)return "index.html";
         
         System.out.println("Product ID = " + p.getID() + " and Qualtity = " + quantity);
         
+        productName = p.getName();
+        orderQuantity = String.valueOf(quantity);
 
         if (debug)
         { 
             System.out.println("[DEBUG] ORDER GENERATED FOR " + quantity + " OF " + p.getName());
-            orders.add(order);
-            dummy_data.setOrders(orders);
+            //orders.add(order);
+            //dummy_data.setOrders(orders);
         } 
         else
         {
@@ -103,15 +121,20 @@ public class ManagementBean {
         return null;
     }
 
+    public String Logout(){
+        this.loggedUser = null;
+        return "index.xhtml";
+    }
+    
     public String getUsername()
     {
         return this.loggedUser.getName();
     }
     
-    public Order getOrder()
-    {
-        return this.order;
-    }
+//    public Order getOrder()
+//    {
+//        return this.order;
+//    }
     
     public String auth(String username, String password) throws Exception
     {  

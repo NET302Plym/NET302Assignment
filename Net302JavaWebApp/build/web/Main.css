@@ -1,0 +1,79 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23-Dec-2016, 15:10:10
+    Author     : Dan
+*/
+
+.header{
+    margin: 0px;
+    position: absolute;
+    font-size: 20px;
+    top:0px;
+    left:0px;
+    right:0px;
+    height:26px;
+    border-bottom: black solid 2px;
+    padding:12px;
+    box-shadow: 0px 0px 4px #888888;
+}
+.mainBodyContent{
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top:52px;
+    bottom:0px;
+    right:0px;
+    left:0px;
+    background-color: #156099;
+}
+body {
+    margin: 10px;
+    font-family: Calibri;
+    font-size: 16px;
+}
+.authenticationBox{
+    display: inline-block;
+    margin: 0px;
+    background-color: white;
+    border-radius: 1px 1px;
+    border-color: black;
+    box-shadow: black 2px 2px;
+    border: solid 1px black;
+    padding:10px 20px 20px 20px;
+}
+.textBox{
+    width: 160px;
+}
+.customButton{
+    background-color: transparent;
+    cursor: pointer;
+    box-shadow: none;
+    border: solid 1px black;
+    font-size: 14px;
+    padding: 1px 5px 1px 5px;
+}
+.customButton:hover{
+    background-color: black;
+    color: white;
+}
+.mainBodyContentInner{
+    margin: 10px;
+    background-color: white;
+    padding: 10px;
+    overflow-y: hidden;
+}
+.searchResultsTable{
+    width:100%;
+    padding:100px;
+}
+.cellStyle{
+    padding: 5px 5px 5px 10px;
+}
+.title{
+    font-size: 22px;
+    font-weight: bold;
+}

@@ -19,25 +19,13 @@ import javax.servlet.http.HttpSession;
 public class SessionHandler {
     public static ManagementBean GetManagementBean(){
         HttpSession session = session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-        //if (FacesContext.getCurrentInstance().getExternalContext().getSession(false) == null)
-       // {
-        //    session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
-        //    session.setAttribute("mb", new ManagementBean());
-        //    ((ManagementBean)session.getAttribute("mb")).f = "new string";
-       // }
-       // else {
-       //     session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
-       // }
-        
+
         if (session.getAttribute("mb") == null)
         {
             // Set up vars
             session.setAttribute("mb", new ManagementBean());
-            ((ManagementBean)session.getAttribute("mb")).f = "new string";
         }
-        
-        String s = ((ManagementBean)session.getAttribute("mb")).f;
-        
+            
         return (ManagementBean)session.getAttribute("mb");
     }
 }
