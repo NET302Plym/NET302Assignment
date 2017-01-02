@@ -66,17 +66,5 @@ namespace DWSS.Data
             o.ID = ID;
             return o;
         }
-
-        //public Order(string jsonString)
-        //{
-        //    var order = Newtonsoft.Json.JsonConvert.DeserializeObject<Order>(jsonString);
-        //    this.ID = order.ID;
-        //    this.dateDelivered = order.dateDelivered;
-        //    this.location = order.location;
-        //    this.staffFulfilled = order.staffFulfilled;
-        //    this.product = order.product;
-        //    this.timeDelivered = order.timeDelivered;
-        //    this.fulfilled = order.fulfilled;
-        //}
     }
 }

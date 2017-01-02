@@ -39,6 +39,7 @@ namespace DWSS.Middleware
                 try
                 {
                     string serverResponse = await MiddlewareHTTPClient.SendQuery("getUnfulfilled.jsp", new List<KeyValuePair<string, string>>());
+                    // If null return an empty list or if data is contained then return the deserialized data 
                     orderList = serverResponse == null ? new List<Order>() : Newtonsoft.Json.JsonConvert.DeserializeObject<List<Order>>(serverResponse);
                 } catch (Exception)
                 {
@@ -162,16 +163,24 @@ namespace DWSS.Middleware
         /// <returns></returns>
         public static string DownloadImage(string searchTerms)
         {
+            // This is my private API key
             string apiKey = "AIzaSyAD5OsjTu6d-8xwOEkewvgA0JtNecMfoNo";
+            // Google Images Engine ID
             string searchEngineId = "008801159646905401147:nqod7kqw_kc";
+            // C# Library provided by Google to handle search commands 
             CustomsearchService customSearchService = new CustomsearchService(new Google.Apis.Services.BaseClientService.Initializer { ApiKey = apiKey });
+            // Request a list of search results 
             Google.Apis.Customsearch.v1.CseResource.ListRequest listRequest = customSearchService.Cse.List(searchTerms);
+            // Assign vars for the search 
             listRequest.Cx = searchEngineId;
             listRequest.SearchType = CseResource.ListRequest.SearchTypeEnum.Image;
             listRequest.Num = 1;
             listRequest.Start = 1;
+            // Execute the search 
             Search search = listRequest.Execute();
+            // Validate quantity of search results 
             if (search.Items.Count == 0) return string.Empty;
+            // Return the very first image found (URL to)
             return search.Items[0].Link;
         }
     }

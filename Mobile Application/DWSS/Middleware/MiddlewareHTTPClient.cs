@@ -15,7 +15,7 @@ namespace DWSS.Middleware
         /// <summary>
         /// This is the location of the REST server
         /// </summary>
-        private const string serverAddress = "http://localhost:8080/NET302_REST/"; // TODO: Specify server. 
+        private const string serverAddress = "http://localhost:8080/NET302_REST/"; 
         /// <summary>
         /// A local HttpClient to handle REST connections 
         /// </summary>
@@ -61,34 +61,12 @@ namespace DWSS.Middleware
         {
             if (!(input.Contains("\n") || input.Contains("\r"))) return input;
             string i = input;
-
+            // remove <br> found in all responses
             if (i.Contains("<br>")) i = i.Substring(0, i.Length - 1 - "<br>".Length);
+            // Convert all leading and trailing \r & \n 's by converting them to spaces and triming away spaces
             i = i.Replace('\r', ' ');
             i = i.Replace('\n', ' ');
             return i.Trim();
-
-            //// A string returned will either be wrapped in '['...']' or '{'...'}' - Accomodate for both of these cases. 
-            //if (input.Contains("[") && input.Contains("]"))
-            //{
-            //    int firstCounter = 0;
-            //    while (input[firstCounter] != '[')
-            //        firstCounter++;
-            //    int secondCounter = input.Length - 1;
-            //    while (input[secondCounter] != ']')
-            //        secondCounter--;
-            //    return input.Substring(firstCounter, input.Length - firstCounter - (input.Length - secondCounter) + 1);
-            //}
-            //else if (input.Contains("{") && input.Contains("}"))
-            //{
-            //    int firstCounter = 0;
-            //    while (input[firstCounter] != '{')
-            //        firstCounter++;
-            //    int secondCounter = input.Length - 1;
-            //    while (input[secondCounter] != '}')
-            //        secondCounter--;
-            //    return input.Substring(firstCounter, input.Length - firstCounter - (input.Length - secondCounter) + 1);
-            //}
-            //else return input; // The returned string is not a JSON string, so return the input string. This will usually be a success or error string.  
         }
     }
 }

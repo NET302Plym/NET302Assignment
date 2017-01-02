@@ -100,6 +100,9 @@ namespace DWSS
             NotificationGrid.Visibility = Visibility.Collapsed;
         }
 
+        /// <summary>
+        /// Can be called externally to start the "waiting" progress ring of the application 
+        /// </summary>
         public async void ShowProgressRing()
         {
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
@@ -108,6 +111,9 @@ namespace DWSS
             });
         }
 
+        /// <summary>
+        /// Can be called externally to stop the "waiting" progress ring of the application 
+        /// </summary>
         public async void HideProgressRing()
         {
             await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>

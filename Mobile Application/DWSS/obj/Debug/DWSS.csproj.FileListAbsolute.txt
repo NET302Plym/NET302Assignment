@@ -412,6 +412,11 @@ C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\Projec
 C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.dll
 C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.pdb
 C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\Google.Apis.Customsearch.v1.xml
+C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\ProgressRingUserControl.xbf
+C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.g.i.cs
+C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.g.cs
+C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.xaml
+C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.xbf
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\DWSS.exe.config
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\App.xbf
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\MasterPage.xbf
@@ -453,6 +458,7 @@ D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Extensions.xml
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\System.Net.Http.Primitives.xml
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\bin\Debug\Zlib.Portable.xml
+D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\App.g.i.cs
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\App.g.cs
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\MasterPage.g.i.cs
@@ -510,9 +516,3 @@ D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\qualifiers.txt.intermediate
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\MultipleQualifiersPerDimensionFound.txt
 D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\ProjectArchitectures.txt
-D:\My Files\Documents\University\University Year 3\NET302 - Distributed Systems\Assignment\Sourcecode\Mobile Application\DWSS\obj\Debug\DWSS.csprojResolveAssemblyReference.cache
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\bin\Debug\UserControls\ProgressRingUserControl.xbf
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.g.i.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.g.cs
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.xaml
-C:\Users\Dan\Documents\NET302Assignment\Mobile Application\DWSS\obj\Debug\UserControls\ProgressRingUserControl.xbf
