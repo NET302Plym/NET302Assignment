@@ -30,7 +30,6 @@ This directory contains the following important folders:
 "NET302_ClientConnector" - This is the Java library used to interact with the REST API 
 	"src\Connector\Connector.java" - This is the only class in the library and contains all REST API connection logic 
 
-
 "NET302_REST" - This is the REST API 
 	"src\java\NET302_Handlers" - This is the class used to connect to the database. Contains all database logic
 
