@@ -43,6 +43,11 @@ public class ManagementBean {
     public String productName;
     public String orderQuantity;
     
+    public String errorMessage = "";
+
+
+
+    
     
             
     private Encrypter encrypter;
@@ -86,6 +91,10 @@ public class ManagementBean {
      */
 
     public String GetProductName(){
+        if(this.productName == "")
+        {
+            return "all products";
+        }
         return this.productName;
     }
     public String GetOrderQuantity(){
@@ -96,8 +105,21 @@ public class ManagementBean {
 //    public String productName;
 //    public String orderQuantity;
     
-    public String orderProduct(Product p, int quantity) {
+    public String orderProduct(Product p, String quantity) {
         if(authenticated == false)return "index.html";
+        int quantityInt;
+        try
+        {
+           quantityInt = Integer.parseInt( quantity );
+           errorMessage = "";
+        }
+        catch( NumberFormatException e )
+        {
+           errorMessage = "Error: Quantity must be a number";
+           return "productList.xhtml";
+        }
+        
+        
         
         System.out.println("Product ID = " + p.getID() + " and Qualtity = " + quantity);
         
@@ -112,9 +134,10 @@ public class ManagementBean {
         } 
         else
         {
-            if(client_connector.addOrder(quantity, this.loggedUser.getID(), p.getID())) //int quantity, int staffID, int productID
+            if(client_connector.addOrder(quantityInt, this.loggedUser.getID(), p.getID())) //int quantity, int staffID, int productID
             {
                 System.out.println("***** ADDING TO ORDER ******");
+                filterProducts("");
                 return "displayOrder.xhtml";
             }
         } 
@@ -131,6 +154,10 @@ public class ManagementBean {
         return this.loggedUser.getName();
     }
     
+    public String getErrorMessage() {
+            return errorMessage;
+    }
+    
 //    public Order getOrder()
 //    {
 //        return this.order;
@@ -138,6 +165,7 @@ public class ManagementBean {
     
     public String auth(String username, String password) throws Exception
     {  
+        errorMessage = "";
         authenticated = false;    
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
@@ -170,6 +198,7 @@ public class ManagementBean {
         
     public String filterProducts(String filter)
     {
+        errorMessage = "";
         if(authenticated == false) return "index.xhtml";
         System.out.println("*** filtered products based on filter: " + filter);
         products = client_connector.searchProduct(filter);

@@ -56,27 +56,28 @@ public class DB_Handler {
     
     // PREPARED STATEMENTS:
     // Laid out as demonstrated in https://docs.oracle.com/javase/tutorial/jdbc/basics/prepared.html
-    private PreparedStatement   getProduct      = null;
-    private PreparedStatement   getOrder        = null;
-    private PreparedStatement   getUser         = null;
-    private PreparedStatement   updateOrder     = null;
-    private PreparedStatement   updateProduct   = null;
-    private PreparedStatement   updateUser      = null;
-    private PreparedStatement   addProduct      = null;
-    private PreparedStatement   addOrder        = null;
-    private PreparedStatement   addOrder2        = null;
-    private PreparedStatement   addUser         = null;
-    private PreparedStatement   allProducts     = null;
-    private PreparedStatement   allOrders       = null;
-    private PreparedStatement   allUsers        = null;
-    private PreparedStatement   findID          = null;
-    private PreparedStatement   getLookups      = null;
-    private PreparedStatement   addLookup       = null;
-    private PreparedStatement   updateLookup    = null; 
-    private PreparedStatement   authUser        = null;
-    private PreparedStatement   checkUsername   = null;
-    private PreparedStatement   searchProduct   = null;
-    private PreparedStatement   updateQuantity  = null;
+    private PreparedStatement   getProduct          = null;
+    private PreparedStatement   getOrder            = null;
+    private PreparedStatement   getUser             = null;
+    private PreparedStatement   updateOrder         = null;
+    private PreparedStatement   updateProduct       = null;
+    private PreparedStatement   updateOrderProduct  = null;
+    private PreparedStatement   updateUser          = null;
+    private PreparedStatement   addProduct          = null;
+    private PreparedStatement   addOrder            = null;
+    private PreparedStatement   addOrder2           = null;
+    private PreparedStatement   addUser             = null;
+    private PreparedStatement   allProducts         = null;
+    private PreparedStatement   allOrders           = null;
+    private PreparedStatement   allUsers            = null;
+    private PreparedStatement   findID              = null;
+    private PreparedStatement   getLookups          = null;
+    private PreparedStatement   addLookup           = null;
+    private PreparedStatement   updateLookup        = null; 
+    private PreparedStatement   authUser            = null;
+    private PreparedStatement   checkUsername       = null;
+    private PreparedStatement   searchProduct       = null;
+    private PreparedStatement   updateQuantity      = null;
     
     // SQL QUERY STRINGS:
     // ';' is included in the strings, 
@@ -208,7 +209,7 @@ public class DB_Handler {
             + "VALUES (?, ?, ?, ?, ?, ?, ?);";
 
     private final String        addOrderQ       =
-            "INSERT INTO orders ("
+            "UPDATE NET302.Staff SET ("
             + "quantity, dateOrdered, staffID, productID, locationID, statusID)"
             + " VALUES (?, GETDATE(), ?, ?, ?, ?);";
     
@@ -216,6 +217,10 @@ public class DB_Handler {
             "INSERT INTO NET302.Orders  ("
             + "quantity, dateOrdered, staffID, productID, locationID, statusID)"
             + " VALUES (?, ?, ?, ?, ?, ?);";
+    
+    private final String    updateOrderProductQ2       =
+            "UPDATE NET302.Products SET  stockCount = stockCount - ? " 
+            + "WHERE NET302.Products.ID = ?;";
     
     private final String        addUserQ        =
             "INSERT INTO staff ("
@@ -1242,6 +1247,19 @@ public class DB_Handler {
         
         addOrder.executeUpdate();
         
+        
+                
+        updateOrderProduct = connection.prepareStatement(updateOrderProductQ2);
+        // Populate query - we do not need to use ID:
+        updateOrderProduct.setInt(1, quantity);
+        updateOrderProduct.setInt(2, productID);
+        
+        System.out.println("update Order PRoduct ******" + updateOrderProduct);
+                
+        updateOrderProduct.executeUpdate();     
+      /*  private final String    updateOrderQ2       =
+            "UPDATE NET302.Products SET  stockCount = stockCount - ?
+            WHERE NET302.Products.ID = ?";*/
 //        
 //        
 //        addOrder = connection.prepareStatement(addOrderQ2);

@@ -29,14 +29,14 @@
                             </tr>
                             <tr>
                                 <td>Password</td>
-                                <td><h:inputText class="textBox" id="passwordText" binding="#{password}" /></td>
+                                <td><h:inputSecret class="textBox" id="passwordText" binding="#{password}" /></td>
                             </tr>
                         </table>
                         <table style="padding:10px; width:100%;">
                             <tr>
                                 <td>&nbsp;</td>
                                 <td><input type="Button" class="customButton" value="Clear" onclick="clearFunction()" /></td>
-                                <td><h:commandButton class="customButton" value="Search" action="#{SessionHandler.GetManagementBean().auth(username.value, password.value)}"/></td>
+                                <td><h:commandButton class="customButton" value="Log In" action="#{SessionHandler.GetManagementBean().auth(username.value, password.value)}"/></td>
                                 <td>&nbsp;</td>
                             </tr>
                         </table>

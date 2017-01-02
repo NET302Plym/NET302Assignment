@@ -29,7 +29,10 @@
                   </h:form>
                 <br/>      
                 <div class="mainBodyContentInner">
+                    
                     <h:form>
+                        <br/>
+                    <p style="position:absolute; right:25px; top:75px; color: red;">#{SessionHandler.GetManagementBean().getErrorMessage()}</p>
                         <p class="title">Showing Results For #{search.value}</p>
                         <h:dataTable width="100%" id="myTable" value="#{SessionHandler.GetManagementBean().products}" var="products">
                         <h:column class="cellStyle">
