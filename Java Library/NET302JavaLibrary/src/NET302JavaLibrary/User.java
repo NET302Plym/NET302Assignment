@@ -15,13 +15,13 @@ public class User {
 
     /**
      * Constructor for creating a new User object.
-     * @param ID
-     * @param username
-     * @param password
-     * @param contact
-     * @param name
-     * @param authenticated
-     * @param staff_type 
+     * @param ID int - being the ID.
+     * @param username String - being the Username.
+     * @param password String - being the Password (leave blank in almost all cases)
+     * @param contact String - being the Contact (email).
+     * @param name String - being the Name.
+     * @param authenticated boolean - being if the User has authenticated or not.
+     * @param staff_type GenericLookup - being the ID/Value for this status.
      */
     public User(int ID, String username, String password, String contact, String name, boolean authenticated, GenericLookup staff_type) {
         this.ID             = ID;
@@ -33,6 +33,12 @@ public class User {
         this.staffType      = staff_type;
     }
     
+    /**
+     * Simple constructor for use when not all details are necessary .
+     * @param ID int - being the ID.
+     * @param username String - being the Username.
+     * @param name String - being the Name.
+     */
     public User(int ID, String username, String name)
     {
         this.ID = ID;
@@ -152,6 +158,10 @@ public class User {
     //  -   toString                                                      -   //
     //************************************************************************//
     
+    /**
+     * toString override to provide object information.
+     * @return String - being the contents of the object.
+     */
     @Override
     public String toString() {
         return "User{" + "ID=" + ID + ", username=" + username 
@@ -166,9 +176,8 @@ public class User {
     //************************************************************************//
     
     /**
-     * Creates a new User object using a JSON String. It uses the get/set methods
-     * on the User object it creates to copy its details.
-     * @param jsonString - String being the JSONString for this User object.
+     * Creates the object using a JSON string.
+     * @param jsonString String - being the JSON string representing this object.
      */
     public User(String jsonString){
         Gson gson = new Gson();
@@ -183,8 +192,8 @@ public class User {
     }
     
     /**
-     * Gets the JSON String of the User object.
-     * @return String - being the JSON representation of this User.
+     * Uses GSON to get the JSON string representing this object.
+     * @return String - being the JSON string.
      */
     public String GetJSONString(){
         Gson gson = new Gson();
