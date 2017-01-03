@@ -118,6 +118,12 @@ public class ManagementBean {
            errorMessage = "Error: Quantity must be a number";
            return "productList.xhtml";
         }
+        if(quantityInt > p.getStockCount() || quantityInt < 1)
+        {
+           errorMessage = "Error: Quantity must less than the stock count and greater than 0";
+           return "productList.xhtml";
+        }
+            
         
         
         
