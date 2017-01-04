@@ -45,7 +45,7 @@ public class Connector {
     //************************************************************************//
     
     private final   String KEY    = "NET_302_Plym_KEY";
-    private final   String SERVER = "http://localhost:8080/NET302_REST/";
+    private final   String SERVER = "http://lowcost-env.aqf9vqnxpn.us-west-2.elasticbeanstalk.com/";
     private         String urlEnd;
     private         String urlEndPost;
     private         String urlEndEncrypted;
