@@ -17,15 +17,16 @@ import javax.servlet.http.HttpSession;
 @Named(value = "SessionHandler")
 @Dependent
 public class SessionHandler {
+    //get an instance of management bean and store in the users session
     public static ManagementBean GetManagementBean(){
-        HttpSession session = session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 
         if (session.getAttribute("mb") == null)
         {
             // Set up vars
             session.setAttribute("mb", new ManagementBean());
         }
-            
+        
         return (ManagementBean)session.getAttribute("mb");
     }
 }

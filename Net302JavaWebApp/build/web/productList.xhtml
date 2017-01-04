@@ -22,6 +22,7 @@
                                 <h:inputText binding="#{search}" />
                             </td>
                             <td>
+                                <!-- **** pass the value to filter the products **** -->
                                 <h:commandButton class="customButton" value="Search" action="#{SessionHandler.GetManagementBean().filterProducts(search.value)}"/>
                             </td>
                         </tr>
@@ -33,7 +34,8 @@
                     <h:form>
                         <br/>
                     <p style="position:absolute; right:25px; top:75px; color: red;">#{SessionHandler.GetManagementBean().getErrorMessage()}</p>
-                        <p class="title">Showing Results For #{search.value}</p>
+                    <p class="title">Showing Results For #{search.value}</p>
+                    <!-- **** For every product, get the attributes and store in the table **** -->
                         <h:dataTable width="100%" id="myTable" value="#{SessionHandler.GetManagementBean().products}" var="products">
                         <h:column class="cellStyle">
                             <f:facet name="header">ID</f:facet>

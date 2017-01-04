@@ -9,8 +9,8 @@
     <h:body>
         <script type="text/javascript">
             function clearFunction(){
-                document.getElementById('usernameText').value = '';
-                document.getElementById('passwordText').value = '';
+                document.getElementById('login:usernameText').value = '';
+                document.getElementById('login:passwordText').value = '';
             }
         </script>
             <div class="header">
@@ -21,7 +21,9 @@
                 <div style="text-align:center;  margin-right:auto; margin-left:auto;">
                     <div class="authenticationBox">
                         <p style="font-size:18px;"><b>Log Into the System</b></p>
-                        <h:form>
+                        <!-- **** display error if there is one **** -->
+                        <center><p style="color: red;">#{SessionHandler.GetManagementBean().getErrorMessage()}</p></center>
+                        <h:form id="login">
                         <table>
                             <tr>
                                 <td>Username</td>
@@ -36,6 +38,7 @@
                             <tr>
                                 <td>&nbsp;</td>
                                 <td><input type="Button" class="customButton" value="Clear" onclick="clearFunction()" /></td>
+                                <!-- **** as soon as the user hits the login button a new session is made for them and user authorisation is attempted **** -->
                                 <td><h:commandButton class="customButton" value="Log In" action="#{SessionHandler.GetManagementBean().auth(username.value, password.value)}"/></td>
                                 <td>&nbsp;</td>
                             </tr>
