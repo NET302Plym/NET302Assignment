@@ -85,8 +85,6 @@ public class Connector {
             HttpURLConnection conn= (HttpURLConnection) url.openConnection();
             conn.setRequestMethod( "POST" );
 
-          
-
             conn.setDoOutput( true );
             DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
             wr.writeBytes(postParams);

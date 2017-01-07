@@ -127,8 +127,6 @@ public class ManagementBean {
            errorMessage = "Error: Quantity must less than the stock count and greater than 0";
            return "productList.xhtml";
         }
-            
-
         System.out.println("Product ID = " + p.getID() + " and Qualtity = " + quantity);
         
         //Get the name of the product you are ordering and the quantity as string for display in displayOrder.xhtml
@@ -150,6 +148,11 @@ public class ManagementBean {
                 System.out.println("***** ADDING TO ORDER ******");
                 filterProducts("");
                 return "displayOrder.xhtml";
+            }
+            else
+            {
+                errorMessage = "Error: Cannot order product, see systm administrator";
+                return "productList.xhtml";
             }
         } 
         
@@ -227,7 +230,8 @@ public class ManagementBean {
     //SOME OF THESE ARE USED AND SOME ARE NOT, BUT ARE HERE FOR FUTURE DEVELOPMENT TO FURTHER THE SYSTEM ABND ASDD MORE FEATURES
         
     // if theres an error message, clear it
-    // send the search query to the client connectors search products method and assign the result to the products array list
+    // send the search query to the client connectors search products method and assign
+    // the result to the products array list
     public String filterProducts(String filter)
     {
         errorMessage = "";
